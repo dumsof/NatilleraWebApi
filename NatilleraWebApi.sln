@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NatilleraWebApi", "NatilleraWebApi\NatilleraWebApi.csproj", "{6A45CFA9-2130-4168-940A-4092C9DF71EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Layers", "1.Layers", "{50F52A5B-F457-4E29-BE87-FB93F426E9BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Servicios Distribuidos", "1.1 Servicios Distribuidos", "{7B8BA2E8-F831-4220-A839-270AC3101F68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.4 DataAccess", "1.4 DataAccess", "{669FF82B-3194-4092-99B8-6A3F20AE7A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natillera.DataAccess", "Natillera.DataAccess\Natillera.DataAccess.csproj", "{8BA91429-24C8-4152-9096-DE82960548DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natillera.DataAccessContract", "Natillera.DataAccessContract\Natillera.DataAccessContract.csproj", "{D63F0C27-1454-4B73-940A-2CD2DF0A578F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5 CrossCutting", "1.5 CrossCutting", "{81A3EF74-E803-4EAE-97B9-40AC4AAEDE65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notificacion.Cross", "Notificacion.Cross\Notificacion.Cross.csproj", "{814A689C-4694-4D50-8924-6C81DF2CE146}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A45CFA9-2130-4168-940A-4092C9DF71EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A45CFA9-2130-4168-940A-4092C9DF71EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A45CFA9-2130-4168-940A-4092C9DF71EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A45CFA9-2130-4168-940A-4092C9DF71EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA91429-24C8-4152-9096-DE82960548DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA91429-24C8-4152-9096-DE82960548DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA91429-24C8-4152-9096-DE82960548DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA91429-24C8-4152-9096-DE82960548DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D63F0C27-1454-4B73-940A-2CD2DF0A578F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D63F0C27-1454-4B73-940A-2CD2DF0A578F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D63F0C27-1454-4B73-940A-2CD2DF0A578F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D63F0C27-1454-4B73-940A-2CD2DF0A578F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{814A689C-4694-4D50-8924-6C81DF2CE146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{814A689C-4694-4D50-8924-6C81DF2CE146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{814A689C-4694-4D50-8924-6C81DF2CE146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{814A689C-4694-4D50-8924-6C81DF2CE146}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A45CFA9-2130-4168-940A-4092C9DF71EB} = {7B8BA2E8-F831-4220-A839-270AC3101F68}
+		{7B8BA2E8-F831-4220-A839-270AC3101F68} = {50F52A5B-F457-4E29-BE87-FB93F426E9BF}
+		{669FF82B-3194-4092-99B8-6A3F20AE7A51} = {50F52A5B-F457-4E29-BE87-FB93F426E9BF}
+		{8BA91429-24C8-4152-9096-DE82960548DB} = {669FF82B-3194-4092-99B8-6A3F20AE7A51}
+		{D63F0C27-1454-4B73-940A-2CD2DF0A578F} = {669FF82B-3194-4092-99B8-6A3F20AE7A51}
+		{81A3EF74-E803-4EAE-97B9-40AC4AAEDE65} = {50F52A5B-F457-4E29-BE87-FB93F426E9BF}
+		{814A689C-4694-4D50-8924-6C81DF2CE146} = {81A3EF74-E803-4EAE-97B9-40AC4AAEDE65}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AAEBB8A-7732-4589-9048-51A7213CCE5A}
+	EndGlobalSection
+EndGlobal
