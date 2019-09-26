@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace NatilleraWebApi.Controllers
 {
+    [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -23,6 +24,10 @@ namespace NatilleraWebApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
+        /// <param name="id"></param>  
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

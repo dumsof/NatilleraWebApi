@@ -1,11 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Natillera.DataAccess\Natillera.DataAccess.csproj" />
   </ItemGroup>
 
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <DocumentationFile>E:\DUM\PROYECTOS NET\Natillera2019\NatilleraWebApi\NatilleraWebApi\NatilleraWebApi.xml</DocumentationFile>
+</PropertyGroup>
 </Project>
