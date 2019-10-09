@@ -17,11 +17,15 @@ namespace NatilleraWebApi
     using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi.Models;
     using Natillera.DataAccess;
+    using NLog;
 
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
+            //se utiliza nlog para crear un archivo de log, Install-Package NLog -Version 4.6.7.
+            //linea que permite optener la configuracion para nlog, por ejemplo ruta archivo nombre archivo.
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog" Version="4.6.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />
   </ItemGroup>
 
