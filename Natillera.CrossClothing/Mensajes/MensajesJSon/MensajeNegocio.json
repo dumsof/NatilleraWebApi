@@ -1,0 +1,664 @@
+/*
+  Tipos de mensaje:
+   - None = 0
+   - Error = 1
+   - Question = 2
+   - Information = 3
+   - Warning = 4
+
+  Codes
+  Negative codes: Problemas de conectividad
+  Positive codes: Errores de negocio
+*/
+{
+  "MessageInfo": [
+    {
+      "Type": "1",
+      "Code": "-1",
+      "Text": "En este momento no podemos procesar tu solicitud. Por favor inténtalo mas tarde.",
+      "Title": "Problemas de conectividad"
+      //"Validation": "Falla al tratar de procesar informacion (bd, middleware)"
+    },
+    {
+      "Type": "1",
+      "Code": "-2",
+      "Text": "En este momento no podemos validar la información. Por favor inténtalo más tarde.",
+      "Title": "Sin conexión"
+      //"Validation":  "Falla de conexion con registraduría"
+    },
+    {
+      "Type": "1",
+      "Code": "-3",
+      "Text": "En este momento no podemos enviar mensajes SMS. Por favor inténtalo más tarde.",
+      "Title": "Problemas al envíar SMS"
+      //"Validation":  "Problemas al envíar SMS"
+    },
+    {
+      "Type": "1",
+      "Code": "-4",
+      "Text": "{0}",
+      "Title": "{0}"
+      //"Validation":  "Problemas en las coordinaciones por reglas de negocio del middleware."
+    },
+    {
+      "Type": "1",
+      "Code": "-5",
+      "Text": "Error al cargar la configuración del sistema.",
+      "Title": "Error de configuración"
+      ///"Validation":  "Problemas al cargar la configuración del sistema."
+    },
+    {
+      "Type": "1",
+      "Code": "-6",
+      "Text": "Problemas de conectividad con la pasarela de pagos.",
+      "Title": "Error de conexión"
+      ///"Validation":  "Problemas de conectividad con la pasarela de pagos UY. Codigos HTTP"
+    },
+    {
+      "Type": "1",
+      "Code": "-7",
+      "Text": "Tu compra no pudo ser completada. Comunícate con atención al cliente.",
+      "Title": "Problemas durante el pago."
+      ///"Validation":  "Problemas durante el pago Códigos de error del negocio de la pasarela."
+    },
+
+    //Push Messages
+    {
+      "Type": "3",
+      "Code": "1000",
+      "Text": "UCM confirma tu coordinación de {0} a las {1} en {2}. En caso de que tu coordinación requiera alguna preparación previa. Si no puedes asistir debes cancelar 24 horas antes al tel 24873333.",
+      "Title": "Coordinación confirmada."
+      ///"Validation":  "mensaje Push al confirmar una coordinación.."
+    },
+    {
+      "Type": "3",
+      "Code": "1001",
+      "Text": "emi te invita a evaluar la atención recibida en la cita con especialista que tuviste el {0} a las {1} con {2}",
+      "Title": "Evaluación de cita."
+      ///"Validation":  "mensaje Push para evaluar una cita con espcecialista."
+    },
+
+    //Application Messages
+    {
+      "Type": "3",
+      "Code": "0",
+      "Text": "El proceso ha sido exitoso",
+      "Title": "Proceso exitoso"
+      //"Validation": "Proceso exitoso"
+    },
+    {
+      "Type": "1",
+      "Code": "1",
+      "Text": "La información se registro con éxito",
+      "Title": "Información Registrada"
+      //"Validation": "Campos obligatorio del pre-registro"
+    },
+    {
+      "Type": "1",
+      "Code": "2",
+      "Text": "El número de documento que suministraste no es  válido, debes verificarlo.",
+      "Title": "Validación de información"
+      //"Validation": "Valdiación contra el middlware para validar documento"
+    },
+    {
+      "Type": "1",
+      "Code": "3",
+      "Text": "Debe aceptar los terminos de uso y políticas de tratamiento de datos personales.",
+      "Title": "Validación de información"
+      //"Validation": "Campos obligatorio del pre-registro"
+    },
+    {
+      "Type": "1",
+      "Code": "4",
+      "Text": "El formato del correo no es válido.",
+      "Title": "Validación de información"
+      //"Validation": "Campos obligatorio del pre-registro"
+    },
+    {
+      "Type": "1",
+      "Code": "5",
+      "Text": "La confirmación del correo no es válida.",
+      "Title": "Validación de información"
+      //"Validation": "Campos obligatorio del pre-registro"
+    },
+    {
+      "Type": "3",
+      "Code": "6",
+      "Text": "Verifica que hayas digitado correctamente el número de documento de identidad.",
+      "Title": "Validación de información"
+      //"Validation": "Validacion en el fosyga/registraduria y no hay informacion"
+    },
+    {
+      "Type": "3",
+      "Code": "7",
+      "Text": "Hemos enviado al correo electrónico {0} la información para que puedas finalizar tú registro.",
+      "Title": "Validación de información"
+      //"Validation": "Al terminar el registro de forma exitosa o cuando ya existe y no está activado"
+    },
+    {
+      "Type": "3",
+      "Code": "8",
+      "Text": "El correo electrónico {0} quedo registrado satisfactoriamente. Enviaremos a el un mensaje para que finalice su registro.",
+      "Title": "Proceso exitoso"
+      //"Validation": "Cuando se registra el correo con la validacion del codigo enviado SMS"
+    },
+    {
+      "Type": "1",
+      "Code": "9",
+      "Text": "El código no es válido, comunícate con nuestra línea de Servicio al Cliente.",
+      "Title": "Validación de información"
+      //"Validation": "Mensaje genérico, Cuando se intenta validar un codigo (activacion, recordar contraseña, etc"
+    },
+    {
+      "Type": "1",
+      "Code": "10",
+      "Text": "Para finalizar el registro, comunícate con nuestra línea de Servicio al Cliente.",
+      "Title": "Proceso no exitoso"
+      //"Validation": "Cuando el celular no coincide con el registrado en el PLS "
+    },
+    {
+      "Type": "3",
+      "Code": "11",
+      "Text": "Ya estás registrado en el portal, si no recuerdas tú contraseña haz clic en recordar contraseña.",
+      "Title": "Validación de información"
+      //"Validation": "Usuario ya registrado y activado"
+    },
+    {
+      "Type": "3",
+      "Code": "12",
+      "Text": "Ya activaste tu usuario. Si olvidaste tú contraseña selecciona la opción recordar contraseña.",
+      "Title": "Validación de información"
+      //"Validation": "Cuando el usuario trata de activarse por segunda vez"
+    },
+    {
+      "Type": "3",
+      "Code": "13",
+      "Text": "Código de activación {0}",
+      "Title": "Validación de información"
+      //"Validation": "Mensaje para enviar el SMS, no aplica para el front-end"
+    },
+    {
+      "Type": "1",
+      "Code": "14",
+      "Text": "El correo electrónico no coincide con el del afiliado.",
+      "Title": "Validación de información"
+      //"Validation": "Usuario es afiliado pero el email no coincide con el del PLS"
+    },
+    {
+      "Type": "1",
+      "Code": "15",
+      "Text": "El usuario no se encuentra Afiliado.",
+      "Title": "Validación de información"
+      //"Validation": "aplica cuando un usuario no está afiliado"
+    },
+    {
+      "Type": "1",
+      "Code": "16",
+      "Text": "No te encuentras registrado en nuestro sistema.",
+      "Title": "Validación de información"
+      //"Validation": "aplica cuando un usuario se loguea y no existe"
+    },
+    {
+      "Type": "1",
+      "Code": "17",
+      "Text": "Correo electrónico o contraseña no válidos.",
+      "Title": "Validación de información"
+      //"Validation": "aplica cuando un usuario se loguea y no es valido el usuario o contraseña"
+    },
+    {
+      "Type": "3",
+      "Code": "18",
+      "Text": "El usuario se encuentra inactivo.",
+      "Title": "Validación de información"
+      //"Validation": "aplica cuando un usuario se loguea y ya existe pero esta inactivo"
+    },
+    {
+      "Type": "1",
+      "Code": "19",
+      "Text": "Por favor verifica que todos los campos obligatorios han sido diligenciados.",
+      "Title": "Validación de información"
+      //"Validation": "Mensaje genérico, aplica cuando se llama un servicio y los campos obligatorios no estan completos"
+    },
+    {
+      "Type": "1",
+      "Code": "20",
+      "Text": "La contraseña {0} no es válida.",
+      "Title": "Validación de información"
+      //"Validation": "Mensaje genérico, aplica cuando la contraseña no cumple con la politica de contraseña"
+    },
+    {
+      "Type": "3",
+      "Code": "21",
+      "Text": "Hemos enviado al correo electrónico {0} la información para que puedas cambiar la contraseña.",
+      "Title": "Proceso exitoso"
+      //"Validation": "Al enviar correo de olvidar contraseña"
+    },
+    {
+      "Type": "1",
+      "Code": "22",
+      "Text": "No se pudo ejecutar la actualización de los datos personales.",
+      "Title": "Validación de información"
+      ///"Validation": "Al actualizar datos de la persona en PLS"
+    },
+    {
+      "Type": "1",
+      "Code": "23",
+      "Text": "Ya existe una cuenta de usuario asociada con los datos ingresados.",
+      "Title": "Validación de información"
+      ///"Validation": "Al registrarse con un correo que ya existe"
+    },
+    {
+      "Type": "3",
+      "Code": "24",
+      "Text": "La contraseña ha sido cambiada con éxito.",
+      "Title": "Proceso exitoso"
+      ///"Validation": "Al cambiar la contraseña"
+    },
+    {
+      "Type": "3",
+      "Code": "25",
+      "Text": "La cuenta ha sido activada con éxito.",
+      "Title": "Proceso exitoso"
+      ///"Validation": "Al activar la cuenta"
+    },
+    {
+      "Type": "3",
+      "Code": "26",
+      "Text": "La coordinación ha sido realizada con éxito. En caso de no poder asistir, debes cancelar la consulta con {0} horas hábiles de anticipación, de lo contrario perderás el derecho a ella. ¡Muchas gracias!",
+      "Title": "Nueva coordinación"
+      ///"Validation": "Al confirmar una coordinación con éxito"
+    },
+    {
+      "Type": "3",
+      "Code": "27",
+      "Text": "Tu coordinación ha sido cancelada exitosamente.",
+      "Title": "Cancelar coordinación"
+      ///"Validation": "Al cancelar una coordinación con éxito"
+    },
+    {
+      "Type": "3",
+      "Code": "28",
+      "Text": "En caso de no poder asistir, debes cancelar la consulta con {0} horas hábiles de anticipación, de lo contrario perderás el derecho a ella.",
+      "Title": "Notificar coordinación"
+      ///"Validation": "Al notificr una coordinación pendiente"
+    },
+    {
+      "Type": "3",
+      "Code": "29",
+      "Text": "Recuerda tu cita: Nombre del paciente: {0}, Especialidad: {1}, Nombre del centro médico : {2}, Dirección  : {3}, Día  : {4}, Condiciones de cancelación: {5}",
+      "Title": "Notificar coordinación"
+      ///"Validation": "Al notificr una coordinación pendiente"
+    },
+    {
+      "Type": "1",
+      "Code": "30",
+      "Text": "Tu familiar no fué agregado, ya existe un familiar registrado con ese número de documento.",
+      "Title": "Agregar Familiar"
+      ///"Validation": "Al notificr una coordinación pendiente"
+    },
+    {
+      "Type": "1",
+      "Code": "31",
+      "Text": "No se encontró ningun registro para modificar.",
+      "Title": "Actualizar Familiar"
+      ///"Validation": "Al notificr una coordinación pendiente"
+    },
+    {
+      "Type": "1",
+      "Code": "32",
+      "Text": "No fué posible eliminar la información del familiar.",
+      "Title": "Eliminar Familiar"
+      ///"Validation": "Al notificr una coordinación pendiente"
+    },
+    {
+      "Type": "1",
+      "Code": "33",
+      "Text": "Tu familiar no fue encontrado.",
+      "Title": "Buscar Familiar"
+      ///"Validation": "Al buscar un familiar"
+    },
+    {
+      "Type": "1",
+      "Code": "34",
+      "Text": "La información no pudo ser actualizda.",
+      "Title": "Actualizar Datos"
+      ///"Validation": "Al fallar la actualizacion de datos de un especialista"
+    },
+    {
+      "Type": "3",
+      "Code": "35",
+      "Text": "Tus datos se han guardado exitosamente.",
+      "Title": "Actualizar Datos"
+      ///"Validation": "Al actualizar datos"
+    },
+    {
+      "Type": "3",
+      "Code": "36",
+      "Text": "La agenda para los horarios elegidos no se encuentra disponible.",
+      "Title": "Disponibilizar Agenda"
+      ///"Validation": "Valida que al disponiblizar una agenda esta se encuentre disponible"
+    },
+    {
+      "Type": "3",
+      "Code": "37",
+      "Text": "El usuario EMI no se encuentra en nuestra base de datos. Verifica que hayas digitado correctamente el tipo y número de documento, en caso de que sean correctos por favor comunícate con la línea de servicio al cliente.",
+      "Title": "Información persona"
+      ///"Validation": "Cuando se consulta informaicon de un afiliado"
+    },
+    {
+      "Type": "3",
+      "Code": "38",
+      "Text": "No fue posible agregar la nueva agenda",
+      "Title": "Agregar Agenda"
+      ///"Validation": "Valida cuando no se pueda agregar una agenda"
+    },
+    {
+      "Type": "3",
+      "Code": "39",
+      "Text": "Hemos enviado al correo electrónico del administrador de especialistas la información para finalizar tú registro.",
+      "Title": "Registro especialistas"
+      ///"Validation": "Cuando se registra un especialista y se le envia un correo"
+    },
+    {
+      "Type": "1",
+      "Code": "40",
+      "Text": "Actualmente es imposible validar su solicitud de afiliación; por tanto, no es posible generar la afiliación. Si deseas puedes comunicarte con un asesor comercial quien puede explicarte con mayor detalle la situación",
+      "Title": "Uso incorrecto del servicio"
+      ///"Validation": "Cuando una persona ha tenido reporte de mal uso."
+    },
+    {
+      "Type": "1",
+      "Code": "41",
+      "Text": "Señor usuario, la persona que estás intentando afiliar ya cuenta con una afiliación activa, por favor selecciona otra persona.",
+      "Title": "Validación de información"
+      ///"Validation": "Cuando una persona ya tiene una afiliacion activa."
+    },
+    {
+      "Type": "1",
+      "Code": "42",
+      "Text": "No tenemos información disponible sobre tu afiliación al régimen contributivo; por lo tanto vuelve a intentarlo o si deseas puedes comunicarte con un asesor comercial quien puede explicarte con mayor detalle la situación.",
+      "Title": "No encontrado en régimen contributivo"
+      ///"Validation": "Validación al régimen contributivo."
+    },
+    {
+      "Type": "1",
+      "Code": "43",
+      "Text": "Actualmente no te encuentras afiliado al régimen contributivo; por lo tanto vuelve a intentarlo o si deseas puedes comunicarte con un asesor comercial quien puede explicarte con mayor detalle la situación.",
+      "Title": "No afiliado al régimen contributivo"
+      ///"Validation": "Validación al régimen contributivo."
+    },
+    {
+      "Type": "1",
+      "Code": "44",
+      "Text": "Actualmente te encuentras afiliado al régimen contributivo pero INACTIVO; por tanto, no es posible generar la afiliación. Si deseas puedes comunicarte con un asesor comercial quien puede explicarle con mayor detalle la situación.",
+      "Title": "No activo en el régimen contributivo"
+      ///"Validation": "Validación al régimen contributivo."
+    },
+    {
+      "Type": "1",
+      "Code": "45",
+      "Text": "Señor usuario, no es posible actualizar la cita para los horarios elegidos.",
+      "Title": "Actulizaciòn de cita"
+      ///"Validation": "Validación al régimen contributivo."
+    },
+    {
+      "Type": "1",
+      "Code": "46",
+      "Text": "El especialista se encuentra inactivo.",
+      "Title": "Validación de información"
+      ///"Validation": "El especialista se encuentra inactivo."
+    },
+    {
+      "Type": "1",
+      "Code": "47",
+      "Text": "Error al cambiar la contraseña.",
+      "Title": "Proceso no exitoso."
+      ///"Validation": "Error al cambiar la contraseña"
+    },
+    {
+      "Type": "1",
+      "Code": "48",
+      "Text": "Error al registrar la información. Es posible que el correo electrónico ya esté registrado o que los campos obligatorios no han sido diligenciados.",
+      "Title": "Registro no exitoso"
+      ///"Validation": "Error al registrar un usuario"
+    },
+    {
+      "Type": "1",
+      "Code": "49",
+      "Text": "El tipo de documento no es válido, si deseas puedes comunicarte con un asesor comercial quien puede explicarte con mayor detalle la situación.",
+      "Title": "Tipo de documento no válido"
+      ///"Validation": "Error al seleccionar un tipo de documento no válido"
+    },
+    {
+      "Type": "1",
+      "Code": "50",
+      "Text": "Ya existe un tipo y número documento registrado con los datos ingresados.",
+      "Title": "Validación de información"
+      ///"Validation": "Al registrarse con un tipo y documento, pais y rol que ya existe"
+    },
+    {
+      "Type": "3",
+      "Code": "51",
+      "Text": "El correo {0} quedo registrado satisfactoriamente, enviaremos a tu mail un mensaje para finalizar el registro.",
+      "Title": "Validación de información"
+      ///"Validation": "Al terminar el registro de forma exitosa o cuando se actualiza el correo en el PLS"
+    },
+    {
+      "Type": "3",
+      "Code": "52",
+      "Text": "El registro del especialista ha sido denegado. La información no ha sido almacenada.",
+      "Title": "Proceso exitoso"
+      ///"Validation": "Al momento de no aceptar el registro de un especialista"
+    },
+    {
+      "Type": "3",
+      "Code": "53",
+      "Text": "El proceso de registro ha sido cancelado.",
+      "Title": "Registro cancelado"
+      ///"Validation": "Al momento del usuario cancelar el registro"
+    },
+    {
+      "Type": "3",
+      "Code": "54",
+      "Text": "Hemos enviado al correo electrónico {0} el registro clínico seleccionado.",
+      "Title": "Archivo enviado"
+      ///"Validation": "Al enviar el registro clínico"
+    },
+    {
+      "Type": "3",
+      "Code": "55",
+      "Text": "Registro clínico no disponible para {0}. Debes comunicarte con nuestra línea de Servicio al Cliente.",
+      "Title": "Registro clínico"
+      ///"Validation": "Al enviar el registro clínico y éste no existe"
+    },
+    {
+      "Type": "3",
+      "Code": "56",
+      "Text": "Tu servicio ha sido cancelado con éxito.",
+      "Title": "Confirmación"
+      ///"Validation": "Al enviar el registro clínico y éste no existe"
+    },
+    {
+      "Type": "3",
+      "Code": "57",
+      "Text": "¡Gracias por calificarnos!",
+      "Title": "Confirmación"
+      ///"Validation": "Al enviar el registro clínico y éste no existe"
+    },
+    {
+      "Type": "3",
+      "Code": "58",
+      "Text": "¡Gracias! Ya recibimos tu evaluación.",
+      "Title": "Confirmación"
+      ///"Validation": "Al enviar el registro clínico y éste no existe"
+    },
+    {
+      "Type": "3",
+      "Code": "61",
+      "Text": "No se pueden registrar menores de edad.",
+      "Title": "Registro de usuarios"
+      ///"Validation": "Al intentar registrar un menor de edad."
+    },
+    {
+      "Type": "3",
+      "Code": "OF01",
+      "Text": "Para tu comodidad puedes pagar en los locales Abitab",
+      "Title": "fa fa-chevron-circle-up|Abitab.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "OF02",
+      "Text": "Para tu comodidad puedes pagar en los locales Red Pagos.",
+      "Title": "fa fa-star|RedPago.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "OF03",
+      "Text": "El valor de tu servicio será debitado en tu próxima factura ucm. Selecciona el número de cuotas",
+      "Title": "fa fa-list-alt|debito.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ONLINE",
+      "Text": "",
+      "Title": "fa fa-credit-card|pasarela.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "OF01-1",
+      "Text": "Antes de asistir a tu coordinación, recuerda realizar el pago presentando tu documento de identidad en alguno de los locales Abitab/red pagos (depende de la forma de pago seleccionada). El día de la coordinación presenta el pago realizado",
+      "Title": ""
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "OF02-1",
+      "Text": "Antes de asistir a tu coordinación, recuerda realizar el pago presentando tu documento de identidad en alguno de los locales Abitab/red pagos (depende de la forma de pago seleccionada). El día de la coordinación presenta el pago realizado",
+      "Title": ""
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "OF03-1",
+      "Text": "",
+      "Title": ""
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ONLINE-1",
+      "Text": "El servicio fue abonado mediante tarjeta de crédito XXXXXX {0}",
+      "Title": ""
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON02",
+      "Text": "CABAL",
+      "Title": "pay emi-cabal|cabal.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON03",
+      "Text": "DINERS",
+      "Title": "emi-diners|diners.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON04",
+      "Text": "MASTERCARD",
+      "Title": "|Mastercard.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON26",
+      "Text": "OCA",
+      "Title": "|Oca.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON18",
+      "Text": "TARJETA D",
+      "Title": "|TarjetaD.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON08",
+      "Text": "VISA",
+      "Title": "|Visa.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON57",
+      "Text": "ALMACENES EXITO",
+      "Title": "|AlmacenesExito.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON56",
+      "Text": "AMERICAN EXPRESS BANCOLO",
+      "Title": "|AmericanExpressBancolo.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON51",
+      "Text": "CONAVI BANCOLOMBIA",
+      "Title": "|ConaviBancolombia.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON50",
+      "Text": "CREDENCIAL",
+      "Title": "|Credencial.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON52",
+      "Text": "DINERS CLUB",
+      "Title": "|DinersClub.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON53",
+      "Text": "MASTER CARD BANCOLOMBIA",
+      "Title": "|MasterCardBancolombia.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON55",
+      "Text": "RED MULTICOLOR",
+      "Title": "|RedMulticolor.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON58",
+      "Text": "VISA CREDENCIAL ANUAL",
+      "Title": "|VisaCredencialAnual.png"
+      ///"Validation": ""
+    },
+    {
+      "Type": "3",
+      "Code": "ON54",
+      "Text": "VISA CREDIBANCO",
+      "Title": "|VisaCredibanco.png"
+      ///"Validation": ""
+    }
+  ]
+}
