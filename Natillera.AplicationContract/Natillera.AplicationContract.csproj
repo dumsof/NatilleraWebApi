@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Enum\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Natillera.Business\Natillera.Business.csproj" />
+  </ItemGroup>
+
 </Project>

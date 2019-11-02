@@ -1,22 +1,19 @@
 namespace NatilleraWebApi
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Threading.Tasks;
+    using System;  
+    using System.IO;   
+    using System.Reflection;   
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
-    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Hosting;  
+    using Microsoft.AspNetCore.Identity;   
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Hosting;   
     using Microsoft.OpenApi.Models;
+    using Natillera.Aplication.IoC;
     using Natillera.DataAccess;
+    using NatilleraWebApi.Extensions;
     using NLog;
 
     public class Startup
@@ -34,9 +31,24 @@ namespace NatilleraWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NatilleraDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
+            //Dum: se agrega la inyeccion para el logger
+            //services.AddSingleton<ILoggerManager, LoggerManager>();
+            services.ConfigureLoggerService();
+
+            services.AddDbContext<NatilleraDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBaseConexion")));
 
             services.AddControllers();
+
+            //Dum: manejo del token.
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<NatilleraDBContext>()
+                .AddDefaultTokenProviders();
+
+            //Dum: se inyecta el contenedor del repositorio
+            //services.ConfiguracionRepositoryContenedor();
+
+            //Dum: se injectan los servicios de las capas de repositorio y servicios.
+            ServiceExtensions.AddResgistro(services);
 
             //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -73,6 +85,7 @@ namespace NatilleraWebApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
+
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -82,6 +95,10 @@ namespace NatilleraWebApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
+
+            //Dum: se realiza el llamado del middleware del manejo de exception global.
+            app.ConfigureCustomExceptionMiddleware();
 
             if (env.IsDevelopment())
             {
@@ -98,6 +115,8 @@ namespace NatilleraWebApi
             {
                 endpoints.MapControllers();
             });
+
+         
         }
     }
 }

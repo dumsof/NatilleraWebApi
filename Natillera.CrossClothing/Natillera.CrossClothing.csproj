@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Mensajes\MensajesJSon\MensajeNegocio.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Mensajes\MensajesJSon\MensajeNegocio.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Exception\Models\" />
   </ItemGroup>
 

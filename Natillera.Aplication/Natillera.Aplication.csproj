@@ -5,7 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IoC\" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
+    <ProjectReference Include="..\Natillera.AplicationContract\Natillera.AplicationContract.csproj" />
+    <ProjectReference Include="..\Natillera.Business\Natillera.Business.csproj" />
+    <ProjectReference Include="..\Natillera.CrossClothing\Natillera.CrossClothing.csproj" />
+    <ProjectReference Include="..\Natillera.DataAccessContract\Natillera.DataAccessContract.csproj" />
+    <ProjectReference Include="..\Natillera.DataAccess\Natillera.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

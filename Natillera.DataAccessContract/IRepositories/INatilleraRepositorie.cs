@@ -2,7 +2,7 @@
 {
     using Natillera.DataAccessContract.Entidades;
 
-    public interface INatilleraRepositorie : IRepositoryBase<NatilleraEntity>
+    public interface INatilleraRepositorie : IRepositoryBase<Natilleras>
     {
     }
 }
