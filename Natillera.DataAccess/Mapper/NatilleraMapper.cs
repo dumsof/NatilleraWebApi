@@ -1,6 +1,6 @@
 ﻿namespace Natillera.DataAccess.Mapper
 {
-    using Natillera.Business.Models;   
+    using Natillera.Business.Models;
     using Natillera.DataAccessContract.Entidades;
 
     public static class NatilleraMapper
@@ -16,7 +16,14 @@
             {
                 NatilleraId = natillera.NatilleraId,
                 Nombre = natillera.Nombre,
-                Descripcion = natillera.Descripcion
+                Descripcion = natillera.Descripcion,
+                NumeroCuotas = natillera.NumeroCuotas,
+                DiasGraciaMora = natillera.DiasGraciaMora,
+                FechaInicioPagoCuota = natillera.FechaInicioPagoCuota,
+                TipoPago = natillera.TipoPago,
+                ValorCuotaPagar = natillera.ValorCuotaPagar,
+                ValorMoraDiaFijo = natillera.ValorMoraDiaFijo,
+                ValorMoraPagar = natillera.ValorMoraPagar
             };
         }
 
@@ -32,7 +39,14 @@
             {
                 NatilleraId = natilleraEntity.NatilleraId,
                 Nombre = natilleraEntity.Nombre,
-                Descripcion = natilleraEntity.Descripcion
+                Descripcion = natilleraEntity.Descripcion,
+                NumeroCuotas = natilleraEntity.NumeroCuotas,
+                DiasGraciaMora = natilleraEntity.DiasGraciaMora,
+                FechaInicioPagoCuota = natilleraEntity.FechaInicioPagoCuota,
+                TipoPago = natilleraEntity.TipoPago,
+                ValorCuotaPagar = natilleraEntity.ValorCuotaPagar,
+                ValorMoraDiaFijo = natilleraEntity.ValorMoraDiaFijo,
+                ValorMoraPagar = natilleraEntity.ValorMoraPagar
             };
         }
     }
