@@ -4,6 +4,8 @@
     {
         INatilleraRepositorie Natillera { get; }
 
+        IUsuarioRepositorie Usuario { get; }
+
         void Save();
     }
 }

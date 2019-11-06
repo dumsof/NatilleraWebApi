@@ -2,9 +2,10 @@
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Natillera.DataAccessContract;
     using Natillera.DataAccessContract.Entidades;
 
-    public class NatilleraDBContext : IdentityDbContext<ApplicationUser>
+    public class NatilleraDBContext : IdentityDbContext<ApplicationUser>, INatilleraDBContext
     {
         //cuando se hereda de IdentityDbContext<ApplicationUser>, se crean las tablas para 
         //el manejo de usuarios.
@@ -17,6 +18,22 @@
         }
 
         public DbSet<Natilleras> Natilleras { get; set; }
+
+        public DbSet<TiposDocumentos> TiposDocumentos { get; set; }
+
+        public DbSet<Prestamos> Prestamos { get; set; }
+
+        public DbSet<ActividadesRecaudos> ActividadesRecaudos { get; set; }
+
+        public DbSet<Socios> Socios { get; set; }
+
+        public DbSet<NatilleraSocios> NatilleraSocios { get; set; }
+
+        public DbSet<CuotasPrestamos> CuotasPrestamos { get; set; }
+
+        public DbSet<CuotasSocios> CuotasSocios { get; set; }
+
+        public DbSet<Usuarios> Usuarios { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

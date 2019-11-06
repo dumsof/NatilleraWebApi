@@ -12,6 +12,8 @@
 
         private INatilleraRepositorie natillera;
 
+        private IUsuarioRepositorie usuario;
+
         public RepositorioContenedor(NatilleraDBContext context)
         {
             this.context = context;
@@ -27,6 +29,19 @@
                 }
 
                 return this.natillera;
+            }
+        }
+
+        public IUsuarioRepositorie Usuario
+        {
+            get
+            {
+                if (this.usuario == null)
+                {
+                    this.usuario = new UsuarioRepositorio(this.context);
+                }
+
+                return this.usuario;
             }
         }
 

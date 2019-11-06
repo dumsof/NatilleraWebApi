@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Natillera.DataAccessContract", "Natillera.DataAccessContract\Natillera.DataAccessContract.csproj", "{D63F0C27-1454-4B73-940A-2CD2DF0A578F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5 CrossCutting", "1.5 CrossCutting", "{81A3EF74-E803-4EAE-97B9-40AC4AAEDE65}"
+	ProjectSection(SolutionItems) = preProject
+		Ayuda.txt = Ayuda.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 Aplication", "1.2 Aplication", "{562E9E35-09CB-4827-AC45-A18084A745FD}"
 EndProject

@@ -1,0 +1,48 @@
+--capa en la cual se agregan todas las funcionalidades que son 
+transversales a la aplicación.
+
+----se deben ejecutar en al consola de paquete nuget, se debe seleccionar el proyecto donde esta el contexto
+1. comando que crea la estructura de la base de datos basada en el modelo
+
+add-migration "Initial migration"
+--si no funciona se debe agregar el nombre del contexto
+	Add-Migration MyPrimeraMigracion -Context LibraryDatoContext
+
+NOTA: modificar migracion existente
+Add-Migration MyPrimeraMigracion  -Force -Context LibraryDatoContext
+
+2. se debe ejecutar el siguiente comando para crear la base de datos, partiendo de la migracion antes creada.
+
+	Update-Database -Context LibraryDatoContext
+
+Nota: si hay algun problema con la migracion o se tienen varias se puede seleccionar cual se debe ejecutar.
+
+	Update-Database -Context LibraryDatoContext -TargetMigration:"name_of_migration"
+
+3. Borrar la base de datos
+	Drop-Database -Context LibraryDatoContext
+
+Remove-Migration -Context LibraryDatoContext
+
+server:DARWIM-PC\SQL2014
+user:sa
+clv:123
+
+video 2 minuto 34:59
+
+
+--COMO HACER QUE EL SERVICIO CORRA EN IIS
+se debe agregar en el archivo de program.cs, las siguientes lineas o actualizar las existentes.
+
+var host = new WebHostBuilder()
+.UseKestrel()
+.UseUrls("http://*:5000")
+.UseContentRoot(Directory.GetCurrentDirectory())
+.UseIISIntegration()
+.UseStartup<Startup>()
+.Build();
+
+DUM PENDIENTES
+--seguiria en el capitulo 18
+
+Tarea: se debe buscar como configurar la cadena de conexion en los archivos x ambiente.

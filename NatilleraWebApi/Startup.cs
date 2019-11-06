@@ -1,15 +1,19 @@
 namespace NatilleraWebApi
 {
-    using System;  
+    using System;
+    using System.Collections.Generic;
     using System.IO;   
-    using System.Reflection;   
+    using System.Reflection;
+    using System.Text;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;  
     using Microsoft.AspNetCore.Identity;   
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;   
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
     using Natillera.Aplication.IoC;
     using Natillera.DataAccess;
@@ -49,6 +53,24 @@ namespace NatilleraWebApi
 
             //Dum: se injectan los servicios de las capas de repositorio y servicios.
             ServiceExtensions.AddResgistro(services);
+
+            //json web token configuracion
+            //se realiza la validacion para saber si el token enviado es correcto y 
+            //poder entrar a la aplicación.
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opcion =>
+                opcion.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuers = new List<string> { "yourdomain.com" },
+                    ValidAudience = "yourdomain.com",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["va_clave_super_secreta"])),
+                    ClockSkew = TimeSpan.Zero
+                });
+            //fin json web token
 
             //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
             // Register the Swagger generator, defining 1 or more Swagger documents
