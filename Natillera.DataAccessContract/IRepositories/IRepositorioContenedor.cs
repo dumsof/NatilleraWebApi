@@ -4,7 +4,7 @@
     {
         INatilleraRepositorie Natillera { get; }
 
-        IUsuarioRepositorie Usuario { get; }
+        //IUsuarioRepositorie Usuario { get; }
 
         void Save();
     }

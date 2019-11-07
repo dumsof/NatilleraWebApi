@@ -13,17 +13,19 @@
 
         private readonly IRepositorioContenedor repositorio;
 
-        public UsuarioServices(IRepositorioContenedor repositorio)
+        private readonly IUsuarioRepositorie usuarioRepositorie;
+
+        public UsuarioServices(IRepositorioContenedor repositorio, IUsuarioRepositorie usuarioRepositorie)
         {
             this.repositorio = repositorio;
+            this.usuarioRepositorie = usuarioRepositorie;
         }
 
         public Respuesta GuardarUsuario(Usuario usuario)
         {
             Message message = new Message(MessageCode.Message0000);
 
-            this.repositorio.Usuario.Create(UsuarioMapper.UsuarioEntityMap(usuario));
-            this.repositorio.Save();
+            this.usuarioRepositorie.GuardarUsuario(UsuarioMapper.UsuarioEntityMap(usuario));
 
             return new Respuesta
             {
@@ -38,8 +40,8 @@
 
         public Usuario Logueo(Usuario usuario)
         {
-            var respuesta = this.repositorio.Usuario.FindByCondition(c => c.Password == usuario.Password && c.Email.Trim() == usuario.Email.Trim()).FirstOrDefault();
-            return UsuarioMapper.UsuarioEntityMap(respuesta);
+            //var respuesta = this.repositorio.Usuario.FindByCondition(c => c.Password == usuario.Password && c.Email.Trim() == usuario.Email.Trim()).FirstOrDefault();
+            return null; //UsuarioMapper.UsuarioEntityMap(respuesta);
         }
     }
 }

@@ -32,18 +32,18 @@
             }
         }
 
-        public IUsuarioRepositorie Usuario
-        {
-            get
-            {
-                if (this.usuario == null)
-                {
-                    this.usuario = new UsuarioRepositorio(this.context);
-                }
+        //public IUsuarioRepositorie Usuario
+        //{
+        //    get
+        //    {
+        //        if (this.usuario == null)
+        //        {
+        //            this.usuario = new UsuarioRepositorio(this.context);
+        //        }
 
-                return this.usuario;
-            }
-        }
+        //        return this.usuario;
+        //    }
+        //}
 
         public void Save()
         {
