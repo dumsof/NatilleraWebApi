@@ -28,13 +28,15 @@
         private static IServiceCollection AddResgistroServices(this IServiceCollection services)
         {
             services.AddTransient<INatilleraServices, NatilleraServices>();
+            services.AddTransient<IUsuarioServices, UsuarioServices>();
             return services;
         }
 
         private static IServiceCollection AddResgistroRepositorio(this IServiceCollection services)
         {
             services.AddScoped<IRepositorioContenedor, RepositorioContenedor>();
-            services.AddTransient<NatilleraRepositorio, NatilleraRepositorio>();
+            services.AddTransient<INatilleraRepositorie, NatilleraRepositorio>();
+            services.AddTransient<IUsuarioRepositorie, UsuarioRepositorio>();
             return services;
         }
     }

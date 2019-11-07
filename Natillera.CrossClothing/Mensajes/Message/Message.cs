@@ -100,7 +100,7 @@
 
         private MessageInfo GetMessage(int code)
         {
-            MessagesList rootObject = JsonFile.FromJson<MessagesList>("\\MensajesJSon\\MensajeNegocio.json");
+            MessagesList rootObject = JsonFile.FromJson<MessagesList>("\\MensajeNegocio.json");
             MessageInfo message = rootObject.MessageInfo.FirstOrDefault(s => Convert.ToInt32(s.Code) == code);
 
             if (message == null)
@@ -113,7 +113,7 @@
 
         private MessageInfo GetMessage(string code)
         {
-            MessagesList rootObject = JsonFile.FromJson<MessagesList>("\\MensajesJSon\\MensajeNegocio.json");
+            MessagesList rootObject = JsonFile.FromJson<MessagesList>("\\MensajeNegocio.json");
             MessageInfo message = rootObject.MessageInfo.FirstOrDefault(s => s.Code == code);
             if (message == null)
             {

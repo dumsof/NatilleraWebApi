@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Mensajes\MensajesJSon\Constantes.json" />
     <None Remove="Mensajes\MensajesJSon\MensajeNegocio.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Mensajes\MensajesJSon\Constantes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Mensajes\MensajesJSon\MensajeNegocio.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

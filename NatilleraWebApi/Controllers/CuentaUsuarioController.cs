@@ -19,11 +19,12 @@
     {
         private readonly IUsuarioServices usuarioServices;
 
-        private readonly IConfiguration _configuration;
+        private readonly IConfiguration configuration;
 
         public CuentaUsuarioController(IUsuarioServices usuarioServices, IConfiguration configuration)
         {
             this.usuarioServices = usuarioServices;
+            this.configuration = configuration;
         }
 
         /// <summary>
@@ -85,7 +86,7 @@
 
 
             //la clave secrete debe tener una longitud de mas de 128 bit.
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["va_clave_super_secreta"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["va_clave_super_secreta"]));
             var credencial = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var expiration = DateTime.UtcNow.AddHours(1);

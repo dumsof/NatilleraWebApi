@@ -4,11 +4,109 @@
         <name>NatilleraWebApi</name>
     </assembly>
     <members>
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuario(Natillera.Business.Models.Usuario)">
+            <summary>
+            Guardar los datos del usuario.
+            </summary>
+            <param name="usuario"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.Logueo(Natillera.Business.Models.Usuario)">
+            <summary>
+            Guardar los datos del usuario.
+            </summary>
+            <param name="userInfo"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.NatilleraController.GuardarNatillera(Natillera.Business.Models.Natillera)">
+            <summary>
+            Guardar los datos de una natillera que ingresa el usuario.
+            </summary>
+            <param name="natillera"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.WeatherForecastController.Get">
             <summary>
             Deletes a specific TodoItem.
             </summary>
             <param name="id"></param>  
+        </member>
+        <member name="M:NatilleraWebApi.Extensions.ExceptionMiddlewareExtensions.ConfigureCustomExceptionMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            metodo que se extiende de IApplicationBuilder, para poder agrregar el middleware de la exception.
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="T:NatilleraWebApi.Filter.ActionFilter.ValidateModelAttribute">
+            <summary>
+            Defines the <see cref="T:NatilleraWebApi.Filter.ActionFilter.ValidateModelAttribute" />
+            </summary>
+        </member>
+        <member name="M:NatilleraWebApi.Filter.ActionFilter.ValidateModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            The OnActionExecuting
+            </summary>
+            <param name="context">The context<see cref="T:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext"/></param>
+        </member>
+        <member name="T:NatilleraWebApi.Filter.ValidationModels.ValidationError">
+            <summary>
+            Defines the <see cref="T:NatilleraWebApi.Filter.ValidationModels.ValidationError" />
+            </summary>
+        </member>
+        <member name="P:NatilleraWebApi.Filter.ValidationModels.ValidationError.NombreCampo">
+            <summary>
+            Gets the Field
+            </summary>
+        </member>
+        <member name="P:NatilleraWebApi.Filter.ValidationModels.ValidationError.MensajeValidacion">
+            <summary>
+            Gets the Message
+            </summary>
+        </member>
+        <member name="M:NatilleraWebApi.Filter.ValidationModels.ValidationError.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NatilleraWebApi.Filter.ValidationModels.ValidationError"/> class.
+            </summary>
+            <param name="field">The field<see cref="T:System.String"/></param>
+            <param name="message">The message<see cref="T:System.String"/></param>
+        </member>
+        <member name="T:NatilleraWebApi.Filter.ValidationModels.ValidationFailedResult">
+            <summary>
+            Defines the <see cref="T:NatilleraWebApi.Filter.ValidationModels.ValidationFailedResult" />
+            </summary>
+        </member>
+        <member name="M:NatilleraWebApi.Filter.ValidationModels.ValidationFailedResult.#ctor(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NatilleraWebApi.Filter.ValidationModels.ValidationFailedResult"/> class.
+            </summary>
+            <param name="modelState">The modelState<see cref="T:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary"/></param>
+        </member>
+        <member name="T:NatilleraWebApi.Filter.ValidationModels.ValidationResultModel">
+            <summary>
+            Defines the <see cref="T:NatilleraWebApi.Filter.ValidationModels.ValidationResultModel" />
+            </summary>
+        </member>
+        <member name="P:NatilleraWebApi.Filter.ValidationModels.ValidationResultModel.TipoMensaje">
+            <summary>
+            Mensaje con la definicion del tipo de validacion, en este caso para los campos.
+            </summary>
+        </member>
+        <member name="P:NatilleraWebApi.Filter.ValidationModels.ValidationResultModel.Errores">
+            <summary>
+            almacena los datos del nombre del campo y su respectiva validacion que no cumplio.
+            </summary>
+        </member>
+        <member name="M:NatilleraWebApi.Filter.ValidationModels.ValidationResultModel.#ctor(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+            <summary>
+            DUM: Metodo que permite obtener o capturar las validaciones del models con sus mensajes de validación <see cref="T:NatilleraWebApi.Filter.ValidationModels.ValidationResultModel"/> class.
+            </summary>
+            <param name="modelState">objeto donde se encuentra el nombre de la propiedad y el mensaje de validación<see cref="T:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary"/></param>
         </member>
     </members>
 </doc>
