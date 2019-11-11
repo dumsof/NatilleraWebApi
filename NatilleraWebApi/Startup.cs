@@ -45,8 +45,8 @@ namespace NatilleraWebApi
 
             //Dum: manejo del token.
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<NatilleraDBContext>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<NatilleraDBContext>();
+                //.AddDefaultTokenProviders();
 
             //Dum: se inyecta el contenedor del repositorio
             //services.ConfiguracionRepositoryContenedor();

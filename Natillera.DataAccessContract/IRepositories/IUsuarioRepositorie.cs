@@ -5,8 +5,8 @@
 
     public interface IUsuarioRepositorie : IRepositoryBase<Usuarios>
     {
-        Task<Usuarios> GuardarUsuario(Usuarios usuario);
+        Task<Usuarios> GuardarUsuarioAsync(Usuarios usuario);
 
-        Task<Usuarios> Logueo(Usuarios usuario);
+        Task<Usuarios> LogueoAsync(Usuarios usuario);
     }
 }

@@ -5,6 +5,7 @@
     using System.Net;
     using System.Security.Claims;
     using System.Text;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
@@ -40,9 +41,9 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public IActionResult CrearUsuario([FromBody] Usuario usuario)
+        public async Task<IActionResult> CrearUsuario([FromBody] Usuario usuario)
         {
-            Respuesta respuesta = this.usuarioServices.GuardarUsuario(usuario);
+            Respuesta respuesta = await this.usuarioServices.GuardarUsuarioAsync(usuario);
             return new OkObjectResult(respuesta);
         }
 
@@ -59,10 +60,10 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public IActionResult Logueo([FromBody] Usuario userInfo)
+        public async Task<IActionResult> Logueo([FromBody] Usuario userInfo)
         {
 
-            var result = this.usuarioServices.Logueo(userInfo);
+            var result = await this.usuarioServices.LogueoAsync(userInfo);
             if (result != null)
             {
                 return BuildToken(userInfo);

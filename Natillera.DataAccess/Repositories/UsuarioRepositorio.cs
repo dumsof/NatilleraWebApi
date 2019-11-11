@@ -25,9 +25,10 @@
             _signInManager = signInManager;
         }
 
-        public async Task<Usuarios> GuardarUsuario(Usuarios usuario)
+        public async Task<Usuarios> GuardarUsuarioAsync(Usuarios usuario)
         {
-            var user = new ApplicationUser { UserName = usuario.Email, Email = usuario.Email };
+
+            var user = new ApplicationUser { UserName = usuario.Email, Email = usuario.Email,  };
             var result = await _userManager.CreateAsync(user, usuario.Password);
             if (result.Succeeded)
             {
@@ -37,7 +38,7 @@
             return null;
         }
 
-        public async Task<Usuarios> Logueo(Usuarios usuario)
+        public async Task<Usuarios> LogueoAsync(Usuarios usuario)
         {          
             var result = await _signInManager.PasswordSignInAsync(usuario.Email, usuario.Password, true, false);
             if (result.Succeeded)

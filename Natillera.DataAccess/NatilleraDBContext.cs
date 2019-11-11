@@ -13,7 +13,7 @@
         /// Initializes a new instance of the <see cref="AplicationDbContext"/> class.
         /// </summary>
         /// <param name="opcion">The opcion<see cref="DbContextOptions{AplicationDbContext}"/></param>
-        public NatilleraDBContext(DbContextOptions<NatilleraDBContext> opcion) : base(opcion)
+        public NatilleraDBContext(DbContextOptions opcion) : base(opcion)
         {
         }
 
@@ -31,9 +31,7 @@
 
         public DbSet<CuotasPrestamos> CuotasPrestamos { get; set; }
 
-        public DbSet<CuotasSocios> CuotasSocios { get; set; }
-
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<CuotasSocios> CuotasSocios { get; set; }     
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

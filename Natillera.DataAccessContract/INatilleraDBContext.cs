@@ -20,7 +20,6 @@
         DbSet<CuotasPrestamos> CuotasPrestamos { get; set; }
 
         DbSet<CuotasSocios> CuotasSocios { get; set; }
-
-        DbSet<Usuarios> Usuarios { get; set; }
+       
     }
 }

@@ -2,11 +2,12 @@
 {
     using Natillera.AplicationContract.Models;
     using Natillera.Business.Models;
+    using System.Threading.Tasks;
 
     public interface IUsuarioServices
     {
-        Respuesta GuardarUsuario(Usuario usuario);
+        Task<Respuesta> GuardarUsuarioAsync(Usuario usuario);
 
-        Usuario Logueo(Usuario usuario);
+        Task<Usuario> LogueoAsync(Usuario usuario);
     }
 }
