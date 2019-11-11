@@ -6,7 +6,7 @@
     using Natillera.CrossClothing.Mensajes.Message;
     using Natillera.DataAccess.Mapper;
     using Natillera.DataAccessContract.IRepositories;
-   
+
     using System.Threading.Tasks;
 
     public class UsuarioServices : IUsuarioServices
@@ -26,7 +26,7 @@
         {
             Message message = new Message(MessageCode.Message0000);
 
-             await this.usuarioRepositorie.GuardarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+            await this.usuarioRepositorie.GuardarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
 
             return new Respuesta
             {
@@ -39,14 +39,14 @@
             };
         }
 
-        public async Task< Usuario> LogueoAsync(Usuario usuario)
-        {               
+        public async Task<Usuario> LogueoAsync(Usuario usuario)
+        {
             var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuario));
-            if(respuesta != null)
+            if (respuesta != null)
             {
                 return usuario;
             }
-            return null; 
+            return null;
         }
     }
 }
