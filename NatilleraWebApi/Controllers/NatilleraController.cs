@@ -11,7 +11,7 @@
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class NatilleraController : ControllerBase
     {
         private readonly INatilleraServices natilleraService;
@@ -34,7 +34,8 @@
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
         public IActionResult GuardarNatillera([FromBody] Natillera natillera)
-        {
+        {          
+
             Respuesta respuesta = this.natilleraService.GuardarNatillera(natillera);
 
             return new OkObjectResult(respuesta);

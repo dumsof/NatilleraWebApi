@@ -2,13 +2,13 @@ namespace NatilleraWebApi
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;   
+    using System.IO;
     using System.Reflection;
     using System.Text;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;  
-    using Microsoft.AspNetCore.Identity;   
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -46,7 +46,7 @@ namespace NatilleraWebApi
             //Dum: manejo del token.
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<NatilleraDBContext>();
-                //.AddDefaultTokenProviders();
+            //.AddDefaultTokenProviders();
 
             //Dum: se inyecta el contenedor del repositorio
             //services.ConfiguracionRepositoryContenedor();
@@ -118,14 +118,13 @@ namespace NatilleraWebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-
-            //Dum: se realiza el llamado del middleware del manejo de exception global.
-            app.ConfigureCustomExceptionMiddleware();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //Dum: se realiza el llamado del middleware del manejo de exception global.
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseHttpsRedirection();
 
@@ -137,8 +136,6 @@ namespace NatilleraWebApi
             {
                 endpoints.MapControllers();
             });
-
-         
         }
     }
 }

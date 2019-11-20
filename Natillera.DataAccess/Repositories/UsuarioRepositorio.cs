@@ -54,10 +54,13 @@
         public async Task<bool> ExisteUsuario(string correoElectronico)
         {
 
-            var user = await _signInManager.()
-            return await Task.Run(() =>
-            FindByCondition(c => c.Email.Trim() == correoElectronico.Trim()).Any()
-           );
+            // var user = await _signInManager.()
+            // return await Task.Run(() =>
+            // FindByCondition(c => c.Email.Trim() == correoElectronico.Trim()).Any()
+            //);
+
+            return await Task.Run(()=> true);
+           
         }
     }
 }
