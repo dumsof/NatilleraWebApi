@@ -96,8 +96,8 @@
     {
       "Type": "1",
       "Code": "2",
-      "Text": "El número de documento que suministraste no es  válido, debes verificarlo.",
-      "Title": "Validación de información"
+      "Text": "El suario ya esta registrado, por favor verifique.",
+      "Title": "Usuario Existe"
       //"Validation": "Valdiación contra el middlware para validar documento"
     },
     {

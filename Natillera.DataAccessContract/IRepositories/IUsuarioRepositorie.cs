@@ -8,5 +8,7 @@
         Task<Usuarios> GuardarUsuarioAsync(Usuarios usuario);
 
         Task<Usuarios> LogueoAsync(Usuarios usuario);
+
+        Task<bool> ExisteUsuario(string correoElectronico);
     }
 }

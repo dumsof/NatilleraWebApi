@@ -4,7 +4,7 @@
         <name>NatilleraWebApi</name>
     </assembly>
     <members>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuario(Natillera.Business.Models.Usuario)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuarioAsync(Natillera.Business.Models.Usuario)">
             <summary>
             Guardar los datos del usuario.
             </summary>
@@ -13,7 +13,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.Logueo(Natillera.Business.Models.Usuario)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.LogueoAsync(Natillera.Business.Models.Usuario)">
             <summary>
             Guardar los datos del usuario.
             </summary>
