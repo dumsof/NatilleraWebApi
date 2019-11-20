@@ -4,7 +4,6 @@
     using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
     using System.Threading.Tasks;
-    using System.Linq;
 
     public class UsuarioRepositorio : RepositoryBase<Usuarios>, IUsuarioRepositorie
     {
@@ -51,16 +50,10 @@
             return null;
         }
 
-        public async Task<bool> ExisteUsuario(string correoElectronico)
+        public async Task<bool> ExisteUsuario(Usuarios usuario)
         {
-
-            // var user = await _signInManager.()
-            // return await Task.Run(() =>
-            // FindByCondition(c => c.Email.Trim() == correoElectronico.Trim()).Any()
-            //);
-
-            return await Task.Run(()=> true);
-           
+            var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
+            return registrosAspNetUser != null;
         }
     }
 }

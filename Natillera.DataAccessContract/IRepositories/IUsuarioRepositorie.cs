@@ -1,5 +1,5 @@
 ﻿namespace Natillera.DataAccessContract.IRepositories
-{  
+{
     using Natillera.DataAccessContract.Entidades;
     using System.Threading.Tasks;
 
@@ -9,6 +9,6 @@
 
         Task<Usuarios> LogueoAsync(Usuarios usuario);
 
-        Task<bool> ExisteUsuario(string correoElectronico);
+        Task<bool> ExisteUsuario(Usuarios usuario);
     }
 }

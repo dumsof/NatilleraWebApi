@@ -25,17 +25,20 @@
         public async Task<Respuesta> GuardarUsuarioAsync(Usuario usuario)
         {
             Message message = null;
-            if (await this.usuarioRepositorie.ExisteUsuario(usuario.Email))
+            bool estadoTransaccion = false;
+            if (await this.usuarioRepositorie.ExisteUsuario(UsuarioMapper.UsuarioEntityMap(usuario)))
             {
                 message = new Message(MessageCode.Message0002);
             }
             else
             {
-                message = new Message(MessageCode.Message0000);
                 await this.usuarioRepositorie.GuardarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+                message = new Message(MessageCode.Message0000);
+                estadoTransaccion = true;
             }
             return new Respuesta
             {
+                EstadoTransaccion = estadoTransaccion,
                 Mensaje = new Mensaje
                 {
                     Identificador = message.Code,
