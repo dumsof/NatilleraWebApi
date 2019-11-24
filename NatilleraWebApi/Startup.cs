@@ -13,6 +13,7 @@ namespace NatilleraWebApi
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.IdentityModel.Logging;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
     using Natillera.Aplication.IoC;
@@ -45,8 +46,8 @@ namespace NatilleraWebApi
 
             //Dum: manejo del token.
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<NatilleraDBContext>();
-            //.AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<NatilleraDBContext>()
+            .AddDefaultTokenProviders();
 
             //Dum: se inyecta el contenedor del repositorio
             //services.ConfiguracionRepositoryContenedor();
@@ -75,9 +76,9 @@ namespace NatilleraWebApi
             //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
             // Register the Swagger generator, defining 1 or more Swagger documents
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(configuracion =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                configuracion.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "ToDo API",
@@ -99,7 +100,14 @@ namespace NatilleraWebApi
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                configuracion.IncludeXmlComments(xmlPath);
+
+                //configurar ventana para pedir token en openapi
+                configuracion.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Token usar Bearer {token}",
+                    Name = "Authorization"
+                });
             });
         }
 
@@ -120,6 +128,7 @@ namespace NatilleraWebApi
 
             if (env.IsDevelopment())
             {
+                IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
 

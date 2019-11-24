@@ -11,7 +11,7 @@
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class NatilleraController : ControllerBase
     {
         private readonly INatilleraServices natilleraService;
