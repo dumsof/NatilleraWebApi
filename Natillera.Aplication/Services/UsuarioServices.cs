@@ -11,22 +11,18 @@
 
     public class UsuarioServices : IUsuarioServices
     {
-
-        private readonly IRepositorioContenedor repositorio;
-
         private readonly IUsuarioRepositorie usuarioRepositorie;
 
-        public UsuarioServices(IRepositorioContenedor repositorio, IUsuarioRepositorie usuarioRepositorie)
-        {
-            this.repositorio = repositorio;
+        public UsuarioServices(IUsuarioRepositorie usuarioRepositorie)
+        {          
             this.usuarioRepositorie = usuarioRepositorie;
         }
 
         public async Task<Respuesta> GuardarUsuarioAsync(Usuario usuario)
         {
-            Message message = null;
+            Message message;
             bool estadoTransaccion = false;
-            if (await this.usuarioRepositorie.ExisteUsuario(UsuarioMapper.UsuarioEntityMap(usuario)))
+            if (await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario)))
             {
                 message = new Message(MessageCode.Message0002);
             }

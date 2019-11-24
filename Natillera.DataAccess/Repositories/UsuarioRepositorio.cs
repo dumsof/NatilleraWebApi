@@ -50,9 +50,13 @@
             return null;
         }
 
-        public async Task<bool> ExisteUsuario(Usuarios usuario)
+        public async Task<bool> ExisteUsuarioAsync(Usuarios usuario)
         {
             var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
+            //verificar la contraseña.
+            //var passwordOK = await _userManager.CheckPasswordAsync(registrosAspNetUser, usuario.Password);
+
+
             return registrosAspNetUser != null;
         }
     }

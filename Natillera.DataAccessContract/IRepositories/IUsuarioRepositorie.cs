@@ -9,6 +9,6 @@
 
         Task<Usuarios> LogueoAsync(Usuarios usuario);
 
-        Task<bool> ExisteUsuario(Usuarios usuario);
+        Task<bool> ExisteUsuarioAsync(Usuarios usuario);
     }
 }
