@@ -105,9 +105,27 @@ namespace NatilleraWebApi
                 //configurar ventana para pedir token en openapi
                 configuracion.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Token usar Bearer {token}",
-                    Name = "Authorization"
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
                 });
+
+                configuracion.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                         new OpenApiSecurityScheme
+                         {
+                           Reference = new OpenApiReference
+                           {
+                             Type = ReferenceType.SecurityScheme,
+                             Id = "Bearer"
+                           }
+                          },
+                          new string[] { }
+                    }
+                });
+
             });
         }
 
@@ -128,6 +146,7 @@ namespace NatilleraWebApi
 
             if (env.IsDevelopment())
             {
+                //mostrar error mas detallado en el api.
                 IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
