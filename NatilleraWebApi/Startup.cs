@@ -58,8 +58,12 @@ namespace NatilleraWebApi
             //json web token configuracion
             //se realiza la validacion para saber si el token enviado es correcto y 
             //poder entrar a la aplicación.
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opcion =>
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(opcion =>
                 opcion.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
@@ -105,10 +109,12 @@ namespace NatilleraWebApi
                 //configurar ventana para pedir token en openapi
                 configuracion.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    In = ParameterLocation.Header,
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme."
                 });
 
                 configuracion.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -157,7 +163,7 @@ namespace NatilleraWebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
