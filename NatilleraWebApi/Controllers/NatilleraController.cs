@@ -7,11 +7,10 @@
     using System.Net;
     using Natillera.AplicationContract.IServices;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
 
     [Route("api/[controller]/[action]")]
-    [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController]   
+    [Authorize]
     public class NatilleraController : ControllerBase
     {
         private readonly INatilleraServices natilleraService;
