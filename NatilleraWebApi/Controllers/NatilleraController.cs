@@ -24,6 +24,7 @@
         /// </summary>
         /// <param name="natillera"></param>
         /// <response code="200">Operación realizada con éxito.</response>
+        /// <response code="401">No existen permisos para utilizar el servicio.</response>
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
         [HttpPost]

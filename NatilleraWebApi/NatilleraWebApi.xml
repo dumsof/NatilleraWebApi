@@ -9,7 +9,7 @@
             Guardar los datos del usuario.
             </summary>
             <param name="usuario"></param>
-            <response code="200">Operación realizada con éxito.</response>
+            <response code="200">Operación realizada con éxito.</response>z
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
@@ -28,6 +28,7 @@
             </summary>
             <param name="natillera"></param>
             <response code="200">Operación realizada con éxito.</response>
+            <response code="401">No existen permisos para utilizar el servicio.</response>
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
