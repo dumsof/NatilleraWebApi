@@ -13,9 +13,11 @@
     using Natillera.AplicationContract.Models;
     using Natillera.Business.Models;
     using NatilleraWebApi.Filter.ActionFilter;
+    using Microsoft.AspNetCore.Authorization;
 
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [AllowAnonymous]
     public class CuentaUsuarioController : ControllerBase
     {
         private readonly IUsuarioServices usuarioServices;

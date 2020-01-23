@@ -21,7 +21,8 @@ namespace NatilleraWebApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                      .UseUrls("http://localhost:4000");
                 });
     }
 #pragma warning restore CS1591

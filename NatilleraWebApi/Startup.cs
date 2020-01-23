@@ -20,6 +20,7 @@ namespace NatilleraWebApi
     using Natillera.DataAccess;
     using NatilleraWebApi.Extensions;
     using NLog;
+    using Microsoft.AspNetCore.Cors;
 
     public class Startup
     {
@@ -31,11 +32,25 @@ namespace NatilleraWebApi
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200",
+                                        "http://www.contoso.com");
+                });
+            });
+
+
+
             //Dum: se agrega la inyeccion para el logger
             //services.AddSingleton<ILoggerManager, LoggerManager>();
             services.ConfigureLoggerService();
@@ -159,6 +174,8 @@ namespace NatilleraWebApi
                 IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
+            //Dum : se agrega permiso de cors para la peticion de una url especifica.
+            app.UseCors(MyAllowSpecificOrigins);
 
             //Dum: se realiza el llamado del middleware del manejo de exception global.
             app.ConfigureCustomExceptionMiddleware();
