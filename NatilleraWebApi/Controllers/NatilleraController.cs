@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Authorization;
 
     [Route("api/[controller]/[action]")]
-    [ApiController]   
+    [ApiController]
     [Authorize]
     public class NatilleraController : ControllerBase
     {
@@ -34,9 +34,30 @@
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
         public IActionResult GuardarNatillera([FromBody] Natillera natillera)
-        {          
+        {
 
             Respuesta respuesta = this.natilleraService.GuardarNatillera(natillera);
+
+            return new OkObjectResult(respuesta);
+        }
+
+        /// <summary>
+        /// Obtener todos los datos de las natilleras.
+        /// </summary>       
+        /// <response code="200">Operación realizada con éxito.</response>
+        /// <response code="401">No existen permisos para utilizar el servicio.</response>
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpPost]
+        [ActionName("ObtenerNatilleras")]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
+        [ValidateModel]
+        public IActionResult ObtenerNatillera()
+        {
+
+            Respuesta respuesta = this.natilleraService.ObtenerNatilleras();
 
             return new OkObjectResult(respuesta);
         }

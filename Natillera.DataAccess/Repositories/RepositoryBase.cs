@@ -1,14 +1,14 @@
 ﻿namespace Natillera.DataAccess.Repositories
 {
     using Microsoft.EntityFrameworkCore;
-    using Natillera.DataAccessContract.IRepositories;   
+    using Natillera.DataAccessContract.IRepositories;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Expressions;  
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public class RepositoryBase<T> : IRepositoryBase<T>, IDisposable where T : class
     {
         protected NatilleraDBContext RepositoryContext { get; set; }
 
@@ -71,6 +71,23 @@
         public Task<T> UpdateAsync(int id, T datosActualizar)
         {
             throw new NotImplementedException();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed && disposing)
+            {
+                this.RepositoryContext.Dispose();
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

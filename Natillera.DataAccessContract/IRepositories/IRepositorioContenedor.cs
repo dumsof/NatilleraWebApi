@@ -7,5 +7,6 @@
         //IUsuarioRepositorie Usuario { get; }
 
         void Save();
+        void Dispose();
     }
 }

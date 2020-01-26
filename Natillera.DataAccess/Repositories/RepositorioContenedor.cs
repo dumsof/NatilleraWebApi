@@ -49,5 +49,10 @@
         {
             this.context.SaveChanges();
         }
+
+        public void Dispose()
+        {
+            this.context.Dispose();
+        }
     }
 }

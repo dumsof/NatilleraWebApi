@@ -6,5 +6,7 @@
     public interface INatilleraServices
     {
         Respuesta GuardarNatillera(Natillera natillera);
+
+        RespuestaObtenerNatillera ObtenerNatilleras();
     }
 }
