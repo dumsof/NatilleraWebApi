@@ -73,7 +73,16 @@
             else
             {
                 ModelState.AddModelError(string.Empty, "Logueo invalido, por favor verifique.");
-                return BadRequest(ModelState);
+                return Ok(new
+                {
+                    estadoTransaccion = false,
+                    mensaje = new
+                    {
+                        identificador = 1,
+                        titulo = "Proceso no Exitoso",
+                        contenido = "Logueo invalido, por favor verifique."
+                    }
+                });
             }
 
         }
@@ -112,7 +121,14 @@
                 telefono = usuario.Telefono,
                 celular = usuario.Celular,
                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiracion = expiration
+                expiracion = expiration,
+                estadoTransaccion = true,
+                mensaje = new
+                {
+                    identificador = 0,
+                    titulo = "Proceso Exitoso",
+                    contenido = "El proceso ha sido exitoso"
+                }
             });
         }
     }
