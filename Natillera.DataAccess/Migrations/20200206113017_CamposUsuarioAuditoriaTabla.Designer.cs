@@ -10,8 +10,8 @@ using Natillera.DataAccess;
 namespace Natillera.DataAccess.Migrations
 {
     [DbContext(typeof(NatilleraDBContext))]
-    [Migration("20191106011229_migracionUsuario")]
-    partial class migracionUsuario
+    [Migration("20200206113017_CamposUsuarioAuditoriaTabla")]
+    partial class CamposUsuarioAuditoriaTabla
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,8 +160,17 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Cedula")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Celular")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -176,6 +185,9 @@ namespace Natillera.DataAccess.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Nombres")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -194,7 +206,13 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PrimerApellido")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SegundoApellido")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -232,6 +250,12 @@ namespace Natillera.DataAccess.Migrations
 
                     b.Property<int?>("NatillerasNatilleraId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("RowCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -278,6 +302,12 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<int?>("PrestamosPrestamoId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("RowCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
@@ -315,6 +345,12 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<int?>("NatillerasNatilleraId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("RowCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
@@ -350,6 +386,12 @@ namespace Natillera.DataAccess.Migrations
 
                     b.Property<int?>("NatillerasNatilleraId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("RowCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -390,6 +432,16 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<int>("NumeroCuotas")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("RowCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetDate()");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetDate()");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
@@ -428,6 +480,12 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<string>("ResponsablePagoPrestamo")
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
+
+                    b.Property<DateTime>("RowCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -481,6 +539,12 @@ namespace Natillera.DataAccess.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
+                    b.Property<DateTime>("RowCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
@@ -514,19 +578,6 @@ namespace Natillera.DataAccess.Migrations
                     b.HasKey("TipoDocumentoId");
 
                     b.ToTable("TiposDocumentos");
-                });
-
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Usuarios", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

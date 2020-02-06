@@ -62,13 +62,13 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> LogueoAsync([FromBody] Usuario userInfo)
+        public async Task<IActionResult> LogueoAsync([FromBody] UsuarioLogin userInfo)
         {
 
-            var result = await this.usuarioServices.LogueoAsync(userInfo);
-            if (result != null)
+            var resultUserLogueado = await this.usuarioServices.LogueoAsync(userInfo);
+            if (resultUserLogueado != null)
             {
-                return BuildToken(userInfo);
+                return BuildToken(resultUserLogueado);
             }
             else
             {
@@ -104,6 +104,13 @@
 
             return Ok(new
             {
+                id = usuario.Id,
+                nombres = usuario.Nombres,
+                primerapellido = usuario.PrimerApellido,
+                segundoapellido = usuario.SegundoApellido,
+                direccion = usuario.Direccion,
+                telefono = usuario.Telefono,
+                celular = usuario.Celular,
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expiracion = expiration
             });

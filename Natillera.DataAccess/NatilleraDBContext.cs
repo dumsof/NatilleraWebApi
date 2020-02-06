@@ -4,6 +4,7 @@
     using Microsoft.EntityFrameworkCore;
     using Natillera.DataAccessContract;
     using Natillera.DataAccessContract.Entidades;
+    using System;
 
     public class NatilleraDBContext : IdentityDbContext<ApplicationUser>, INatilleraDBContext
     {
@@ -41,6 +42,11 @@
             ///controlar la concurrencia, se valida esta propiedad en el token.
             ///Tema pagina 2272 pdf core 2.2
             modelBuilder.Entity<Natilleras>().Property(p => p.RowVersion).IsConcurrencyToken();
+
+            //para esta columna por defecto se crea la fecha y hora en la cual se guarda la información
+            modelBuilder.Entity<Natilleras>().Property(p => p.RowCreated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Natilleras>().Property(p => p.RowUpdated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAddOrUpdate();
         }
     }
 }

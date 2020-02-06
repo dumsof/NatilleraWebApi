@@ -30,7 +30,18 @@
         public async Task<Usuarios> GuardarUsuarioAsync(Usuarios usuario)
         {
 
-            var user = new ApplicationUser { UserName = usuario.Email, Email = usuario.Email, };
+            var user = new ApplicationUser
+            {
+                UserName = usuario.Email,
+                Email = usuario.Email,
+                Cedula = usuario.Cedula,
+                Nombres = usuario.Nombres,
+                PrimerApellido = usuario.PrimerApellido,
+                SegundoApellido = usuario.SegundoApellido,
+                Celular = usuario.Celular,
+                PhoneNumber = usuario.Telefono,
+                Direccion = usuario.Direccion
+            };
             var result = await _userManager.CreateAsync(user, usuario.Password);
             if (result.Succeeded)
             {
@@ -45,7 +56,21 @@
             var result = await _signInManager.PasswordSignInAsync(usuario.Email, usuario.Password, true, false);
             if (result.Succeeded)
             {
-                return usuario;
+                var user = await _userManager.FindByNameAsync(usuario.Email);
+
+                return new Usuarios
+                {
+                    Id = user.Id,
+                    Cedula = user.Cedula,
+                    Nombres = user.Nombres,
+                    PrimerApellido = user.PrimerApellido,
+                    SegundoApellido = user.SegundoApellido,
+                    Celular = user.Celular,
+                    Telefono = user.PhoneNumber,
+                    Direccion = user.Direccion,
+                    Email = user.Email,
+                    Password = user.PasswordHash
+                };
             }
             return null;
         }

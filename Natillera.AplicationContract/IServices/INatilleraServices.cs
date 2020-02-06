@@ -8,5 +8,7 @@
         Respuesta GuardarNatillera(Natillera natillera);
 
         RespuestaObtenerNatillera ObtenerNatilleras();
+
+        Respuesta BorrarNatillera(int natilleraId);
     }
 }

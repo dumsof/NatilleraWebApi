@@ -5,6 +5,36 @@ namespace Natillera.Business.Models
 
     public class Usuario
     {
+        public string Id { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        [StringLength(15, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        public string Cedula { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        [StringLength(50, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        public string Nombres { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        [StringLength(100, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        public string PrimerApellido { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        [StringLength(100, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        public string SegundoApellido { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        [StringLength(250, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        public string Direccion { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        [StringLength(10, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        public string Telefono { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        [StringLength(12, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        public string Celular { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]

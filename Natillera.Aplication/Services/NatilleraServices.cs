@@ -14,7 +14,7 @@
         public NatilleraServices(IRepositorioContenedor repositorio)
         {
             this.repositorio = repositorio;
-        }
+        }      
 
         public Respuesta GuardarNatillera(Natillera natillera)
         {
@@ -62,6 +62,22 @@
             {
                 EstadoTransaccion = targetList != null,
                 Natillera = targetList,
+                Mensaje = new Mensaje
+                {
+                    Identificador = message.Code,
+                    Titulo = message.Title,
+                    Contenido = message.Text
+                }
+            };
+        }
+
+        public Respuesta BorrarNatillera(int natilleraId)
+        {
+            Message message = new Message(MessageCode.Message0000);
+
+           
+            return new Respuesta
+            {
                 Mensaje = new Mensaje
                 {
                     Identificador = message.Code,

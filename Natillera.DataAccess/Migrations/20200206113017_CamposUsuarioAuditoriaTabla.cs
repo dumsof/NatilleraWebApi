@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Natillera.DataAccess.Migrations
 {
-    public partial class migracionUsuario : Migration
+    public partial class CamposUsuarioAuditoriaTabla : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,13 @@ namespace Natillera.DataAccess.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Nombres = table.Column<string>(nullable: true),
+                    PrimerApellido = table.Column<string>(nullable: true),
+                    SegundoApellido = table.Column<string>(nullable: true),
+                    Cedula = table.Column<string>(nullable: true),
+                    Direccion = table.Column<string>(nullable: true),
+                    Celular = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,6 +58,8 @@ namespace Natillera.DataAccess.Migrations
                 {
                     NatilleraId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RowCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "GetDate()"),
+                    RowUpdated = table.Column<DateTime>(nullable: false, defaultValueSql: "GetDate()"),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
@@ -79,18 +87,6 @@ namespace Natillera.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TiposDocumentos", x => x.TipoDocumentoId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Usuarios",
-                columns: table => new
-                {
-                    Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuarios", x => x.Email);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,6 +201,8 @@ namespace Natillera.DataAccess.Migrations
                 {
                     SocioId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RowCreated = table.Column<DateTime>(nullable: false),
+                    RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     NumeroDocumento = table.Column<string>(maxLength: 20, nullable: true),
                     Nombres = table.Column<string>(maxLength: 200, nullable: true),
@@ -232,6 +230,8 @@ namespace Natillera.DataAccess.Migrations
                 {
                     ActividadRecaudoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RowCreated = table.Column<DateTime>(nullable: false),
+                    RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     NatillerasNatilleraId = table.Column<int>(nullable: true),
                     SociosSocioId = table.Column<int>(nullable: true),
@@ -264,6 +264,8 @@ namespace Natillera.DataAccess.Migrations
                 {
                     CuotaSocioId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RowCreated = table.Column<DateTime>(nullable: false),
+                    RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     SociosSocioId = table.Column<int>(nullable: true),
                     FechaPagoCuota = table.Column<DateTime>(nullable: false),
@@ -295,6 +297,8 @@ namespace Natillera.DataAccess.Migrations
                 {
                     NatilleraSocioId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RowCreated = table.Column<DateTime>(nullable: false),
+                    RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     NatillerasNatilleraId = table.Column<int>(nullable: true),
                     SociosSocioId = table.Column<int>(nullable: true)
@@ -322,6 +326,8 @@ namespace Natillera.DataAccess.Migrations
                 {
                     PrestamoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RowCreated = table.Column<DateTime>(nullable: false),
+                    RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     SociosSocioId = table.Column<int>(nullable: true),
                     FechaDesembolso = table.Column<DateTime>(nullable: false),
@@ -347,6 +353,8 @@ namespace Natillera.DataAccess.Migrations
                 {
                     CuotaPrestamoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RowCreated = table.Column<DateTime>(nullable: false),
+                    RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     PrestamosPrestamoId = table.Column<int>(nullable: true),
                     ValorCuota = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -481,9 +489,6 @@ namespace Natillera.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "NatilleraSocios");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

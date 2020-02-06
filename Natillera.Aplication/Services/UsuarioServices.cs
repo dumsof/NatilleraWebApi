@@ -44,12 +44,12 @@
             };
         }
 
-        public async Task<Usuario> LogueoAsync(Usuario usuario)
+        public async Task<Usuario> LogueoAsync(UsuarioLogin usuarioLogin)
         {
-            var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+            var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
             if (respuesta != null)
             {
-                return usuario;
+                return UsuarioMapper.UsuarioEntityMap(respuesta);
             }
             return null;
         }
