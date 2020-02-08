@@ -8,6 +8,8 @@
     {
         Task<Respuesta> GuardarUsuarioAsync(Usuario usuario);
 
+        Task<RespuestaObtenerUsuario> ObtenerUsuariosAsync();
+
         Task<Usuario> LogueoAsync(UsuarioLogin usuarioLogin);
     }
 }

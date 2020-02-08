@@ -1,9 +1,12 @@
 ﻿namespace Natillera.DataAccess.Repositories
 {
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Linq;
 
     public class UsuarioRepositorio : RepositoryBase<Usuarios>, IUsuarioRepositorie
     {
@@ -17,6 +20,7 @@
         /// </summary>
         private readonly SignInManager<ApplicationUser> _signInManager;
 
+        private readonly NatilleraDBContext repositorioContexto;
 
 
         public UsuarioRepositorio(UserManager<ApplicationUser> userManager,
@@ -25,6 +29,7 @@
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this.repositorioContexto = repositorioContexto;
         }
 
         public async Task<Usuarios> GuardarUsuarioAsync(Usuarios usuario)
@@ -83,6 +88,27 @@
 
 
             return registrosAspNetUser != null;
+        }
+
+        public async Task<IEnumerable<Usuarios>> ObtenerUsuariosAsync()
+        {
+            var usuario = _userManager.Users.ToListAsync();            
+            return await Task.Run(() =>
+            {              
+                return usuario.Result.Select(user => new Usuarios
+                {
+                    Id = user.Id,                     
+                    Cedula = user.Cedula,
+                    Nombres = user.Nombres,
+                    PrimerApellido = user.PrimerApellido,
+                    SegundoApellido = user.SegundoApellido,
+                    Celular = user.Celular,
+                    Telefono = user.PhoneNumber,
+                    Direccion = user.Direccion,
+                    Email = user.Email,
+                    Password = user.PasswordHash
+                });
+            });
         }
     }
 }

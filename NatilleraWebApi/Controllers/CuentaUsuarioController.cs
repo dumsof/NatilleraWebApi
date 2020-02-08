@@ -37,8 +37,7 @@
         /// <response code="200">Operación realizada con éxito.</response>z
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
-        [HttpPost]
-        [ActionName("CrearUsuario")]
+        [HttpPost]       
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
@@ -46,6 +45,22 @@
         public async Task<IActionResult> CrearUsuarioAsync([FromBody] Usuario usuario)
         {
             Respuesta respuesta = await this.usuarioServices.GuardarUsuarioAsync(usuario);
+            return new OkObjectResult(respuesta);
+        }
+
+        /// <summary>
+        /// Obtener todos los usuario.
+        /// </summary>        
+        /// <response code="200">Operación realizada con éxito.</response>z
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpPost]       
+        [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.InternalServerError)]       
+        public async Task<IActionResult> ObtenerUsuariosAsync()
+        {
+            RespuestaObtenerUsuario respuesta = await this.usuarioServices.ObtenerUsuariosAsync();
             return new OkObjectResult(respuesta);
         }
 

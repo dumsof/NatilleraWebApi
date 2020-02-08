@@ -14,7 +14,7 @@
         private readonly IUsuarioRepositorie usuarioRepositorie;
 
         public UsuarioServices(IUsuarioRepositorie usuarioRepositorie)
-        {          
+        {
             this.usuarioRepositorie = usuarioRepositorie;
         }
 
@@ -52,6 +52,17 @@
                 return UsuarioMapper.UsuarioEntityMap(respuesta);
             }
             return null;
+        }
+
+        public async Task<RespuestaObtenerUsuario> ObtenerUsuariosAsync()
+        {
+            var respuesta = await this.usuarioRepositorie.ObtenerUsuariosAsync();
+
+            return new RespuestaObtenerUsuario
+            {
+                Usuarios = UsuarioMapper.UsuarioEntityMap(respuesta),
+                EstadoTransaccion = true
+            };
         }
     }
 }
