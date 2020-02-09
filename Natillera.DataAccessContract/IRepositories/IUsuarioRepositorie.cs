@@ -13,5 +13,7 @@
         Task<Usuarios> LogueoAsync(Usuarios usuario);
 
         Task<bool> ExisteUsuarioAsync(Usuarios usuario);
+
+        Task<bool> DeleteUsuarioAsync(string usuarioId);
     }
 }

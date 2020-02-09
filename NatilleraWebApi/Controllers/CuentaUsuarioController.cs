@@ -17,7 +17,6 @@
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [AllowAnonymous]
     public class CuentaUsuarioController : ControllerBase
     {
         private readonly IUsuarioServices usuarioServices;
@@ -37,7 +36,7 @@
         /// <response code="200">Operación realizada con éxito.</response>z
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
-        [HttpPost]       
+        [HttpPost]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
@@ -54,13 +53,32 @@
         /// <response code="200">Operación realizada con éxito.</response>z
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
-        [HttpPost]       
+        [HttpGet]
+        [Authorize]
         [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.InternalServerError)]       
+        [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> ObtenerUsuariosAsync()
         {
             RespuestaObtenerUsuario respuesta = await this.usuarioServices.ObtenerUsuariosAsync();
+            return new OkObjectResult(respuesta);
+        }
+
+
+        /// <summary>
+        /// Borrar usuario por id.
+        /// </summary>        
+        /// <response code="200">Operación realizada con éxito.</response>z
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpPost]
+        [Authorize]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> DeleteUsuarioAsync([FromBody] string usuarioId)
+        {
+            Respuesta respuesta = await this.usuarioServices.DeleteUsuarioAsync(usuarioId);
             return new OkObjectResult(respuesta);
         }
 

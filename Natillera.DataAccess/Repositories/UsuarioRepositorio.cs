@@ -92,12 +92,12 @@
 
         public async Task<IEnumerable<Usuarios>> ObtenerUsuariosAsync()
         {
-            var usuario = _userManager.Users.ToListAsync();            
+            var usuario = _userManager.Users.ToListAsync();
             return await Task.Run(() =>
-            {              
+            {
                 return usuario.Result.Select(user => new Usuarios
                 {
-                    Id = user.Id,                     
+                    Id = user.Id,
                     Cedula = user.Cedula,
                     Nombres = user.Nombres,
                     PrimerApellido = user.PrimerApellido,
@@ -109,6 +109,14 @@
                     Password = user.PasswordHash
                 });
             });
+        }
+
+        public async Task<bool> DeleteUsuarioAsync(string usuarioId)
+        {
+            var registrosAspNetUser = await _userManager.FindByIdAsync(usuarioId);
+            var result = await _userManager.DeleteAsync(registrosAspNetUser);
+
+            return result.Succeeded;
         }
     }
 }

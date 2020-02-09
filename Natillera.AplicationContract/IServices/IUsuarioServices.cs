@@ -11,5 +11,7 @@
         Task<RespuestaObtenerUsuario> ObtenerUsuariosAsync();
 
         Task<Usuario> LogueoAsync(UsuarioLogin usuarioLogin);
+
+        Task<Respuesta> DeleteUsuarioAsync(string usuarioId);
     }
 }
