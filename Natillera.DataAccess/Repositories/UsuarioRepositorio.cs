@@ -118,5 +118,26 @@
 
             return result.Succeeded;
         }
+
+        public async Task<bool> EditarUsuarioAsync(Usuarios usuario)
+        {
+            var userTemp = await _userManager.FindByIdAsync(usuario.Id);
+
+
+            //Id = usuario.Id,
+            //UserName = usuario.Email,
+            //Email = usuario.Email,
+            userTemp.Cedula = usuario.Cedula;
+            userTemp.Nombres = usuario.Nombres;
+            userTemp.PrimerApellido = usuario.PrimerApellido;
+            userTemp.SegundoApellido = usuario.SegundoApellido;
+            userTemp.Celular = usuario.Celular;
+            userTemp.PhoneNumber = usuario.Telefono;
+            userTemp.Direccion = usuario.Direccion;
+
+            var result = await _userManager.UpdateAsync(userTemp);
+
+            return result.Succeeded;
+        }
     }
 }

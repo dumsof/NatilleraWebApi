@@ -8,6 +8,8 @@
     {
         Task<IEnumerable<Usuarios>> ObtenerUsuariosAsync();
 
+        Task<bool> EditarUsuarioAsync(Usuarios usuario);
+
         Task<Usuarios> GuardarUsuarioAsync(Usuarios usuario);
 
         Task<Usuarios> LogueoAsync(Usuarios usuario);

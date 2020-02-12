@@ -35,6 +35,23 @@
             };
         }
 
+        public async Task<Respuesta> EditarUsuarioAsync(Usuario usuario)
+        {
+            Message message;
+            bool estadoTransaccion = await this.usuarioRepositorie.EditarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+            message = new Message(MessageCode.Message0000);
+            return new Respuesta
+            {
+                EstadoTransaccion = estadoTransaccion,
+                Mensaje = new Mensaje
+                {
+                    Identificador = message.Code,
+                    Titulo = message.Title,
+                    Contenido = message.Text
+                }
+            };
+        }
+
         public async Task<Respuesta> GuardarUsuarioAsync(Usuario usuario)
         {
             Message message;

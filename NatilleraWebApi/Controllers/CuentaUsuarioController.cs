@@ -48,6 +48,24 @@
         }
 
         /// <summary>
+        /// Editar los datos del usuario.
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <response code="200">Operación realizada con éxito.</response>z
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpPost]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
+        [ValidateModel]
+        public async Task<IActionResult> EditarUsuarioAsync([FromBody] Usuario usuario)
+        {
+            Respuesta respuesta = await this.usuarioServices.EditarUsuarioAsync(usuario);
+            return new OkObjectResult(respuesta);
+        }
+
+        /// <summary>
         /// Obtener todos los usuario.
         /// </summary>        
         /// <response code="200">Operación realizada con éxito.</response>z
@@ -76,7 +94,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> DeleteUsuarioAsync([FromBody] string usuarioId)
+        public async Task<IActionResult> DeleteUsuarioAsync([FromHeader] string usuarioId)
         {
             Respuesta respuesta = await this.usuarioServices.DeleteUsuarioAsync(usuarioId);
             return new OkObjectResult(respuesta);

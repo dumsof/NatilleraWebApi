@@ -44,7 +44,7 @@ namespace Natillera.Business.Models
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
-        [StringLength(15, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
+        [StringLength(150, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
         [MinLength(6, ErrorMessage = "El campo {0} debe contener mínimo {1} caracteres.")]
         public string Password { get; set; }
     }
