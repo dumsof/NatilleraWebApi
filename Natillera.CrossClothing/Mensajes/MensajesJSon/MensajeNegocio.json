@@ -103,6 +103,13 @@
     {
       "Type": "1",
       "Code": "3",
+      "Text": "El usuario o la contraseña son incorrectos, por favor verifique.",
+      "Title": "Validación de usuario"
+      //"Validation": "Campos obligatorio del pre-registro"
+    },
+    {
+      "Type": "1",
+      "Code": "4",
       "Text": "Debe aceptar los terminos de uso y políticas de tratamiento de datos personales.",
       "Title": "Validación de información"
       //"Validation": "Campos obligatorio del pre-registro"

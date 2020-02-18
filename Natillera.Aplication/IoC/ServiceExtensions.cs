@@ -27,6 +27,7 @@
 
         private static IServiceCollection AddResgistroServices(this IServiceCollection services)
         {
+            services.AddTransient<IAuntentificacionService, AuntentificacionService>();
             services.AddTransient<INatilleraServices, NatilleraServices>();
             services.AddTransient<IUsuarioServices, UsuarioServices>();
             return services;

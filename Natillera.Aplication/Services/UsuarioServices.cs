@@ -97,6 +97,6 @@
                 Usuarios = UsuarioMapper.UsuarioEntityMap(respuesta),
                 EstadoTransaccion = true
             };
-        }
+        }        
     }
 }

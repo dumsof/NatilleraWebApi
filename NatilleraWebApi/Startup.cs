@@ -97,7 +97,7 @@ namespace NatilleraWebApi
                 configuracion.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
+                    Title = "API Natillera",
                     Description = "Natillera ASP.NET Core Web API",
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
