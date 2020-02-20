@@ -20,61 +20,43 @@
 
         public async Task<Respuesta> DeleteUsuarioAsync(string usuarioId)
         {
-            Message message;
             bool estadoTransaccion = await this.usuarioRepositorie.DeleteUsuarioAsync(usuarioId);
-            message = new Message(MessageCode.Message0000);
             return new Respuesta
             {
                 EstadoTransaccion = estadoTransaccion,
-                Mensaje = new Mensaje
-                {
-                    Identificador = message.Code,
-                    Titulo = message.Title,
-                    Contenido = message.Text
-                }
+                Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
 
         public async Task<Respuesta> EditarUsuarioAsync(Usuario usuario)
         {
-            Message message;
             bool estadoTransaccion = await this.usuarioRepositorie.EditarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
-            message = new Message(MessageCode.Message0000);
+
             return new Respuesta
             {
                 EstadoTransaccion = estadoTransaccion,
-                Mensaje = new Mensaje
-                {
-                    Identificador = message.Code,
-                    Titulo = message.Title,
-                    Contenido = message.Text
-                }
+                Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
 
         public async Task<Respuesta> GuardarUsuarioAsync(Usuario usuario)
         {
-            Message message;
+            int codigoMensaje = 0;
             bool estadoTransaccion = false;
             if (await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario)))
             {
-                message = new Message(MessageCode.Message0002);
+                codigoMensaje = MessageCode.Message0002;
             }
             else
             {
                 await this.usuarioRepositorie.GuardarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
-                message = new Message(MessageCode.Message0000);
+                codigoMensaje = MessageCode.Message0000;
                 estadoTransaccion = true;
             }
             return new Respuesta
             {
                 EstadoTransaccion = estadoTransaccion,
-                Mensaje = new Mensaje
-                {
-                    Identificador = message.Code,
-                    Titulo = message.Title,
-                    Contenido = message.Text
-                }
+                Mensaje = new Message(codigoMensaje).Mensaje
             };
         }
 
@@ -95,8 +77,9 @@
             return new RespuestaObtenerUsuario
             {
                 Usuarios = UsuarioMapper.UsuarioEntityMap(respuesta),
-                EstadoTransaccion = true
+                EstadoTransaccion = true,
+                Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
-        }        
+        }
     }
 }

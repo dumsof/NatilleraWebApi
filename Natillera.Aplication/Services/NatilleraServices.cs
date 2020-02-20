@@ -14,38 +14,30 @@
         public NatilleraServices(IRepositorioContenedor repositorio)
         {
             this.repositorio = repositorio;
-        }      
+        }
 
         public Respuesta GuardarNatillera(Natillera natillera)
         {
-            Message message = new Message(MessageCode.Message0000);
-
             this.repositorio.Natillera.Create(NatilleraMapper.NatilleraEntityMap(natillera));
             this.repositorio.Save();
             this.repositorio.Dispose();
+
             return new Respuesta
             {
-                Mensaje = new Mensaje
-                {
-                    Identificador = message.Code,
-                    Titulo = message.Title,
-                    Contenido = message.Text
-                }
+                EstadoTransaccion = true,
+                Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
 
         public RespuestaObtenerNatillera ObtenerNatilleras()
         {
-            Message message = new Message(MessageCode.Message0000);
-
             var datosNatilleras = this.repositorio.Natillera.FindAll();
-
             var targetList = datosNatilleras
                               .Select(x => new Natillera()
                               {
                                   NatilleraId = x.NatilleraId,
                                   Nombre = x.Nombre,
-                                  Descripcion = x.Descripcion,                             
+                                  Descripcion = x.Descripcion,
                                   DiasGraciaMora = x.DiasGraciaMora,
                                   FechaInicioPagoCuota = x.FechaInicioPagoCuota,
                                   NumeroCuotas = x.NumeroCuotas,
@@ -55,35 +47,22 @@
                                   ValorMoraPagar = x.ValorMoraPagar
                               })
                               .ToList();
-
             this.repositorio.Dispose();
 
             return new RespuestaObtenerNatillera
             {
                 EstadoTransaccion = targetList != null,
                 Natillera = targetList,
-                Mensaje = new Mensaje
-                {
-                    Identificador = message.Code,
-                    Titulo = message.Title,
-                    Contenido = message.Text
-                }
+                Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
 
         public Respuesta BorrarNatillera(int natilleraId)
         {
-            Message message = new Message(MessageCode.Message0000);
-
-           
             return new Respuesta
             {
-                Mensaje = new Mensaje
-                {
-                    Identificador = message.Code,
-                    Titulo = message.Title,
-                    Contenido = message.Text
-                }
+                EstadoTransaccion = true,
+                Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
     }

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Natillera.Business\Natillera.Business.csproj" />
+    <ProjectReference Include="..\Natillera.CrossClothing\Natillera.CrossClothing.csproj" />
   </ItemGroup>
 
 </Project>

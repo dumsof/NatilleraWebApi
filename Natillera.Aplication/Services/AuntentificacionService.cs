@@ -23,45 +23,30 @@
         public AuntentificacionService(IUsuarioRepositorie usuarioRepositorie, IConfiguration configuration)
         {
             this.usuarioRepositorie = usuarioRepositorie;
-
             this.configuration = configuration;
         }
 
         public async Task<RespuestaLogueo> LogueoAsync(UsuarioLogin usuarioLogin)
         {
-            Message message;
-
             var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
             if (respuesta != null)
             {
                 var usuario = UsuarioMapper.UsuarioEntityMap(respuesta);
-                var tuplaGenerarToken = this.CrearToken(usuario);
-                message = new Message(MessageCode.Message0000);
+                var tuplaGenerarToken = this.CrearToken(usuario);             
 
                 return new RespuestaLogueo
                 {
                     EstadoTransaccion = true,
                     Usuario = usuario,
                     Token = tuplaGenerarToken.Item1,
-                    FechaExpirationToken = tuplaGenerarToken.Item2,
-                    Mensaje = new Mensaje
-                    {
-                        Contenido = message.Text,
-                        Identificador = message.Code,
-                        Titulo = message.Title
-                    }
+                    FechaExpirationToken = tuplaGenerarToken.Item2,                    
+                    Mensaje = new Message(MessageCode.Message0000).Mensaje
                 };
-            }
-            message = new Message(MessageCode.Message0003);
+            }           
             return new RespuestaLogueo
             {
                 EstadoTransaccion = false,               
-                Mensaje = new Mensaje
-                {
-                    Contenido = message.Text,
-                    Identificador = message.Code,
-                    Titulo = message.Title
-                }
+                Mensaje = new Message(MessageCode.Message0003).Mensaje
             };
         }
 
