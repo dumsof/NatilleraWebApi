@@ -39,7 +39,7 @@ namespace NatilleraWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //DUM: Habilitar CORS
+            //DUM: Habilitar CORS esto permite que otras aplicaciones puedan consumir y realizar todos los verbos get, post de la aplicación
             services.AddCors(options =>
             {
                 options.AddPolicy(EnableCors, builder =>
@@ -54,8 +54,7 @@ namespace NatilleraWebApi
                 options.DefaultRequestCulture = new RequestCulture("es-CO");
             });
 
-            //Dum: se agrega la inyeccion para el logger
-            //services.AddSingleton<ILoggerManager, LoggerManager>();
+            //Dum: se agrega la inyeccion para el logger           
             services.ConfigureLoggerService();
 
             services.AddDbContext<NatilleraDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBaseConexion")));
@@ -159,6 +158,9 @@ namespace NatilleraWebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //DUM: Formato de fechas y numero.
+            app.UseRequestLocalization();
+
             app.UseStaticFiles();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -177,6 +179,7 @@ namespace NatilleraWebApi
                 IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
+
             //Dum : se agrega permiso de cors para la peticion de una url especifica.
             app.UseCors(EnableCors);
 
@@ -187,10 +190,7 @@ namespace NatilleraWebApi
 
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();
-
-            //DUM: Formato de fechas y numero.
-            app.UseRequestLocalization();
+            app.UseAuthorization();         
 
             app.UseEndpoints(endpoints =>
             {
