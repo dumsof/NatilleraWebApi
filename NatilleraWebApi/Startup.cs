@@ -9,6 +9,7 @@ namespace NatilleraWebApi
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -47,6 +48,11 @@ namespace NatilleraWebApi
                 });
             });
 
+            //DUM:Formato de fechas y numero.
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("es-CO");
+            });
 
             //Dum: se agrega la inyeccion para el logger
             //services.AddSingleton<ILoggerManager, LoggerManager>();
@@ -182,6 +188,9 @@ namespace NatilleraWebApi
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //DUM: Formato de fechas y numero.
+            app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
             {

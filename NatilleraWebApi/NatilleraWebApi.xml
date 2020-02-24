@@ -4,6 +4,15 @@
         <name>NatilleraWebApi</name>
     </assembly>
     <members>
+        <member name="M:NatilleraWebApi.Controllers.AutentificacionController.LogueoAsync(Natillera.Business.Models.UsuarioLogin)">
+            <summary>
+            Valida si el usuario existe y la contraseña diligenciada es correcta.
+            </summary>
+            <param name="userInfo"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuarioAsync(Natillera.Business.Models.Usuario)">
             <summary>
             Guardar los datos del usuario.
@@ -13,12 +22,28 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.LogueoAsync(Natillera.Business.Models.Usuario)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.EditarUsuarioAsync(Natillera.Business.Models.Usuario)">
             <summary>
-            Guardar los datos del usuario.
+            Editar los datos del usuario.
             </summary>
-            <param name="userInfo"></param>
-            <response code="200">Operación realizada con éxito.</response>
+            <param name="usuario"></param>
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.ObtenerUsuariosAsync">
+            <summary>
+            Obtener todos los usuario.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.DeleteUsuarioAsync(Natillera.Business.Models.SolicitudDeleteUsuario)">
+            <summary>
+            Borrar usuario por id.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
@@ -27,6 +52,15 @@
             Guardar los datos de una natillera que ingresa el usuario.
             </summary>
             <param name="natillera"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="401">No existen permisos para utilizar el servicio.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.NatilleraController.ObtenerNatillera">
+            <summary>
+            Obtener todos los datos de las natilleras.
+            </summary>       
             <response code="200">Operación realizada con éxito.</response>
             <response code="401">No existen permisos para utilizar el servicio.</response>
             <response code="404">No existen datos para la consulta realizada.</response>
