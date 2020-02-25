@@ -17,9 +17,8 @@
         {
             string path = string.IsNullOrEmpty(AppDomain.CurrentDomain.RelativeSearchPath) ?
                 AppDomain.CurrentDomain.BaseDirectory : AppDomain.CurrentDomain.RelativeSearchPath;
-            //se utiliza para que los mensajes presenten la ñ y la tilde de forma correcta.
-            Encoding isoLatin1 = Encoding.GetEncoding(28591);
-            JObject jsonConfig = JObject.Parse(File.ReadAllText($"{path}{jsonFileName}", isoLatin1));
+            //se utiliza Encoding.GetEncoding para que los mensajes presenten la ñ y la tilde de forma correcta.         
+            JObject jsonConfig = JObject.Parse(File.ReadAllText($"{path}{jsonFileName}", Encoding.GetEncoding(28591)));
             return jsonConfig.ToString(Formatting.None);
         }
     }
