@@ -2,6 +2,7 @@ namespace NatilleraWebApi
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Reflection;
     using System.Text;
@@ -51,7 +52,10 @@ namespace NatilleraWebApi
             //DUM:Formato de fechas y numero.
             services.Configure<RequestLocalizationOptions>(options =>
             {
+                //DUM: para que el navegador no cambie la cultura.
                 options.DefaultRequestCulture = new RequestCulture("es-CO");
+                //DUM: de forma predeterminada se establecera la cultura en el servidor. 
+                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("es-CO") };
             });
 
             //Dum: se agrega la inyeccion para el logger           
