@@ -66,11 +66,16 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.WeatherForecastController.Get">
+        <member name="M:NatilleraWebApi.Controllers.WeatherForecastController.GetTemperatura">
             <summary>
-            Deletes a specific TodoItem.
+            Obtener Temperatura.
+            </summary>     
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.WeatherForecastController.GetFecha">
+            <summary>
+            Muestra la fecha
             </summary>
-            <param name="id"></param>  
+            <returns>Retorna la fecha</returns>
         </member>
         <member name="M:NatilleraWebApi.Extensions.ExceptionMiddlewareExtensions.ConfigureCustomExceptionMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>

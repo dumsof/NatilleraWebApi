@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace NatilleraWebApi.Controllers
 {
-    [Produces("application/json")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -25,11 +24,11 @@ namespace NatilleraWebApi.Controllers
         }
 
         /// <summary>
-        /// Deletes a specific TodoItem.
-        /// </summary>
-        /// <param name="id"></param>  
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        /// Obtener Temperatura.
+        /// </summary>     
+        [HttpGet("GetTemperatura")]
+        //[ActionName("GetTemperatura")]
+        public IEnumerable<WeatherForecast> GetTemperatura()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -40,11 +39,16 @@ namespace NatilleraWebApi.Controllers
             })
             .ToArray();
         }
-       
-        [HttpGet]
-        public DateTime MostrarFechaDelSistema()
+
+        /// <summary>
+        /// Muestra la fecha
+        /// </summary>
+        /// <returns>Retorna la fecha</returns>
+        [HttpGet("GetFecha")]
+        //[ActionName("GetFecha")]
+        public string GetFecha()
         {
-            return DateTime.Now;
+            return DateTime.Now.ToString();
         }
     }
 }
