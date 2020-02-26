@@ -32,7 +32,7 @@
 
         public DbSet<CuotasPrestamos> CuotasPrestamos { get; set; }
 
-        public DbSet<CuotasSocios> CuotasSocios { get; set; }     
+        public DbSet<CuotasSocios> CuotasSocios { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
