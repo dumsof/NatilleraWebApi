@@ -40,5 +40,11 @@ namespace NatilleraWebApi.Controllers
             })
             .ToArray();
         }
+       
+        [HttpGet]
+        public DateTime MostrarFechaDelSistema()
+        {
+            return DateTime.Now;
+        }
     }
 }
