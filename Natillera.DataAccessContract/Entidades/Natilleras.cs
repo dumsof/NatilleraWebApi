@@ -55,6 +55,8 @@
         /// </summary>       
         public int NumeroCuotas { get; set; }
 
+        public TimeSpan RowVersion { get; set; }
+
         //RELACION
         //una natillera puede tener muchas cuotas del socio
         public ICollection<CuotasSocios> CuotasSocios { get; set; }

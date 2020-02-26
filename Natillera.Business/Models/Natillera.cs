@@ -65,5 +65,7 @@
         /// </summary>            
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]     
         public int NumeroCuotas { get; set; }
+
+        public TimeSpan RowVersion { get; set; }
     }
 }

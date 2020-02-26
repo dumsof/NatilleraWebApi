@@ -23,7 +23,8 @@
                 TipoPago = natillera.TipoPago,
                 ValorCuotaPagar = natillera.ValorCuotaPagar,
                 ValorMoraDiaFijo = natillera.ValorMoraDiaFijo,
-                ValorMoraPagar = natillera.ValorMoraPagar
+                ValorMoraPagar = natillera.ValorMoraPagar,
+                RowVersion = natillera.RowVersion
             };
         }
 
@@ -46,7 +47,8 @@
                 TipoPago = natilleraEntity.TipoPago,
                 ValorCuotaPagar = natilleraEntity.ValorCuotaPagar,
                 ValorMoraDiaFijo = natilleraEntity.ValorMoraDiaFijo,
-                ValorMoraPagar = natilleraEntity.ValorMoraPagar
+                ValorMoraPagar = natilleraEntity.ValorMoraPagar,
+                RowVersion = natilleraEntity.RowVersion
             };
         }
     }
