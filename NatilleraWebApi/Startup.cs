@@ -56,6 +56,9 @@ namespace NatilleraWebApi
                 options.DefaultRequestCulture = new RequestCulture("es-CO");
                 //DUM: de forma predeterminada se establecera la cultura en el servidor. 
                 options.SupportedCultures = new List<CultureInfo> { new CultureInfo("es-CO") };
+                //DUM: da formato a las pagina o salida
+                options.DefaultRequestCulture.Culture.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
+                options.DefaultRequestCulture.Culture.DateTimeFormat.DateSeparator = ".";
             });
 
             //Dum: se agrega la inyeccion para el logger           
@@ -97,6 +100,13 @@ namespace NatilleraWebApi
                     ClockSkew = TimeSpan.Zero
                 });
             //fin json web token
+
+            //DUM: para dar formato de la fecha en la que se espera
+//            services.AddMvc()
+//.AddJsonOptions(options =>
+//{
+//    options.JsonSerializerOptions.d = "mm/dd/yy, dddd";
+//});
 
             //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -194,7 +204,9 @@ namespace NatilleraWebApi
 
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();         
+            app.UseAuthorization();
+
+            //app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {
