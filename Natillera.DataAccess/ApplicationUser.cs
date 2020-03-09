@@ -1,6 +1,7 @@
 ﻿namespace Natillera.DataAccess
 {
     using Microsoft.AspNetCore.Identity;
+    using Natillera.DataAccessContract.Entidades;   
 
     //se puede agregar propiedades para la tabla usuario.
     /// <summary>
@@ -8,16 +9,7 @@
     /// </summary>
     public class ApplicationUser : IdentityUser
     {
-        public string Nombres { get; set; }
-
-        public string PrimerApellido { get; set; }
-
-        public string SegundoApellido { get; set; }
-
-        public string Cedula { get; set; }
-
-        public string Direccion { get; set; }
-
-        public string Celular { get; set; }
+        //relacion un socio puede pertenecer a diferentes natilleras
+        public virtual Socios Socios { get; set; }
     }
 }

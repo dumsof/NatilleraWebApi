@@ -39,13 +39,13 @@
             {
                 UserName = usuario.Email,
                 Email = usuario.Email,
-                Cedula = usuario.Cedula,
-                Nombres = usuario.Nombres,
-                PrimerApellido = usuario.PrimerApellido,
-                SegundoApellido = usuario.SegundoApellido,
-                Celular = usuario.Celular,
-                PhoneNumber = usuario.Telefono,
-                Direccion = usuario.Direccion
+                //Cedula = usuario.Cedula,
+                //Nombres = usuario.Nombres,
+                //PrimerApellido = usuario.PrimerApellido,
+                //SegundoApellido = usuario.SegundoApellido,
+                //Celular = usuario.Celular,
+                //PhoneNumber = usuario.Telefono,
+                //Direccion = usuario.Direccion
             };
             var result = await _userManager.CreateAsync(user, usuario.Password);
             if (result.Succeeded)
@@ -66,13 +66,13 @@
                 return new Usuarios
                 {
                     Id = user.Id,
-                    Cedula = user.Cedula,
-                    Nombres = user.Nombres,
-                    PrimerApellido = user.PrimerApellido,
-                    SegundoApellido = user.SegundoApellido,
-                    Celular = user.Celular,
-                    Telefono = user.PhoneNumber,
-                    Direccion = user.Direccion,
+                    //Cedula = user.Cedula,
+                    //Nombres = user.Nombres,
+                    //PrimerApellido = user.PrimerApellido,
+                    //SegundoApellido = user.SegundoApellido,
+                    //Celular = user.Celular,
+                    //Telefono = user.PhoneNumber,
+                    //Direccion = user.Direccion,
                     Email = user.Email,
                     Password = user.PasswordHash
                 };
@@ -98,13 +98,13 @@
                 return usuario.Result.Select(user => new Usuarios
                 {
                     Id = user.Id,
-                    Cedula = user.Cedula,
-                    Nombres = user.Nombres,
-                    PrimerApellido = user.PrimerApellido,
-                    SegundoApellido = user.SegundoApellido,
-                    Celular = user.Celular,
+                    //Cedula = user.Cedula,
+                    //Nombres = user.Nombres,
+                    //PrimerApellido = user.PrimerApellido,
+                    //SegundoApellido = user.SegundoApellido,
+                    //Celular = user.Celular,
                     Telefono = user.PhoneNumber,
-                    Direccion = user.Direccion,
+                    //Direccion = user.Direccion,
                     Email = user.Email,
                     Password = user.PasswordHash
                 });
@@ -127,13 +127,13 @@
             //Id = usuario.Id,
             //UserName = usuario.Email,
             //Email = usuario.Email,
-            userTemp.Cedula = usuario.Cedula;
-            userTemp.Nombres = usuario.Nombres;
-            userTemp.PrimerApellido = usuario.PrimerApellido;
-            userTemp.SegundoApellido = usuario.SegundoApellido;
-            userTemp.Celular = usuario.Celular;
-            userTemp.PhoneNumber = usuario.Telefono;
-            userTemp.Direccion = usuario.Direccion;
+            //userTemp.Cedula = usuario.Cedula;
+            //userTemp.Nombres = usuario.Nombres;
+            //userTemp.PrimerApellido = usuario.PrimerApellido;
+            //userTemp.SegundoApellido = usuario.SegundoApellido;
+            //userTemp.Celular = usuario.Celular;
+            //userTemp.PhoneNumber = usuario.Telefono;
+            //userTemp.Direccion = usuario.Direccion;
 
             var result = await _userManager.UpdateAsync(userTemp);
 
