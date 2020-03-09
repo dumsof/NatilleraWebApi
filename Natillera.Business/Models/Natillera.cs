@@ -24,9 +24,9 @@
         /// <summary>
         /// indica cuando se debe iniciar con el pago de la cuota para cada uno de los socios.
         /// </summary>     
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
-        //[RegularExpression(@"(\d{4}/\d{2}/\d{2})", ErrorMessage = "Invalid date format.")]
+        //[RegularExpression(@"(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])", ErrorMessage = "El campo {0} tiene formato invalidao, formato  esperado yyyy-MM-dd")]
         public DateTime FechaInicioPagoCuota { get; set; }
 
         /// <summary>
