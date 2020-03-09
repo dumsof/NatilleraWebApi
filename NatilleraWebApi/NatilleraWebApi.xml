@@ -66,6 +66,33 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
+        <member name="M:NatilleraWebApi.Controllers.SociosController.GuardarSocio(Natillera.Business.Models.SociosBusiness)">
+            <summary>
+            Guardar los datos de una natillera que ingresa el usuario.
+            </summary>
+            <param name="socios"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="401">No existen permisos para utilizar el servicio.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.SociosController.ObtenerSocios">
+            <summary>
+            Obtener todos los datos de las natilleras.
+            </summary>       
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="401">No existen permisos para utilizar el servicio.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.SociosController.DeleteSocio(Natillera.Business.Models.SolicitudDeleteSocio)">
+            <summary>
+            Borrar usuario por id.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.WeatherForecastController.GetTemperatura">
             <summary>
             Obtener Temperatura.

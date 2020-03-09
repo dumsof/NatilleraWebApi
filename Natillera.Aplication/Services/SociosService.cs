@@ -9,7 +9,7 @@
     using System.Linq;
 
 
-    public class SociosService: ISociosService
+    public class SociosService : ISociosService
     {
         private readonly IRepositorioContenedor repositorio;
         public SociosService(IRepositorioContenedor repositorio)
@@ -20,7 +20,7 @@
         public Respuesta GuardarSocio(SociosBusiness sociosBusiness)
         {
 
-            this.repositorio.Natillera.Create(NatilleraMapper.NatilleraEntityMap(natillera));
+            this.repositorio.Socios.Create(SociosMapper.SociosEntityMap(sociosBusiness));
             this.repositorio.Save();
             this.repositorio.Dispose();
 
@@ -31,35 +31,38 @@
             };
         }
 
-        public RespuestaObtenerNatillera ObtenerNatilleras()
+        public RespuestaObtenerSocios ObtenerSocios()
         {
-            var datosNatilleras = this.repositorio.Natillera.FindAll();
-            var targetList = datosNatilleras
-                              .Select(x => new Natillera()
+            var datosSocios = this.repositorio.Socios.FindAll();
+
+            var targetList = datosSocios
+                              .Select(x => new SociosBusiness()
                               {
-                                  NatilleraId = x.NatilleraId,
-                                  Nombre = x.Nombre,
-                                  Descripcion = x.Descripcion,
-                                  DiasGraciaMora = x.DiasGraciaMora,
-                                  FechaInicioPagoCuota = x.FechaInicioPagoCuota,
-                                  NumeroCuotas = x.NumeroCuotas,
-                                  TipoPago = x.TipoPago,
-                                  ValorCuotaPagar = x.ValorCuotaPagar,
-                                  ValorMoraDiaFijo = x.ValorMoraDiaFijo,
-                                  ValorMoraPagar = x.ValorMoraPagar
+                                  SocioId = x.SocioId,
+                                  Nombres = x.Nombres,
+                                  PrimerApellidos = x.PrimerApellidos,
+                                  SegundoApellidos = x.SegundoApellidos,
+                                  Celular = x.Celular,
+                                  Direccion = x.Direccion,
+                                  Email = x.Email,
+                                  FechaNacimiento = x.FechaNacimiento,
+                                  NumeroDocumento = x.NumeroDocumento,
+                                  Telefono = x.Telefono,
+                                  TipoDocumento = x.TiposDocumentos
                               })
                               .ToList();
+
             this.repositorio.Dispose();
 
-            return new RespuestaObtenerNatillera
+            return new RespuestaObtenerSocios
             {
-                EstadoTransaccion = targetList != null,
-                Natillera = targetList,
+                EstadoTransaccion = targetList != null,               
+                Socios = targetList,
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
 
-        public Respuesta BorrarNatillera(int natilleraId)
+        public Respuesta DeleteSocio(int socioId)
         {
             return new Respuesta
             {

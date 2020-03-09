@@ -1,5 +1,6 @@
 ﻿namespace Natillera.Business.Models
 {
+    using global::Natillera.DataAccessContract.Entidades;
     using System;
 
     public class SociosBusiness
@@ -35,6 +36,6 @@
 
         //propiedades que se utilizan para las relaciones
         /*Relacion uno a uno con el tipo de documento*/
-        public int TipoDocumento { get; set; }
+        public TiposDocumentos TipoDocumento { get; set; }
     }
 }

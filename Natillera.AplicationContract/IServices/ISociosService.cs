@@ -9,6 +9,6 @@
 
         RespuestaObtenerSocios ObtenerSocios();
 
-        Respuesta BorrarSocio(int socioId);
+        Respuesta DeleteSocio(int socioId);
     }
 }
