@@ -7,7 +7,7 @@
     public class CuotasSocios : Entity
     {
         [Key]
-        public int CuotaSocioId { get; set; }
+        public Guid CuotaSocioId { get; set; }
 
         /// <summary>
         /// relacion de muchos a uno con la tabla socios.

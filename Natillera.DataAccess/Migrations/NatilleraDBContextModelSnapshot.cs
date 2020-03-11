@@ -195,8 +195,8 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SociosSocioId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SociosSocioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -222,10 +222,10 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.ActividadesRecaudos", b =>
                 {
-                    b.Property<int>("ActividadRecaudoId")
+                    b.Property<Guid>("ActividadRecaudoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("DescripcionActividad")
                         .HasColumnType("nvarchar(max)");
@@ -233,8 +233,8 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<DateTime>("FechaRealizaActividad")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("NatillerasNatilleraId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("NatillerasNatilleraId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("RowCreated")
                         .HasColumnType("datetime2");
@@ -247,8 +247,8 @@ namespace Natillera.DataAccess.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int?>("SociosSocioId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SociosSocioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("ValorInvertido")
                         .HasColumnType("decimal(18,2)");
@@ -270,10 +270,10 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotasPrestamos", b =>
                 {
-                    b.Property<int>("CuotaPrestamoId")
+                    b.Property<Guid>("CuotaPrestamoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<int>("DiasMora")
                         .HasColumnType("int");
@@ -284,8 +284,8 @@ namespace Natillera.DataAccess.Migrations
                     b.Property<DateTime>("FechaLimitePago")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PrestamosPrestamoId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PrestamosPrestamoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("RowCreated")
                         .HasColumnType("datetime2");
@@ -319,16 +319,16 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotasSocios", b =>
                 {
-                    b.Property<int>("CuotaSocioId")
+                    b.Property<Guid>("CuotaSocioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<DateTime>("FechaPagoCuota")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("NatillerasNatilleraId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("NatillerasNatilleraId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("RowCreated")
                         .HasColumnType("datetime2");
@@ -341,8 +341,8 @@ namespace Natillera.DataAccess.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int?>("SociosSocioId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SociosSocioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("ValorCuota")
                         .HasColumnType("decimal(18,2)");
@@ -364,13 +364,13 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.NatilleraSocios", b =>
                 {
-                    b.Property<int>("NatilleraSocioId")
+                    b.Property<Guid>("NatilleraSocioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
-                    b.Property<int?>("NatillerasNatilleraId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("NatillerasNatilleraId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("RowCreated")
                         .HasColumnType("datetime2");
@@ -383,8 +383,8 @@ namespace Natillera.DataAccess.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int?>("SociosSocioId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SociosSocioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("NatilleraSocioId");
 
@@ -397,10 +397,10 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Natilleras", b =>
                 {
-                    b.Property<int>("NatilleraId")
+                    b.Property<Guid>("NatilleraId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
@@ -451,10 +451,10 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Prestamos", b =>
                 {
-                    b.Property<int>("PrestamoId")
+                    b.Property<Guid>("PrestamoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<DateTime>("FechaDesembolso")
                         .HasColumnType("datetime2");
@@ -477,8 +477,8 @@ namespace Natillera.DataAccess.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int?>("SociosSocioId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SociosSocioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("ValorCuotasNatillaActual")
                         .HasColumnType("decimal(18,2)");
@@ -495,10 +495,10 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Socios", b =>
                 {
-                    b.Property<int>("SocioId")
+                    b.Property<Guid>("SocioId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("Celular")
                         .HasColumnType("nvarchar(20)")
@@ -546,8 +546,8 @@ namespace Natillera.DataAccess.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
-                    b.Property<int?>("TiposDocumentosTipoDocumentoId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("TiposDocumentosTipoDocumentoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SocioId");
 
@@ -558,10 +558,10 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.TiposDocumentos", b =>
                 {
-                    b.Property<int>("TipoDocumentoId")
+                    b.Property<Guid>("TipoDocumentoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(200)")

@@ -11,7 +11,7 @@
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class SociosController : ControllerBase
     {
         private readonly ISociosService sociosService;
@@ -33,7 +33,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
-        [ValidateModel]
+        //[ValidateModel]
         public IActionResult GuardarSocio([FromBody] SociosBusiness socios)
         {
             Respuesta respuesta = this.sociosService.GuardarSocio(socios);
@@ -52,8 +52,7 @@
         [ActionName("ObtenerSocios")]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
-        [ValidateModel]
+        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]      
         public IActionResult ObtenerSocios()
         {
             RespuestaObtenerSocios respuesta = this.sociosService.ObtenerSocios();
@@ -73,6 +72,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
+        [ValidateModel]
         public IActionResult DeleteSocio([FromBody] SolicitudDeleteSocio solicitudDelete)
         {
             Respuesta respuesta = this.sociosService.DeleteSocio(solicitudDelete.SocioId);

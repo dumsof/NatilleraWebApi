@@ -10,7 +10,7 @@
     public class Natillera
     {
         [DataType(DataType.Currency)]
-        public int NatilleraId { get; set; }
+        public Guid NatilleraId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         [StringLength(50, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]

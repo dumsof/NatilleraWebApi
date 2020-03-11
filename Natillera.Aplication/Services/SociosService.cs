@@ -48,7 +48,7 @@
                                   FechaNacimiento = x.FechaNacimiento,
                                   NumeroDocumento = x.NumeroDocumento,
                                   Telefono = x.Telefono,
-                                  TipoDocumento = x.TiposDocumentos
+                                  TipoDocumentoId = x.TiposDocumentos.TipoDocumentoId
                               })
                               .ToList();
 
@@ -56,7 +56,7 @@
 
             return new RespuestaObtenerSocios
             {
-                EstadoTransaccion = targetList != null,               
+                EstadoTransaccion = targetList != null,
                 Socios = targetList,
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };

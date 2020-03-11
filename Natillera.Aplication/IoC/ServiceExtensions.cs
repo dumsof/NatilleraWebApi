@@ -30,6 +30,7 @@
             services.AddTransient<IAuntentificacionService, AuntentificacionService>();
             services.AddTransient<INatilleraServices, NatilleraServices>();
             services.AddTransient<IUsuarioServices, UsuarioServices>();
+            services.AddTransient<ISociosService, SociosService>();
             return services;
         }
 
@@ -38,6 +39,7 @@
             services.AddScoped<IRepositorioContenedor, RepositorioContenedor>();
             services.AddTransient<INatilleraRepositorie, NatilleraRepositorio>();
             services.AddTransient<IUsuarioRepositorie, UsuarioRepositorio>();
+            services.AddTransient<ISociosRepositorie, SociosRepositorio>();
             return services;
         }
     }

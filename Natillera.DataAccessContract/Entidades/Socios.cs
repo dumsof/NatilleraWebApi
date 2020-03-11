@@ -7,7 +7,7 @@
     public class Socios : Entity
     {
         [Key]
-        public int SocioId { get; set; }
+        public Guid SocioId { get; set; }
 
         [StringLength(20)]
         public string NumeroDocumento { get; set; }

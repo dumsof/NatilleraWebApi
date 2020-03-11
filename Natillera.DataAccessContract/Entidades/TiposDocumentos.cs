@@ -6,10 +6,12 @@
     public class TiposDocumentos
     {
         [Key]
-        public int TipoDocumentoId { get; set; }
+        public Guid TipoDocumentoId { get; set; }
 
 
         [StringLength(200)]
         public String Descripcion { get; set; }
+
+        //public virtual Socios Socios { get; set; }
     }
 }

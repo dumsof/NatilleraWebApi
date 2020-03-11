@@ -39,6 +39,16 @@
         {
             base.OnModelCreating(modelBuilder);
 
+
+            modelBuilder.Entity<ActividadesRecaudos>().Property(x => x.ActividadRecaudoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<CuotasPrestamos>().Property(x => x.CuotaPrestamoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<CuotasSocios>().Property(x => x.CuotaSocioId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<Natilleras>().Property(x => x.NatilleraId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<NatilleraSocios>().Property(x => x.NatilleraSocioId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<Prestamos>().Property(x => x.PrestamoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<Socios>().Property(x => x.SocioId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<TiposDocumentos>().Property(x => x.TipoDocumentoId).HasDefaultValueSql("NEWID()");
+
             ///controlar la concurrencia, se valida esta propiedad en el token.
             ///Tema pagina 2272 pdf core 2.2
             modelBuilder.Entity<Natilleras>().Property(p => p.RowVersion).IsConcurrencyToken();

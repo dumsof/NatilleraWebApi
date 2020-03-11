@@ -7,7 +7,7 @@
     public class CuotasPrestamos : Entity
     {
         [Key]
-        public int CuotaPrestamoId { get; set; }
+        public Guid CuotaPrestamoId { get; set; }
 
         /// <summary>
         /// la cuota a que prestamo pertenece

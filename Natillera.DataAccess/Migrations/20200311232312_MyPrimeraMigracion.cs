@@ -25,8 +25,7 @@ namespace Natillera.DataAccess.Migrations
                 name: "Natilleras",
                 columns: table => new
                 {
-                    NatilleraId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NatilleraId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     RowCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "GetDate()"),
                     RowUpdated = table.Column<DateTime>(nullable: false, defaultValueSql: "GetDate()"),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
@@ -49,8 +48,7 @@ namespace Natillera.DataAccess.Migrations
                 name: "TiposDocumentos",
                 columns: table => new
                 {
-                    TipoDocumentoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TipoDocumentoId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     Descripcion = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -83,8 +81,7 @@ namespace Natillera.DataAccess.Migrations
                 name: "Socios",
                 columns: table => new
                 {
-                    SocioId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SocioId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     RowCreated = table.Column<DateTime>(nullable: false),
                     RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
@@ -97,7 +94,7 @@ namespace Natillera.DataAccess.Migrations
                     Celular = table.Column<string>(maxLength: 20, nullable: true),
                     Direccion = table.Column<string>(maxLength: 250, nullable: true),
                     Email = table.Column<string>(maxLength: 150, nullable: true),
-                    TiposDocumentosTipoDocumentoId = table.Column<int>(nullable: true)
+                    TiposDocumentosTipoDocumentoId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -114,13 +111,12 @@ namespace Natillera.DataAccess.Migrations
                 name: "ActividadesRecaudos",
                 columns: table => new
                 {
-                    ActividadRecaudoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ActividadRecaudoId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     RowCreated = table.Column<DateTime>(nullable: false),
                     RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    NatillerasNatilleraId = table.Column<int>(nullable: true),
-                    SociosSocioId = table.Column<int>(nullable: true),
+                    NatillerasNatilleraId = table.Column<Guid>(nullable: true),
+                    SociosSocioId = table.Column<Guid>(nullable: true),
                     DescripcionActividad = table.Column<string>(nullable: true),
                     ValorInvertido = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ValorRecaudado = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -163,7 +159,7 @@ namespace Natillera.DataAccess.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    SociosSocioId = table.Column<int>(nullable: true)
+                    SociosSocioId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -180,17 +176,16 @@ namespace Natillera.DataAccess.Migrations
                 name: "CuotasSocios",
                 columns: table => new
                 {
-                    CuotaSocioId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CuotaSocioId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     RowCreated = table.Column<DateTime>(nullable: false),
                     RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    SociosSocioId = table.Column<int>(nullable: true),
+                    SociosSocioId = table.Column<Guid>(nullable: true),
                     FechaPagoCuota = table.Column<DateTime>(nullable: false),
                     ValorCuota = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ValorMulta = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ValorTotalCuota = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    NatillerasNatilleraId = table.Column<int>(nullable: true)
+                    NatillerasNatilleraId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -213,13 +208,12 @@ namespace Natillera.DataAccess.Migrations
                 name: "NatilleraSocios",
                 columns: table => new
                 {
-                    NatilleraSocioId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NatilleraSocioId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     RowCreated = table.Column<DateTime>(nullable: false),
                     RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    NatillerasNatilleraId = table.Column<int>(nullable: true),
-                    SociosSocioId = table.Column<int>(nullable: true)
+                    NatillerasNatilleraId = table.Column<Guid>(nullable: true),
+                    SociosSocioId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -242,12 +236,11 @@ namespace Natillera.DataAccess.Migrations
                 name: "Prestamos",
                 columns: table => new
                 {
-                    PrestamoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PrestamoId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     RowCreated = table.Column<DateTime>(nullable: false),
                     RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    SociosSocioId = table.Column<int>(nullable: true),
+                    SociosSocioId = table.Column<Guid>(nullable: true),
                     FechaDesembolso = table.Column<DateTime>(nullable: false),
                     ValorCuotasNatillaActual = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ValorPrestado = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -354,12 +347,11 @@ namespace Natillera.DataAccess.Migrations
                 name: "CuotasPrestamos",
                 columns: table => new
                 {
-                    CuotaPrestamoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CuotaPrestamoId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     RowCreated = table.Column<DateTime>(nullable: false),
                     RowUpdated = table.Column<DateTime>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    PrestamosPrestamoId = table.Column<int>(nullable: true),
+                    PrestamosPrestamoId = table.Column<Guid>(nullable: true),
                     ValorCuota = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ValorInteres = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     FechaEsperaPago = table.Column<DateTime>(nullable: false),

@@ -7,7 +7,7 @@
     public class ActividadesRecaudos : Entity
     {
         [Key]
-        public int ActividadRecaudoId { get; set; }
+        public Guid ActividadRecaudoId { get; set; }
 
         /// <summary>
         /// se selecciona la natillera para cargar los socios que pertenecen a la misma.

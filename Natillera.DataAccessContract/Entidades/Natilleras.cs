@@ -9,7 +9,7 @@
     public class Natilleras : Entity
     {
         [Key]
-        public int NatilleraId { get; set; }
+        public Guid NatilleraId { get; set; }
 
         public string Nombre { get; set; }
 

@@ -8,7 +8,7 @@
     public class Prestamos : Entity
     {
         [Key]
-        public int PrestamoId { get; set; }
+        public Guid PrestamoId { get; set; }
 
         /// <summary>
         /// relacion de muchos a uno con la tabla socios.
