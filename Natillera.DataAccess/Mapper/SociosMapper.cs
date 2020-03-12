@@ -20,7 +20,7 @@
                 PrimerApellidos = socios.PrimerApellidos,
                 SegundoApellidos = socios.SegundoApellidos,
                 Telefono = socios.SegundoApellidos,
-                TiposDocumentos = new TiposDocumentos { TipoDocumentoId = socios.TipoDocumentoId }
+                TipoDocumentoId = socios.TipoDocumentoId
             };
         }
     }

@@ -546,12 +546,12 @@ namespace Natillera.DataAccess.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
-                    b.Property<Guid?>("TiposDocumentosTipoDocumentoId")
+                    b.Property<Guid>("TipoDocumentoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SocioId");
 
-                    b.HasIndex("TiposDocumentosTipoDocumentoId");
+                    b.HasIndex("TipoDocumentoId");
 
                     b.ToTable("Socios");
                 });
@@ -679,9 +679,11 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Socios", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.TiposDocumentos", "TiposDocumentos")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.TiposDocumentos", null)
                         .WithMany()
-                        .HasForeignKey("TiposDocumentosTipoDocumentoId");
+                        .HasForeignKey("TipoDocumentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

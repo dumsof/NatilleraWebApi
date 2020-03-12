@@ -1,7 +1,6 @@
 ﻿namespace Natillera.DataAccessContract.Entidades
 {
-    using System;
-    using System.Collections.Generic;
+    using System;  
     using System.ComponentModel.DataAnnotations;
 
     public class Socios : Entity
@@ -38,6 +37,8 @@
 
         //propiedades que se utilizan para las relaciones
         /*Relacion uno a uno con el tipo de documento*/
-        public virtual TiposDocumentos TiposDocumentos { get; set; }       
+        //public virtual TiposDocumentos TiposDocumentos { get; set; }       
+
+        public Guid TipoDocumentoId { get; set; }
     }
 }

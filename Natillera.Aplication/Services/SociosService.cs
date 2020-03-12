@@ -48,7 +48,7 @@
                                   FechaNacimiento = x.FechaNacimiento,
                                   NumeroDocumento = x.NumeroDocumento,
                                   Telefono = x.Telefono,
-                                  TipoDocumentoId = x.TiposDocumentos.TipoDocumentoId
+                                  TipoDocumentoId = x.TipoDocumentoId
                               })
                               .ToList();
 

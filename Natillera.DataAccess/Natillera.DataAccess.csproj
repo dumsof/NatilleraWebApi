@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\20200311232312_MyPrimeraMigracion.cs" />
-    <Compile Include="Migrations\20200311232312_MyPrimeraMigracion.designer.cs" />
+    <Compile Include="Migrations\20200311235730_MyPrimeraMigracion.cs" />
+    <Compile Include="Migrations\20200311235730_MyPrimeraMigracion.designer.cs" />
     <Compile Include="Migrations\NatilleraDBContextModelSnapshot.cs" />
   </ItemGroup>
 

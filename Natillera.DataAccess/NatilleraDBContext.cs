@@ -49,6 +49,11 @@
             modelBuilder.Entity<Socios>().Property(x => x.SocioId).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<TiposDocumentos>().Property(x => x.TipoDocumentoId).HasDefaultValueSql("NEWID()");
 
+            //Dum: se crea la relación entre tablas, socios depende de tipodocumentos x TipodDocumentoId
+            modelBuilder.Entity<Socios>().HasOne<TiposDocumentos>().WithMany().HasForeignKey(p => p.TipoDocumentoId);
+
+
+
             ///controlar la concurrencia, se valida esta propiedad en el token.
             ///Tema pagina 2272 pdf core 2.2
             modelBuilder.Entity<Natilleras>().Property(p => p.RowVersion).IsConcurrencyToken();

@@ -94,17 +94,17 @@ namespace Natillera.DataAccess.Migrations
                     Celular = table.Column<string>(maxLength: 20, nullable: true),
                     Direccion = table.Column<string>(maxLength: 250, nullable: true),
                     Email = table.Column<string>(maxLength: 150, nullable: true),
-                    TiposDocumentosTipoDocumentoId = table.Column<Guid>(nullable: true)
+                    TipoDocumentoId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Socios", x => x.SocioId);
                     table.ForeignKey(
-                        name: "FK_Socios_TiposDocumentos_TiposDocumentosTipoDocumentoId",
-                        column: x => x.TiposDocumentosTipoDocumentoId,
+                        name: "FK_Socios_TiposDocumentos_TipoDocumentoId",
+                        column: x => x.TipoDocumentoId,
                         principalTable: "TiposDocumentos",
                         principalColumn: "TipoDocumentoId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -456,9 +456,9 @@ namespace Natillera.DataAccess.Migrations
                 column: "SociosSocioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Socios_TiposDocumentosTipoDocumentoId",
+                name: "IX_Socios_TipoDocumentoId",
                 table: "Socios",
-                column: "TiposDocumentosTipoDocumentoId");
+                column: "TipoDocumentoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
