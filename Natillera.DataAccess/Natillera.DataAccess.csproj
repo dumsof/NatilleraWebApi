@@ -5,15 +5,42 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\**" />
-    <EmbeddedResource Remove="Migrations\**" />
-    <None Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Migrations\20200311235730_MyPrimeraMigracion.cs" />
-    <Compile Include="Migrations\20200311235730_MyPrimeraMigracion.designer.cs" />
-    <Compile Include="Migrations\NatilleraDBContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20200316210441_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316210441_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316211700_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316211700_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316213152_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316213152_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316213925_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316213925_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316214531_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316214531_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316215519_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316215519_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316220522_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316220522_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316221115_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316221115_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316222119_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316222119_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316222925_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316222925_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200316223401_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200316223401_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200317163238_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200317163238_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200317164307_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200317164307_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200318134824_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200318134824_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200318135644_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200318135644_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200318140108_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200318140108_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200318140851_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200318140851_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200318142126_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200318142126_MyPrimeraMigracion.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +53,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Natillera.Business\Natillera.Business.csproj" />
     <ProjectReference Include="..\Natillera.DataAccessContract\Natillera.DataAccessContract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

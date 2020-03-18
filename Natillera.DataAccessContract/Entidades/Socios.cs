@@ -2,6 +2,7 @@
 {
     using System;  
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Socios : Entity
     {
@@ -40,5 +41,8 @@
         //public virtual TiposDocumentos TiposDocumentos { get; set; }       
 
         public Guid TipoDocumentoId { get; set; }
+
+        [ForeignKey("TipoDocumentoId")]
+        public TiposDocumentos TiposDocumentos { get; set; }
     }
 }

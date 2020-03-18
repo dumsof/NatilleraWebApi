@@ -2,10 +2,10 @@
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Natillera.DataAccess.EntityConfig;
     using Natillera.DataAccessContract;
     using Natillera.DataAccessContract.Entidades;
-    using System;
-
+ 
     public class NatilleraDBContext : IdentityDbContext<ApplicationUser>, INatilleraDBContext
     {
         //cuando se hereda de IdentityDbContext<ApplicationUser>, se crean las tablas para 
@@ -34,24 +34,27 @@
 
         public DbSet<CuotasSocios> CuotasSocios { get; set; }
 
+        public DbSet<Menus> Menus { get; set; }
+
+        public DbSet<MenuSubMenu> MenuSubMenu { get; set; }
+
+        public DbSet<MenuPermisos> MenuPermisos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            //generar los datos iniciales.
+            modelBuilder.Seed();
 
+            //base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ActividadesRecaudos>().Property(x => x.ActividadRecaudoId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<CuotasPrestamos>().Property(x => x.CuotaPrestamoId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<CuotasSocios>().Property(x => x.CuotaSocioId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<Natilleras>().Property(x => x.NatilleraId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<NatilleraSocios>().Property(x => x.NatilleraSocioId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<Prestamos>().Property(x => x.PrestamoId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<Socios>().Property(x => x.SocioId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<TiposDocumentos>().Property(x => x.TipoDocumentoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.DatosPorDefectoTablas();
 
             //Dum: se crea la relación entre tablas, socios depende de tipodocumentos x TipodDocumentoId
-            modelBuilder.Entity<Socios>().HasOne<TiposDocumentos>().WithMany().HasForeignKey(p => p.TipoDocumentoId);
+            //modelBuilder.MenusRelacionTabla();
 
+            //modelBuilder.MenuSubMenuRelacionTabla();
+
+            //modelBuilder.Entity<Socios>().HasOne<TiposDocumentos>().WithMany().HasForeignKey(p => p.TipoDocumentoId);
 
 
             ///controlar la concurrencia, se valida esta propiedad en el token.
@@ -62,6 +65,8 @@
             modelBuilder.Entity<Natilleras>().Property(p => p.RowCreated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Natilleras>().Property(p => p.RowUpdated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAddOrUpdate();
+           
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

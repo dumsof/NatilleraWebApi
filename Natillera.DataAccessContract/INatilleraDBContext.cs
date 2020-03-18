@@ -20,6 +20,12 @@
         DbSet<CuotasPrestamos> CuotasPrestamos { get; set; }
 
         DbSet<CuotasSocios> CuotasSocios { get; set; }
-       
+
+        DbSet<Menus> Menus { get; set; }
+
+        DbSet<MenuSubMenu> MenuSubMenu { get; set; }
+
+        DbSet<MenuPermisos> MenuPermisos { get; set; }
+
     }
 }
