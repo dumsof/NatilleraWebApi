@@ -55,11 +55,11 @@
         /// </summary>       
         public int NumeroCuotas { get; set; }
 
-        //RELACION
-        //una natillera puede tener muchas cuotas del socio
-        public ICollection<CuotasSocios> CuotasSocios { get; set; }
+        ////RELACION
+        ////una natillera puede tener muchas cuotas del socio
+        //public ICollection<CuotasSocios> CuotasSocios { get; set; }
 
-        //relacion un socio puede pertenecer a diferentes natilleras
-        public ICollection<NatilleraSocios> NatilleraSocios { get; set; }
+        ////relacion un socio puede pertenecer a diferentes natilleras
+        //public ICollection<NatilleraSocios> NatilleraSocios { get; set; }
     }
 }

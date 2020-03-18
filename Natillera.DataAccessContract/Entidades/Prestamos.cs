@@ -1,7 +1,6 @@
 ﻿namespace Natillera.DataAccessContract.Entidades
 {
-    using System;
-    using System.Collections.Generic;
+    using System;   
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,7 +13,10 @@
         /// relacion de muchos a uno con la tabla socios.
         /// un prestamo debe tener un socio que solicita el prestamo.
         /// </summary>
-        public virtual Socios Socios { get; set; }
+        public Guid SocioId { get; set; }
+
+        [ForeignKey("SocioId")]
+        public Socios Socios { get; set; }
 
         /// <summary>
         /// dia en el cual se realiza la entrega de la plata.
@@ -41,9 +43,6 @@
         /// almacena la informacion de la persona que debe pagar el prestamo
         /// </summary>
         [StringLength(250)]
-        public string ResponsablePagoPrestamo { get; set; }
-
-        //relacion un socio puede pertenecer a diferentes natilleras
-        public ICollection<CuotasPrestamos> CuotasPrestamos { get; set; }
+        public string ResponsablePagoPrestamo { get; set; }       
     }
 }

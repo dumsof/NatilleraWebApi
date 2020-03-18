@@ -13,7 +13,9 @@
         /// relacion de muchos a uno con la tabla socios.
         /// solo se deben cargar los socios que hacen parte de la natillera.
         /// </summary>
-        public virtual Socios Socios { get; set; }
+        public Guid SocioId { get; set; }
+        [ForeignKey("SocioId")]
+        public Socios Socios { get; set; }
 
         /// <summary>
         /// fecha a la cual pertenece el pago de la cuota.
@@ -37,11 +39,5 @@
         /// </summary>
         [Column(TypeName = "decimal(18,2)")]
         public decimal ValorTotalCuota { get; set; }
-
-        //RELACIONES
-        /// <summary>
-        /// se selecciona la natillera para cargar los socios que pertenecen a la misma.
-        /// </summary>
-        public virtual Natilleras Natilleras { get; set; }
     }
 }

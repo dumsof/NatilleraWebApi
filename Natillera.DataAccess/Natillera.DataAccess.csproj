@@ -41,6 +41,8 @@
     <Compile Remove="Migrations\20200318140851_MyPrimeraMigracion.Designer.cs" />
     <Compile Remove="Migrations\20200318142126_MyPrimeraMigracion.cs" />
     <Compile Remove="Migrations\20200318142126_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200318163525_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200318163525_MyPrimeraMigracion.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,10 +55,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Natillera.Business\Natillera.Business.csproj" />
     <ProjectReference Include="..\Natillera.DataAccessContract\Natillera.DataAccessContract.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

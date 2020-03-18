@@ -12,6 +12,8 @@
         /// <summary>
         /// la cuota a que prestamo pertenece
         /// </summary>
+        public Guid PrestamoId { get; set; }
+        [ForeignKey("PrestamoId")]
         public Prestamos Prestamos { get; set; }
 
         /// <summary>

@@ -2,24 +2,15 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations.Schema;    
 
     public class MenuPermisos
     {
         [Key]
         public Guid MenuPermisoId{ get; set; }
 
-        [Column(TypeName = "NVARCHAR")]
-        [StringLength(128)]
+        [Column(TypeName = "NVARCHAR(128)")]       
         public string AspNetRolesId { get; set; }
-
-
-        //public String Id { get; set; }
-        //[ForeignKey("Id")]
-        //public virtual IdentityRole IdentityRole { get; set; }
-
-
-
 
         public Guid? SubMenuId { get; set; }
         [ForeignKey("SubMenuId")]
