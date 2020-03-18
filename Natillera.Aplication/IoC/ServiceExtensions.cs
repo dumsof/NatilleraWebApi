@@ -31,6 +31,8 @@
             services.AddTransient<INatilleraServices, NatilleraServices>();
             services.AddTransient<IUsuarioServices, UsuarioServices>();
             services.AddTransient<ISociosService, SociosService>();
+            services.AddTransient<IRolesServices, RolesServices>();
+
             return services;
         }
 
@@ -40,6 +42,8 @@
             services.AddTransient<INatilleraRepositorie, NatilleraRepositorio>();
             services.AddTransient<IUsuarioRepositorie, UsuarioRepositorio>();
             services.AddTransient<ISociosRepositorie, SociosRepositorio>();
+            services.AddTransient<IRolesRepositorio, RolesRepositorio>();
+
             return services;
         }
     }

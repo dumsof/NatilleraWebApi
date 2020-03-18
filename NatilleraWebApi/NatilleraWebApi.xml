@@ -66,6 +66,40 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
+        <member name="M:NatilleraWebApi.Controllers.RolesController.CrearRolAsync(Natillera.Business.Models.Roles.RolesBusiness)">
+            <summary>
+            Crear los roles que puede tener un usuario.
+            </summary>
+            <param name="rol"></param>
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.RolesController.EditarRolAsync(Natillera.Business.Models.Roles.RolesBusiness)">
+            <summary>
+            Editar los datos del rol.
+            </summary>
+            <param name="rol"></param>
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.RolesController.ObtenerRolesAsync">
+            <summary>
+            Obtener todos los roles.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.RolesController.DeleteRolAsync(Natillera.Business.Models.Roles.SolicitudDeleteRol)">
+            <summary>
+            Borrar rol por id.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.SociosController.GuardarSocio(Natillera.Business.Models.SociosBusiness)">
             <summary>
             Guardar los datos de una natillera que ingresa el usuario.
