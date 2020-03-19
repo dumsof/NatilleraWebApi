@@ -12,6 +12,7 @@
 
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class CuentaUsuarioController : ControllerBase
     {
         private readonly IUsuarioServices usuarioServices;
@@ -93,6 +94,6 @@
         {
             Respuesta respuesta = await this.usuarioServices.DeleteUsuarioAsync(solicitudDelete.UsuarioId);
             return new OkObjectResult(respuesta);
-        }       
+        }
     }
 }
