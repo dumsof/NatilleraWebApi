@@ -426,12 +426,12 @@ namespace Natillera.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "38e606c8-7f9e-4158-a671-444992bd89f5", "6d132f78-5f42-473e-a60c-85def5eb4a04", "Administrador", "ADMINISTRADOR" });
+                values: new object[] { "38e606c8-7f9e-4158-a671-444992bd89f5", "88493e5c-cd4e-4efe-b004-1a872ff6464c", "Administrador", "ADMINISTRADOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "SocioId", "SociosSocioId", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "38e606c8-7f9e-4158-a671-444992bd89f5", 0, "52de73a0-39c6-42fa-a5c5-4da232483486", "myemail@myemail.com", true, false, null, "DUN34@HOTMAIL.COM", "DUN34@HOTMAIL.COM", "AQAAAAEAACcQAAAAECokRB0Ykqax/BA+NyuGbiauAJ+X4Mcs1STYMpREdRcWXSLFDxcEtrLpGczPaZX6bw==", null, false, "DVJF5PLZA76QHHTNVSJYRF5NVCQTSRTQ", new Guid("f95ba36f-daa0-4b14-a142-51ec51cf7d91"), null, false, "dun34@hotmil.com" });
+                values: new object[] { "38e606c8-7f9e-4158-a671-444992bd89f5", 0, "52de73a0-39c6-42fa-a5c5-4da232483486", "dun34@hotmil.com", true, false, null, "DUN34@HOTMAIL.COM", "DUN34@HOTMAIL.COM", "AQAAAAEAACcQAAAAECokRB0Ykqax/BA+NyuGbiauAJ+X4Mcs1STYMpREdRcWXSLFDxcEtrLpGczPaZX6bw==", null, false, "DVJF5PLZA76QHHTNVSJYRF5NVCQTSRTQ", new Guid("f95ba36f-daa0-4b14-a142-51ec51cf7d91"), null, false, "dun34@hotmil.com" });
 
             migrationBuilder.InsertData(
                 table: "TiposDocumentos",
@@ -451,7 +451,7 @@ namespace Natillera.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Socios",
                 columns: new[] { "SocioId", "Celular", "Direccion", "Email", "FechaNacimiento", "Nombres", "NumeroDocumento", "PrimerApellidos", "RowCreated", "RowUpdated", "SegundoApellidos", "Telefono", "TipoDocumentoId" },
-                values: new object[] { new Guid("f95ba36f-daa0-4b14-a142-51ec51cf7d91"), "3112343434", "Dirección", "dun34@hotmail.com", new DateTime(1990, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Darwin", null, "Urrutia", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 3, 19, 13, 49, 33, 409, DateTimeKind.Local).AddTicks(9733), "mosquera", null, new Guid("ceb36362-6ebb-4649-ae51-48ee9f60892a") });
+                values: new object[] { new Guid("f95ba36f-daa0-4b14-a142-51ec51cf7d91"), "3112343434", "Dirección", "dun34@hotmail.com", new DateTime(1990, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Darwin", "11803053", "Urrutia", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 3, 19, 14, 34, 47, 419, DateTimeKind.Local).AddTicks(6926), "mosquera", "2343434", new Guid("ceb36362-6ebb-4649-ae51-48ee9f60892a") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActividadesRecaudos_NatillerasNatilleraId",

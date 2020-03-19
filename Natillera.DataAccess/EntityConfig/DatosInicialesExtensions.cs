@@ -22,8 +22,9 @@
                     Nombres = "Darwin",
                     PrimerApellidos = "Urrutia",
                     SegundoApellidos = "mosquera",
-                    Celular = "3112343434"
-                 ,
+                    Celular = "3112343434",
+                    Telefono = "2343434",
+                    NumeroDocumento = "11803053",
                     Direccion = "Dirección",
                     Email = "dun34@hotmail.com",
                     FechaNacimiento = Convert.ToDateTime("1990-06-05"),

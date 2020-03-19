@@ -62,17 +62,18 @@
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByNameAsync(usuario.Email);
+                var socio = repositorioContexto.Socios.FirstOrDefault(c => c.Email.ToLower().Trim() == usuario.Email.ToLower().Trim());
 
                 return new Usuarios
                 {
                     Id = user.Id,
-                    //Cedula = user.Cedula,
-                    //Nombres = user.Nombres,
-                    //PrimerApellido = user.PrimerApellido,
-                    //SegundoApellido = user.SegundoApellido,
-                    //Celular = user.Celular,
-                    //Telefono = user.PhoneNumber,
-                    //Direccion = user.Direccion,
+                    Cedula = socio.NumeroDocumento,
+                    Nombres = socio.Nombres,
+                    PrimerApellido = socio.PrimerApellidos,
+                    SegundoApellido = socio.SegundoApellidos,
+                    Celular = socio.Celular,
+                    Telefono = socio.Telefono,
+                    Direccion = socio.Direccion,
                     Email = user.Email,
                     Password = user.PasswordHash
                 };

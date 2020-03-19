@@ -49,7 +49,7 @@ namespace Natillera.DataAccess.Migrations
                         new
                         {
                             Id = "38e606c8-7f9e-4158-a671-444992bd89f5",
-                            ConcurrencyStamp = "6d132f78-5f42-473e-a60c-85def5eb4a04",
+                            ConcurrencyStamp = "88493e5c-cd4e-4efe-b004-1a872ff6464c",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         });
@@ -244,7 +244,7 @@ namespace Natillera.DataAccess.Migrations
                             Id = "38e606c8-7f9e-4158-a671-444992bd89f5",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "52de73a0-39c6-42fa-a5c5-4da232483486",
-                            Email = "myemail@myemail.com",
+                            Email = "dun34@hotmil.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DUN34@HOTMAIL.COM",
@@ -676,10 +676,12 @@ namespace Natillera.DataAccess.Migrations
                             Email = "dun34@hotmail.com",
                             FechaNacimiento = new DateTime(1990, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombres = "Darwin",
+                            NumeroDocumento = "11803053",
                             PrimerApellidos = "Urrutia",
                             RowCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RowUpdated = new DateTime(2020, 3, 19, 13, 49, 33, 409, DateTimeKind.Local).AddTicks(9733),
+                            RowUpdated = new DateTime(2020, 3, 19, 14, 34, 47, 419, DateTimeKind.Local).AddTicks(6926),
                             SegundoApellidos = "mosquera",
+                            Telefono = "2343434",
                             TipoDocumentoId = new Guid("ceb36362-6ebb-4649-ae51-48ee9f60892a")
                         });
                 });
