@@ -62,9 +62,9 @@
             modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
             {
                 Id = ADMIN_ID,
-                UserName = "dun34@hotmil.com",
+                UserName = "dun34@hotmail.com",
                 NormalizedUserName = "DUN34@HOTMAIL.COM",
-                Email = "dun34@hotmil.com",
+                Email = "dun34@hotmail.com",
                 NormalizedEmail = "DUN34@HOTMAIL.COM",
                 EmailConfirmed = true,
                 PasswordHash = "AQAAAAEAACcQAAAAECokRB0Ykqax/BA+NyuGbiauAJ+X4Mcs1STYMpREdRcWXSLFDxcEtrLpGczPaZX6bw==",
