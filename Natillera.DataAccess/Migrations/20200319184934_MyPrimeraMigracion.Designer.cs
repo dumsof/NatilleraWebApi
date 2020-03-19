@@ -10,7 +10,7 @@ using Natillera.DataAccess;
 namespace Natillera.DataAccess.Migrations
 {
     [DbContext(typeof(NatilleraDBContext))]
-    [Migration("20200318164220_MyPrimeraMigracion")]
+    [Migration("20200319184934_MyPrimeraMigracion")]
     partial class MyPrimeraMigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,15 @@ namespace Natillera.DataAccess.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "38e606c8-7f9e-4158-a671-444992bd89f5",
+                            ConcurrencyStamp = "6d132f78-5f42-473e-a60c-85def5eb4a04",
+                            Name = "Administrador",
+                            NormalizedName = "ADMINISTRADOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -131,6 +140,13 @@ namespace Natillera.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "38e606c8-7f9e-4158-a671-444992bd89f5",
+                            RoleId = "38e606c8-7f9e-4158-a671-444992bd89f5"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -223,6 +239,25 @@ namespace Natillera.DataAccess.Migrations
                     b.HasIndex("SociosSocioId");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "38e606c8-7f9e-4158-a671-444992bd89f5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "52de73a0-39c6-42fa-a5c5-4da232483486",
+                            Email = "myemail@myemail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DUN34@HOTMAIL.COM",
+                            NormalizedUserName = "DUN34@HOTMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAECokRB0Ykqax/BA+NyuGbiauAJ+X4Mcs1STYMpREdRcWXSLFDxcEtrLpGczPaZX6bw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "DVJF5PLZA76QHHTNVSJYRF5NVCQTSRTQ",
+                            SocioId = new Guid("f95ba36f-daa0-4b14-a142-51ec51cf7d91"),
+                            TwoFactorEnabled = false,
+                            UserName = "dun34@hotmil.com"
+                        });
                 });
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.ActividadesRecaudos", b =>
@@ -633,6 +668,22 @@ namespace Natillera.DataAccess.Migrations
                     b.HasIndex("TipoDocumentoId");
 
                     b.ToTable("Socios");
+
+                    b.HasData(
+                        new
+                        {
+                            SocioId = new Guid("f95ba36f-daa0-4b14-a142-51ec51cf7d91"),
+                            Celular = "3112343434",
+                            Direccion = "Dirección",
+                            Email = "dun34@hotmail.com",
+                            FechaNacimiento = new DateTime(1990, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombres = "Darwin",
+                            PrimerApellidos = "Urrutia",
+                            RowCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RowUpdated = new DateTime(2020, 3, 19, 13, 49, 33, 409, DateTimeKind.Local).AddTicks(9733),
+                            SegundoApellidos = "mosquera",
+                            TipoDocumentoId = new Guid("ceb36362-6ebb-4649-ae51-48ee9f60892a")
+                        });
                 });
 
             modelBuilder.Entity("Natillera.DataAccessContract.Entidades.TiposDocumentos", b =>

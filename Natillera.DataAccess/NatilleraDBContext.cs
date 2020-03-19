@@ -48,6 +48,7 @@
             //base.OnModelCreating(modelBuilder);
 
             modelBuilder.DatosPorDefectoTablas();
+            modelBuilder.DatosPrincipalesLogueo();
 
             //Dum: se crea la relación entre tablas, socios depende de tipodocumentos x TipodDocumentoId
             //modelBuilder.MenusRelacionTabla();
@@ -65,7 +66,10 @@
             modelBuilder.Entity<Natilleras>().Property(p => p.RowCreated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Natilleras>().Property(p => p.RowUpdated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAddOrUpdate();
+
            
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

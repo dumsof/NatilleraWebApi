@@ -43,6 +43,8 @@
     <Compile Remove="Migrations\20200318142126_MyPrimeraMigracion.Designer.cs" />
     <Compile Remove="Migrations\20200318163525_MyPrimeraMigracion.cs" />
     <Compile Remove="Migrations\20200318163525_MyPrimeraMigracion.Designer.cs" />
+    <Compile Remove="Migrations\20200318164220_MyPrimeraMigracion.cs" />
+    <Compile Remove="Migrations\20200318164220_MyPrimeraMigracion.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
