@@ -24,9 +24,10 @@
         /// <summary>
         /// indica cuando se debe iniciar con el pago de la cuota para cada uno de los socios.
         /// </summary>     
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         //[RegularExpression(@"(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])", ErrorMessage = "El campo {0} tiene formato invalidao, formato  esperado yyyy-MM-dd")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", HtmlEncode = true)]
         public DateTime FechaInicioPagoCuota { get; set; }
 
         /// <summary>
@@ -63,7 +64,7 @@
         /// no puede ser mayor que 12 cuotas, se calcula partiendo de el mes que los
         /// socios debe empezar con el pago de las cuotas.
         /// </summary>            
-        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]     
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         public int NumeroCuotas { get; set; }
     }
 }

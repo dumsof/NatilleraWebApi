@@ -4,7 +4,8 @@
 
     public class MensajeExeption
     {
-        public int codigo { get; set; }
+        public int Codigo { get; set; }
+
         public string Mensaje { get; set; }
 
         public string Exception { get; set; }

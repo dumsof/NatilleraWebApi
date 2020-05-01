@@ -11,6 +11,7 @@ namespace NatilleraWebApi
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Localization;
+    using Microsoft.AspNetCore.Localization.Routing;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -52,13 +53,15 @@ namespace NatilleraWebApi
             //DUM:Formato de fechas y numero.
             services.Configure<RequestLocalizationOptions>(options =>
             {
+                string cultura = Configuration.GetValue<string>("Formato:Cultura");
+                string culturaIu = Configuration.GetValue<string>("Formato:CulturaIU");
                 //DUM: para que el navegador no cambie la cultura.
-                options.DefaultRequestCulture = new RequestCulture("es-CO");
+                options.DefaultRequestCulture = new RequestCulture(culture: cultura, uiCulture: culturaIu);
                 //DUM: de forma predeterminada se establecera la cultura en el servidor. 
-                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("es-CO") };
+                options.SupportedCultures = new List<CultureInfo> { new CultureInfo(cultura) };
                 //DUM: da formato a las pagina o salida
-                options.DefaultRequestCulture.Culture.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
-                options.DefaultRequestCulture.Culture.DateTimeFormat.DateSeparator = ".";
+                options.DefaultRequestCulture.Culture.DateTimeFormat.ShortDatePattern = Configuration.GetValue<string>("Formato:Fecha");
+                options.DefaultRequestCulture.Culture.DateTimeFormat.DateSeparator = Configuration.GetValue<string>("Formato:DateSeparator");
             });
 
             //Dum: se agrega la inyeccion para el logger           
@@ -102,11 +105,11 @@ namespace NatilleraWebApi
             //fin json web token
 
             //DUM: para dar formato de la fecha en la que se espera
-//            services.AddMvc()
-//.AddJsonOptions(options =>
-//{
-//    options.JsonSerializerOptions.d = "mm/dd/yy, dddd";
-//});
+            //            services.AddMvc()
+            //.AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.d = "mm/dd/yy, dddd";
+            //});
 
             //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -199,9 +202,7 @@ namespace NatilleraWebApi
 
             //Dum: se realiza el llamado del middleware del manejo de exception global.
             app.ConfigureCustomExceptionMiddleware();
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -47,7 +48,12 @@ namespace NatilleraWebApi.Controllers
         //[ActionName("GetFecha")]
         public string GetFecha()
         {
-            return DateTime.Now.ToString();
+
+            DateTime thisDate = DateTime.Now;
+            CultureInfo culture = new CultureInfo("es-CO");
+            Console.WriteLine(thisDate.ToString("d", culture));  // Displays 15/3/2008
+
+            return DateTime.Now.ToString(); //thisDate.ToString("d", culture);
         }
     }
 }

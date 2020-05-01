@@ -26,7 +26,8 @@
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error Interno: {ex}");
+                //DUM: se registra el error en un archivo de errores
+                _logger.LogError($"Error Interno Servidor: {ex.Message} \n Trace {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
@@ -36,9 +37,9 @@
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            return context.Response.WriteAsync(new MensajeExeption()
+            return context.Response.WriteAsync(new MensajeExeption
             {
-                codigo = context.Response.StatusCode,
+                Codigo = context.Response.StatusCode,
                 Mensaje = $"Error interno en el servidor : {exception.Message} ",
                 Exception = exception.ToString()
 

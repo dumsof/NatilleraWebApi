@@ -32,20 +32,20 @@
             if (respuesta != null)
             {
                 var usuario = UsuarioMapper.UsuarioEntityMap(respuesta);
-                var tuplaGenerarToken = this.CrearToken(usuario);             
+                var tuplaGenerarToken = this.CrearToken(usuario);
 
                 return new RespuestaLogueo
                 {
                     EstadoTransaccion = true,
                     Usuario = usuario,
                     Token = tuplaGenerarToken.Item1,
-                    FechaExpirationToken = tuplaGenerarToken.Item2,                    
+                    FechaExpirationToken = tuplaGenerarToken.Item2,
                     Mensaje = new Message(MessageCode.Message0000).Mensaje
                 };
-            }           
+            }
             return new RespuestaLogueo
             {
-                EstadoTransaccion = false,               
+                EstadoTransaccion = false,
                 Mensaje = new Message(MessageCode.Message0003).Mensaje
             };
         }
@@ -64,11 +64,13 @@
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["va_clave_super_secreta"]));
             var credencial = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddHours(1);
+            int horaVencimientoToken = this.configuration.GetValue<int>("Token:HorasVencimientoToken");
+
+            var expiration = DateTime.Now.AddHours(horaVencimientoToken);
 
             JwtSecurityToken token = new JwtSecurityToken(
-                                                           issuer: "yourdomain.com",
-                                                           audience: "yourdomain.com",
+                                                           issuer: this.configuration.GetValue<string>("Token:Issuer"),
+                                                           audience: this.configuration.GetValue<string>("Token:Audience"),
                                                            claims: claims,
                                                            expires: expiration,
                                                            signingCredentials: credencial
