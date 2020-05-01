@@ -1,6 +1,7 @@
 ﻿
 namespace Natillera.Business.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class Usuario
@@ -23,6 +24,10 @@ namespace Natillera.Business.Models
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         [StringLength(100, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
         public string SegundoApellido { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
+        public DateTime FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         [StringLength(250, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
