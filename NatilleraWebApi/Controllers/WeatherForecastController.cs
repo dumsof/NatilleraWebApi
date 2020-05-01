@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -55,5 +56,18 @@ namespace NatilleraWebApi.Controllers
 
             return DateTime.Now.ToString(); //thisDate.ToString("d", culture);
         }
+
+        [AcceptVerbs("GET", "POST")]
+        [HttpGet("GetFechaExpresionRegular")]
+        public IActionResult GetFechaExpresionRegular([RegularExpression(@"^\d{4}-((0[1-9])|(1[012]))-((0[1-9]|[12]\d)|3[01])$")] string fecha)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new NotFoundObjectResult($"Phone {fecha} has an invalid format. Format: yyyy-MM-dd");
+            }
+
+            return new OkObjectResult(true);
+        }
     }
+
 }

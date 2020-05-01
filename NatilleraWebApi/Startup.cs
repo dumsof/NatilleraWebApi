@@ -18,6 +18,7 @@ namespace NatilleraWebApi
     using Microsoft.Extensions.Hosting;
     using Microsoft.IdentityModel.Logging;
     using Microsoft.IdentityModel.Tokens;
+    using Microsoft.OpenApi.Any;
     using Microsoft.OpenApi.Models;
     using Natillera.Aplication.IoC;
     using Natillera.DataAccess;
@@ -97,23 +98,14 @@ namespace NatilleraWebApi
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuers = new List<string> { "yourdomain.com" },
-                    ValidAudience = "yourdomain.com",
+                    ValidIssuers = new List<string> { Configuration.GetValue<string>("Token:Issuer") },
+                    ValidAudience = Configuration.GetValue<string>("Token:Audience"),
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["va_clave_super_secreta"])),
                     ClockSkew = TimeSpan.Zero
                 });
-            //fin json web token
+            //fin json web token           
 
-            //DUM: para dar formato de la fecha en la que se espera
-            //            services.AddMvc()
-            //.AddJsonOptions(options =>
-            //{
-            //    options.JsonSerializerOptions.d = "mm/dd/yy, dddd";
-            //});
-
-            //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            // Register the Swagger generator, defining 1 or more Swagger documents
+            //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2          
             services.AddSwaggerGen(configuracion =>
             {
                 configuracion.SwaggerDoc("v1", new OpenApiInfo
@@ -133,6 +125,14 @@ namespace NatilleraWebApi
                         Name = "Use under LICX",
                         Url = new Uri("https://example.com/license"),
                     }
+                });
+
+                configuracion.MapType<DateTime>(() => new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "date",
+                    Example = new OpenApiDateTime(DateTime.Now)
+
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
@@ -187,7 +187,9 @@ namespace NatilleraWebApi
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                //Dum: solución error no found en IIS "../swagger/v1/swagger.json", 
+                //DUM: se debe publicar sin los puntos para azure "/swagger/v1/swagger.json"                
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mi Natillera API V1");
             });
 
             if (env.IsDevelopment())

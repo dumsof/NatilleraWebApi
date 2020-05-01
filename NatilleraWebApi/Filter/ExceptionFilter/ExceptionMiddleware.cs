@@ -27,7 +27,7 @@
             catch (Exception ex)
             {
                 //DUM: se registra el error en un archivo de errores
-                _logger.LogError($"Error Interno Servidor: {ex.Message} \n Trace {ex}");
+                _logger.LogError($"Error Interno Servidor: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }

@@ -33,7 +33,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
-        //[ValidateModel]
+        [ValidateModel]
         public IActionResult GuardarSocio([FromBody] SociosBusiness socios)
         {
             Respuesta respuesta = this.sociosService.GuardarSocio(socios);
@@ -52,7 +52,7 @@
         [ActionName("ObtenerSocios")]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]      
+        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
         public IActionResult ObtenerSocios()
         {
             RespuestaObtenerSocios respuesta = this.sociosService.ObtenerSocios();
