@@ -1,14 +1,14 @@
 ﻿namespace Natillera.DataAccess.Repositories
 {
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
     using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Linq;
+    using System;
 
-    public class UsuarioRepositorio : RepositoryBase<Usuarios>, IUsuarioRepositorie
+    public class UsuarioRepositorio : RepositoryBase<UsuariosEntity>, IUsuarioRepositorie
     {
         /// <summary>
         /// Defines the _userManager
@@ -32,44 +32,33 @@
             this.repositorioContexto = repositorioContexto;
         }
 
-        public async Task<Usuarios> GuardarUsuarioAsync(Usuarios usuario)
+        public async Task<UsuariosEntity> GuardarUsuarioAsync(UsuariosEntity usuario, Guid socioId)
         {
-
             var user = new ApplicationUser
             {
                 UserName = usuario.Email,
                 Email = usuario.Email,
-                //Cedula = usuario.Cedula,
-                //Nombres = usuario.Nombres,
-                //PrimerApellido = usuario.PrimerApellido,
-                //SegundoApellido = usuario.SegundoApellido,
-                //Celular = usuario.Celular,
-                //PhoneNumber = usuario.Telefono,
-                //Direccion = usuario.Direccion
+                SocioId = socioId
             };
-            var result = await _userManager.CreateAsync(user, usuario.Password);
-            if (result.Succeeded)
-            {
-                return usuario;
-            }
+            await _userManager.CreateAsync(user, usuario.Password);
 
-            return null;
+            return usuario;
         }
 
-        public async Task<Usuarios> LogueoAsync(Usuarios usuario)
+        public async Task<UsuariosEntity> LogueoAsync(UsuariosEntity usuario)
         {
             var result = await _signInManager.PasswordSignInAsync(usuario.Email, usuario.Password, true, false);
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByNameAsync(usuario.Email);
 
-                return this.ObtenerUsuario(user);               
+                return this.ObtenerUsuario(user);
             }
 
             return null;
         }
 
-        public async Task<bool> ExisteUsuarioAsync(Usuarios usuario)
+        public async Task<bool> ExisteUsuarioAsync(UsuariosEntity usuario)
         {
             var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
             //verificar la contraseña.
@@ -79,27 +68,27 @@
             return registrosAspNetUser != null;
         }
 
-        public async Task<IEnumerable<Usuarios>> ObtenerUsuariosAsync()
+        public async Task<IEnumerable<UsuariosEntity>> ObtenerUsuariosAsync()
         {
             var usuario = from u in _userManager.Users.ToList()
                           join s in this.repositorioContexto.Socios on u.SocioId equals s.SocioId
-                          select new Usuarios
+                          select new UsuariosEntity
                           {
                               Id = u.Id,
                               Cedula = s.NumeroDocumento,
                               Nombres = s.Nombres,
-                              PrimerApellido =s.PrimerApellidos,
+                              PrimerApellido = s.PrimerApellidos,
                               SegundoApellido = s.SegundoApellidos,
                               Celular = s.Celular,
                               Telefono = s.Telefono,
                               Direccion = s.Direccion,
                               Email = u.Email,
                               Password = u.PasswordHash
-                          };         
+                          };
 
             return await Task.Run(() =>
             {
-                return usuario;               
+                return usuario;
             });
         }
 
@@ -111,7 +100,7 @@
             return result.Succeeded;
         }
 
-        public async Task<bool> EditarUsuarioAsync(Usuarios usuario)
+        public async Task<bool> EditarUsuarioAsync(UsuariosEntity usuario)
         {
             var userTemp = await _userManager.FindByIdAsync(usuario.Id);
 
@@ -132,11 +121,11 @@
             return result.Succeeded;
         }
 
-        private Usuarios ObtenerUsuario(ApplicationUser user)
-        {           
+        private UsuariosEntity ObtenerUsuario(ApplicationUser user)
+        {
             var socio = this.repositorioContexto.Socios.FirstOrDefault(c => c.Email.ToLower().Trim() == user.Email.ToLower().Trim());
-           
-            return new Usuarios
+
+            return new UsuariosEntity
             {
                 Id = user.Id,
                 Cedula = socio.NumeroDocumento,

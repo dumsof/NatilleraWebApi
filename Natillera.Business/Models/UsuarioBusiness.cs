@@ -4,14 +4,14 @@ namespace Natillera.Business.Models
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Usuario
+    public class UsuarioBusiness
     {
         public string Id { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         [StringLength(15, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
-        public string Cedula { get; set; }
+        public string NumeroDocumento { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         [StringLength(50, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
@@ -52,5 +52,7 @@ namespace Natillera.Business.Models
         [StringLength(150, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
         [MinLength(6, ErrorMessage = "El campo {0} debe contener mínimo {1} caracteres.")]
         public string Password { get; set; }
+
+        public Guid TipoDocumentoId { get; set; }
     }
 }

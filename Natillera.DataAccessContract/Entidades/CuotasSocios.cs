@@ -15,7 +15,7 @@
         /// </summary>
         public Guid SocioId { get; set; }
         [ForeignKey("SocioId")]
-        public Socios Socios { get; set; }
+        public SociosEntity Socios { get; set; }
 
         /// <summary>
         /// fecha a la cual pertenece el pago de la cuota.

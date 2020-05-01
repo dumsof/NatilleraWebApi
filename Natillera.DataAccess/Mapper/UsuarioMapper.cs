@@ -8,20 +8,20 @@
     public static class UsuarioMapper
     {
 
-        public static Usuarios UsuarioEntityMap(UsuarioLogin usuario)
+        public static UsuariosEntity UsuarioEntityMap(UsuarioLogin usuario)
         {
-            return new Usuarios
+            return new UsuariosEntity
             {
                 Email = usuario.Email,
                 Password = usuario.Password
             };
         }
-        public static Usuarios UsuarioEntityMap(Usuario usuario)
+        public static UsuariosEntity UsuarioEntityMap(UsuarioBusiness usuario)
         {
-            return new Usuarios
+            return new UsuariosEntity
             {
                 Id = usuario.Id,
-                Cedula = usuario.Cedula,
+                Cedula = usuario.NumeroDocumento,
                 Nombres = usuario.Nombres,
                 PrimerApellido = usuario.PrimerApellido,
                 SegundoApellido = usuario.SegundoApellido,
@@ -33,12 +33,12 @@
             };
         }
 
-        public static IEnumerable<Usuario> UsuarioEntityMap(IEnumerable<Usuarios> usuario)
+        public static IEnumerable<UsuarioBusiness> UsuarioEntityMap(IEnumerable<UsuariosEntity> usuario)
         {
-            return usuario.Select(usuario => new Usuario
+            return usuario.Select(usuario => new UsuarioBusiness
             {
                 Id = usuario.Id,
-                Cedula = usuario.Cedula,
+                NumeroDocumento = usuario.Cedula,
                 Nombres = usuario.Nombres,
                 PrimerApellido = usuario.PrimerApellido,
                 SegundoApellido = usuario.SegundoApellido,
@@ -51,12 +51,12 @@
             }).ToList();
         }
 
-        public static Usuario UsuarioEntityMap(Usuarios usuario)
+        public static UsuarioBusiness UsuarioEntityMap(UsuariosEntity usuario)
         {
-            return new Usuario
+            return new UsuarioBusiness
             {
                 Id = usuario.Id,
-                Cedula = usuario.Cedula,
+                NumeroDocumento = usuario.Cedula,
                 Nombres = usuario.Nombres,
                 PrimerApellido = usuario.PrimerApellido,
                 SegundoApellido = usuario.SegundoApellido,

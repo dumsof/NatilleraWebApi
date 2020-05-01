@@ -26,7 +26,7 @@
 
         public DbSet<ActividadesRecaudos> ActividadesRecaudos { get; set; }
 
-        public DbSet<Socios> Socios { get; set; }
+        public DbSet<SociosEntity> Socios { get; set; }
 
         public DbSet<NatilleraSocios> NatilleraSocios { get; set; }
 

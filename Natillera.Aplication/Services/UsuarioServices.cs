@@ -13,9 +13,12 @@
     {
         private readonly IUsuarioRepositorie usuarioRepositorie;
 
-        public UsuarioServices(IUsuarioRepositorie usuarioRepositorie)
+        private readonly ISociosRepositorie socioRepositorie;
+
+        public UsuarioServices(IUsuarioRepositorie usuarioRepositorie, ISociosRepositorie socioRepositorie)
         {
             this.usuarioRepositorie = usuarioRepositorie;
+            this.socioRepositorie = socioRepositorie;
         }
 
         public async Task<Respuesta> DeleteUsuarioAsync(string usuarioId)
@@ -28,7 +31,7 @@
             };
         }
 
-        public async Task<Respuesta> EditarUsuarioAsync(Usuario usuario)
+        public async Task<Respuesta> EditarUsuarioAsync(UsuarioBusiness usuario)
         {
             bool estadoTransaccion = await this.usuarioRepositorie.EditarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
 
@@ -39,7 +42,7 @@
             };
         }
 
-        public async Task<Respuesta> GuardarUsuarioAsync(Usuario usuario)
+        public async Task<Respuesta> GuardarUsuarioAsync(UsuarioBusiness usuario)
         {
             int codigoMensaje = 0;
             bool estadoTransaccion = false;
@@ -49,7 +52,8 @@
             }
             else
             {
-                await this.usuarioRepositorie.GuardarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+                var idSocio = await this.socioRepositorie.GuardarSocioAsync(SociosMapper.SociosEntityMap(usuario));
+                await this.usuarioRepositorie.GuardarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario), idSocio);
                 codigoMensaje = MessageCode.Message0000;
                 estadoTransaccion = true;
             }
@@ -60,7 +64,7 @@
             };
         }
 
-        public async Task<Usuario> LogueoAsync(UsuarioLogin usuarioLogin)
+        public async Task<UsuarioBusiness> LogueoAsync(UsuarioLogin usuarioLogin)
         {
             var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
             if (respuesta != null)

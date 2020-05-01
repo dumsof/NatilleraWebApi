@@ -6,13 +6,13 @@
 
     public interface IUsuarioServices
     {
-        Task<Respuesta> GuardarUsuarioAsync(Usuario usuario);
+        Task<Respuesta> GuardarUsuarioAsync(UsuarioBusiness usuario);
 
-        Task<Respuesta> EditarUsuarioAsync(Usuario usuario);        
+        Task<Respuesta> EditarUsuarioAsync(UsuarioBusiness usuario);        
 
         Task<RespuestaObtenerUsuario> ObtenerUsuariosAsync();
 
-        Task<Usuario> LogueoAsync(UsuarioLogin usuarioLogin);
+        Task<UsuarioBusiness> LogueoAsync(UsuarioLogin usuarioLogin);
 
         Task<Respuesta> DeleteUsuarioAsync(string usuarioId);
     }

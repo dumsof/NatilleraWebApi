@@ -9,30 +9,37 @@
     /// <summary>
     /// sitio ejemplo del patron repositorio: https://code-maze.com/net-core-web-development-part4/
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IRepositoryBase<T>
+    /// <typeparam name="TEntity"></typeparam>
+    public interface IRepositoryBase<TEntity>
     {
-        IQueryable<T> FindAll();
+        void Create(TEntity entity);
 
-        IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
+        void Update(TEntity entity);
 
-        void Create(T entity);
+        void Delete(TEntity entity);
 
-        void Update(T entity);
+        bool Exist(int id);
 
-        void Delete(T entity);
+        IQueryable<TEntity> FindAll();
+
+        IQueryable<TEntity> FindByCondition(Expression<Func<TEntity, bool>> expression);
 
         Task<bool> ExistAsync(int id);
 
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetAllAsync();      
 
-        Task<T> GetAsync(int id);
+        Task<TEntity> GetByIdAsync(int id);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(TEntity entity);      
 
-        Task<T> UpdateAsync(int id, T datosActualizar);
+        Task  UpdateAsync(TEntity entity);
 
-        Task<T> AddAsync(T datosActualizar);
+        Task<TEntity> AddAsync(TEntity entity);
 
+        Task<IQueryable<TEntity>> FindAllAsync();
+
+        Task<IQueryable<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> expression);
+
+        void Save();
     }
 }

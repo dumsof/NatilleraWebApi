@@ -5,6 +5,6 @@
 
     public class RespuestaObtenerUsuario : Respuesta
     {
-        public IEnumerable<Usuario> Usuarios { get; set; }
+        public IEnumerable<UsuarioBusiness> Usuarios { get; set; }
     }
 }

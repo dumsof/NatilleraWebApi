@@ -57,7 +57,7 @@ namespace NatilleraWebApi.Controllers
             return DateTime.Now.ToString(); //thisDate.ToString("d", culture);
         }
 
-        [AcceptVerbs("GET", "POST")]
+        [AcceptVerbs("GET")]
         [HttpGet("GetFechaExpresionRegular")]
         public IActionResult GetFechaExpresionRegular([RegularExpression(@"^\d{4}-((0[1-9])|(1[012]))-((0[1-9]|[12]\d)|3[01])$")] string fecha)
         {

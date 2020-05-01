@@ -37,7 +37,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> CrearUsuarioAsync([FromBody] Usuario usuario)
+        public async Task<IActionResult> CrearUsuarioAsync([FromBody] UsuarioBusiness usuario)
         {
             Respuesta respuesta = await this.usuarioServices.GuardarUsuarioAsync(usuario);
             return new OkObjectResult(respuesta);
@@ -55,7 +55,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> EditarUsuarioAsync([FromBody] Usuario usuario)
+        public async Task<IActionResult> EditarUsuarioAsync([FromBody] UsuarioBusiness usuario)
         {
             Respuesta respuesta = await this.usuarioServices.EditarUsuarioAsync(usuario);
             return new OkObjectResult(respuesta);

@@ -13,7 +13,7 @@
 
         DbSet<ActividadesRecaudos> ActividadesRecaudos { get; set; }
 
-        DbSet<Socios> Socios { get; set; }
+        DbSet<SociosEntity> Socios { get; set; }
 
         DbSet<NatilleraSocios> NatilleraSocios { get; set; }
 

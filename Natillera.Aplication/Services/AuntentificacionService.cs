@@ -51,7 +51,7 @@
         }
 
 
-        private Tuple<string, DateTime> CrearToken(Usuario usuario)
+        private Tuple<string, DateTime> CrearToken(UsuarioBusiness usuario)
         {
             var claims = new[]
             {

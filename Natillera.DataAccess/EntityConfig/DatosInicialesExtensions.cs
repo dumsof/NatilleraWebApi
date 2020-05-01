@@ -15,8 +15,8 @@
                 new TiposDocumentos { TipoDocumentoId = Guid.Parse("1E424D0F-622A-4BA4-9D11-AEF931D89239"), Descripcion = "Pasaporte" }
             );
 
-            modelBuilder.Entity<Socios>().HasData(
-                new Socios
+            modelBuilder.Entity<SociosEntity>().HasData(
+                new SociosEntity
                 {
                     SocioId = Guid.Parse("f95ba36f-daa0-4b14-a142-51ec51cf7d91"),
                     Nombres = "Darwin",
@@ -41,7 +41,7 @@
             modelBuilder.Entity<Natilleras>().Property(x => x.NatilleraId).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<NatilleraSocios>().Property(x => x.NatilleraSocioId).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Prestamos>().Property(x => x.PrestamoId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<Socios>().Property(x => x.SocioId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<SociosEntity>().Property(x => x.SocioId).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<TiposDocumentos>().Property(x => x.TipoDocumentoId).HasDefaultValueSql("NEWID()");
 
             modelBuilder.Entity<Menus>().Property(x => x.MenuId).HasDefaultValueSql("NEWID()");

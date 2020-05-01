@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Socios : Entity
+    public class SociosEntity : Entity
     {
         [Key]
         public Guid SocioId { get; set; }

@@ -19,7 +19,7 @@
         /// relacion de muchos a uno con la tabla socios.
         /// solo se deben cargar los socios que han solicitado un prestamo por el formulario prestamo.
         /// </summary>
-        public virtual Socios Socios { get; set; }
+        public virtual SociosEntity Socios { get; set; }
 
         /// <summary>
         /// nombre de la actividad

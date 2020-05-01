@@ -1,10 +1,14 @@
 ﻿namespace Natillera.DataAccessContract.IRepositories
 {
     using Natillera.DataAccessContract.Entidades;
+    using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
-    public interface ISociosRepositorie : IRepositoryBase<Socios>
+    public interface ISociosRepositorie : IRepositoryBase<SociosEntity>
     {
-        public ICollection<Socios> ObtenerSocios();
+        Task<Guid> GuardarSocioAsync(SociosEntity socio);
+
+        public ICollection<SociosEntity> ObtenerSocios();
     }
 }

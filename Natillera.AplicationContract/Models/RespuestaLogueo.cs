@@ -5,7 +5,7 @@
 
     public class RespuestaLogueo : Respuesta
     {      
-        public Usuario Usuario { get; set; }
+        public UsuarioBusiness Usuario { get; set; }
 
         public string Token { get; set; }
 

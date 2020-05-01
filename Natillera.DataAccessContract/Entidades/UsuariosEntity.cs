@@ -2,11 +2,14 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class Usuarios
+    public class UsuariosEntity
     {
         public string Id { get; set; }
+
         public string Cedula { get; set; }
+
         public string Nombres { get; set; }
+
         public string PrimerApellido { get; set; }
 
         public string SegundoApellido { get; set; }

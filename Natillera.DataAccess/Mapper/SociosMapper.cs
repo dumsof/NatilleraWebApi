@@ -6,9 +6,9 @@
 
     public static class SociosMapper
     {
-        public static Socios SociosEntityMap(SociosBusiness socios)
+        public static SociosEntity SociosEntityMap(SociosBusiness socios)
         {
-            return new Socios
+            return new SociosEntity
             {
                 SocioId = Guid.NewGuid(),
                 Celular = socios.Celular,
@@ -21,6 +21,24 @@
                 SegundoApellidos = socios.SegundoApellidos,
                 Telefono = socios.SegundoApellidos,
                 TipoDocumentoId = socios.TipoDocumentoId
+            };
+        }
+
+        public static SociosEntity SociosEntityMap(UsuarioBusiness usuario)
+        {
+            return new SociosEntity
+            {
+                SocioId = Guid.NewGuid(),
+                Celular = usuario.Celular,
+                Direccion = usuario.Direccion,
+                Email = usuario.Email,
+                FechaNacimiento = usuario.FechaNacimiento,
+                Nombres = usuario.Nombres,
+                NumeroDocumento = usuario.NumeroDocumento,
+                PrimerApellidos = usuario.PrimerApellido,
+                SegundoApellidos = usuario.SegundoApellido,
+                Telefono = usuario.SegundoApellido,
+                TipoDocumentoId = usuario.TipoDocumentoId
             };
         }
     }
