@@ -15,10 +15,10 @@
 
         Task<bool> UsuarioEsValidoAsync(Usuario usuario);
 
-        Task<string> ExisteUsuarioAsync(Usuario usuario);
+        Task<bool> ExisteUsuarioAsync(Usuario usuario);
 
         Task<bool> DeleteUsuarioAsync(string usuarioId);
 
-        Task<Usuario> ObtenerUsuario(string email);
+        Task<Usuario> ObtenerUsuarioAsync(string nombreUsuario);
     }
 }

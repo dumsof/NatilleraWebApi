@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using System.Linq;
     using System;
+    using Microsoft.EntityFrameworkCore;
 
     public class UsuarioRepositorio : RepositoryBase<Usuario>, IUsuarioRepositorie
     {
@@ -52,29 +53,26 @@
             return result.Succeeded;
         }
 
-        public async Task<string> ExisteUsuarioAsync(Usuario usuario)
+        public async Task<bool> ExisteUsuarioAsync(Usuario usuario)
         {
-            var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
+            var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.NombreUsuario);
 
-            return registrosAspNetUser?.SocioId.ToString();
+            return registrosAspNetUser != null;
         }
 
         public async Task<IEnumerable<Usuario>> ObtenerUsuariosAsync()
         {
-            var usuario = from u in _userManager.Users.ToList()
-                          select new Usuario
-                          {
-                              Id = u.Id,
-                              SocioId = u.SocioId,
-                              NombreUsuario = u.UserName,
-                              Email = u.Email,
-                              Password = u.PasswordHash,
-                          };
+            var usuario = await (from u in _userManager.Users
+                                 select new Usuario
+                                 {
+                                     Id = u.Id,
+                                     SocioId = u.SocioId,
+                                     NombreUsuario = u.UserName,
+                                     Email = u.Email,
+                                     Password = u.PasswordHash,
+                                 }).ToListAsync();
 
-            return await Task.Run(() =>
-            {
-                return usuario;
-            });
+            return usuario;
         }
 
         public async Task<bool> DeleteUsuarioAsync(string usuarioId)
@@ -106,20 +104,18 @@
             return result.Succeeded;
         }
 
-        public async Task<Usuario> ObtenerUsuario(string email)
+        public async Task<Usuario> ObtenerUsuarioAsync(string nombreUsuario)
         {
-            return await Task.Run(() =>
-            {
-                var usuario = _userManager.Users.AsEnumerable().First(c => c.Email.ToLower().Trim() == email.ToLower().Trim());
+            var usuario = await _userManager.FindByNameAsync(nombreUsuario.ToLower().Trim());
 
-                return new Usuario
-                {
-                    Id = usuario.Id,
-                    NombreUsuario = usuario.UserName,
-                    Email = usuario.Email,
-                    Password = usuario.PasswordHash
-                };
-            });
+            return new Usuario
+            {
+                Id = usuario.Id,
+                SocioId = usuario.SocioId,
+                NombreUsuario = usuario.UserName,
+                Email = usuario.Email,
+                Password = usuario.PasswordHash
+            };
         }
     }
 }

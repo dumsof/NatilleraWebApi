@@ -30,34 +30,26 @@
 
         public async Task<RespuestaLogueo> LogueoAsync(UsuarioLogin usuarioLogin)
         {
-            Socio respustaUsuario = null;
             bool existeUsuario = await this.usuarioRepositorie.UsuarioEsValidoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
-
             if (existeUsuario)
             {
-                var usuarioId = await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
-                if (!string.IsNullOrWhiteSpace(usuarioId))
+                Socio socio = null;
+                var usuario = await this.usuarioRepositorie.ObtenerUsuarioAsync(usuarioLogin.NombreUsuario);
+                if (usuario != null)
                 {
-                    respustaUsuario = await this.socioRepositorie.ObtenerSocioIdAsync(Guid.Parse(usuarioId));
+                    socio = await this.socioRepositorie.ObtenerSocioIdAsync(usuario.SocioId);
                 }
-            }
-
-
-            //var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
-            if (respustaUsuario != null)
-            {
-                //var usuario = UsuarioMapper.UsuarioEntityMap(respuesta);
                 var tuplaGenerarToken = this.CrearToken(usuarioLogin);
-
                 return new RespuestaLogueo
                 {
                     EstadoTransaccion = true,
-                    //Usuario = usuario,
+                    Usuario = UsuarioMapper.UsuarioEntityMap(usuario, socio),
                     Token = tuplaGenerarToken.Item1,
                     FechaExpirationToken = tuplaGenerarToken.Item2,
                     Mensaje = new Message(MessageCode.Message0000).Mensaje
                 };
             }
+
             return new RespuestaLogueo
             {
                 EstadoTransaccion = false,
@@ -70,7 +62,7 @@
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Email),
+                new Claim(JwtRegisteredClaimNames.UniqueName, usuario.NombreUsuario),
                 new Claim("miValor", "lo que yo quiera"), //se puede pasar cualquier valor 
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) //valor unico por token, identificador para poder revocar el token si se desea.
             };

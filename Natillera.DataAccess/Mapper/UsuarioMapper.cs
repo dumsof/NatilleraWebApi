@@ -12,7 +12,7 @@
         {
             return new Usuario
             {
-                Email = usuario.Email,
+                Email = usuario.NombreUsuario,
                 Password = usuario.Password
             };
         }
@@ -35,12 +35,24 @@
             }).ToList();
         }
 
-        public static UsuarioBusiness UsuarioEntityMap(Usuario usuario)
+        public static UsuarioBusiness UsuarioEntityMap(Usuario usuario, Socio socio)
         {
             return new UsuarioBusiness
-            {               
+            {
+                Nombres = socio.Nombres,
+                PrimerApellido = socio.PrimerApellidos,
+                SegundoApellido = socio.SegundoApellidos,
+                Direccion = socio.Direccion,
+                Celular = socio.Celular,
+                Telefono = socio.Telefono,
+                FechaNacimiento = socio.FechaNacimiento,
+                NumeroDocumento = socio.NumeroDocumento,
+                TipoDocumentoId = socio.TipoDocumentoId,
+                Id = usuario.Id,
+                NombreUsuario = usuario.NombreUsuario,
                 Email = usuario.Email,
-                Password = usuario.Password
+                Password = usuario.Password,
+                TiposDocumentoDescripcion = socio.TiposDocumentoDescripcion
             };
         }
     }

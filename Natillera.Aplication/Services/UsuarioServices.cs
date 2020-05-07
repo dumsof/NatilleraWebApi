@@ -46,8 +46,8 @@
         {
             int codigoMensaje = 0;
             bool estadoTransaccion = false;
-            string usuarioId = await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
-            if (!string.IsNullOrWhiteSpace(usuarioId))
+            bool existeUsuario = await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+            if (existeUsuario)
             {
                 codigoMensaje = MessageCode.Message0002;
             }

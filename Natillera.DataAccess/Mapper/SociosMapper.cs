@@ -24,6 +24,24 @@
             };
         }
 
+        public static SociosBusiness  SociosEntityMap(Socio socio)
+        {
+            return new SociosBusiness
+            {
+                SocioId = socio.SocioId,
+                Celular = socio.Celular,
+                Direccion = socio.Direccion,
+                Email = socio.Email,
+                FechaNacimiento = socio.FechaNacimiento,
+                Nombres = socio.Nombres,
+                NumeroDocumento = socio.NumeroDocumento,
+                PrimerApellidos = socio.PrimerApellidos,
+                SegundoApellidos = socio.SegundoApellidos,
+                Telefono = socio.Telefono,
+                TipoDocumentoId = socio.TipoDocumentoId
+            };
+        }
+
         public static SocioEntity SociosEntityMap(UsuarioBusiness usuario)
         {
             return new SocioEntity
