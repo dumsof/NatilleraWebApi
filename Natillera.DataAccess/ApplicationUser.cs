@@ -12,6 +12,6 @@
     {
         public Guid SocioId { get; set; }
         //relacion un socio puede pertenecer a diferentes natilleras
-        public SociosEntity Socios { get; set; }
+        public SocioEntity Socios { get; set; }
     }
 }

@@ -8,61 +8,37 @@
     public static class UsuarioMapper
     {
 
-        public static UsuariosEntity UsuarioEntityMap(UsuarioLogin usuario)
+        public static Usuario UsuarioEntityMap(UsuarioLogin usuario)
         {
-            return new UsuariosEntity
+            return new Usuario
             {
                 Email = usuario.Email,
                 Password = usuario.Password
             };
         }
-        public static UsuariosEntity UsuarioEntityMap(UsuarioBusiness usuario)
+        public static Usuario UsuarioEntityMap(UsuarioBusiness usuario)
         {
-            return new UsuariosEntity
+            return new Usuario
             {
-                Id = usuario.Id,
-                Cedula = usuario.NumeroDocumento,
-                Nombres = usuario.Nombres,
-                PrimerApellido = usuario.PrimerApellido,
-                SegundoApellido = usuario.SegundoApellido,
-                Direccion = usuario.Direccion,
-                Celular = usuario.Celular,
-                Telefono = usuario.Telefono,
                 Email = usuario.Email,
                 Password = usuario.Password
             };
         }
 
-        public static IEnumerable<UsuarioBusiness> UsuarioEntityMap(IEnumerable<UsuariosEntity> usuario)
+        public static IEnumerable<UsuarioBusiness> UsuarioEntityMap(IEnumerable<Usuario> usuario)
         {
             return usuario.Select(usuario => new UsuarioBusiness
             {
-                Id = usuario.Id,
-                NumeroDocumento = usuario.Cedula,
-                Nombres = usuario.Nombres,
-                PrimerApellido = usuario.PrimerApellido,
-                SegundoApellido = usuario.SegundoApellido,
-                Direccion = usuario.Direccion,
-                Celular = usuario.Celular,
-                Telefono = usuario.Telefono,
                 Email = usuario.Email,
                 Password = usuario.Password
 
             }).ToList();
         }
 
-        public static UsuarioBusiness UsuarioEntityMap(UsuariosEntity usuario)
+        public static UsuarioBusiness UsuarioEntityMap(Usuario usuario)
         {
             return new UsuarioBusiness
-            {
-                Id = usuario.Id,
-                NumeroDocumento = usuario.Cedula,
-                Nombres = usuario.Nombres,
-                PrimerApellido = usuario.PrimerApellido,
-                SegundoApellido = usuario.SegundoApellido,
-                Direccion = usuario.Direccion,
-                Celular = usuario.Celular,
-                Telefono = usuario.Telefono,
+            {               
                 Email = usuario.Email,
                 Password = usuario.Password
             };

@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class TiposDocumentos
+    public class TipoDocumentoEntity
     {
         [Key]
         public Guid TipoDocumentoId { get; set; }

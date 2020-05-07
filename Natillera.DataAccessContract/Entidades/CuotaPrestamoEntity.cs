@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class CuotasPrestamos : Entity
+    public class CuotaPrestamoEntity : Entity
     {
         [Key]
         public Guid CuotaPrestamoId { get; set; }
@@ -14,7 +14,7 @@
         /// </summary>
         public Guid PrestamoId { get; set; }
         [ForeignKey("PrestamoId")]
-        public Prestamos Prestamos { get; set; }
+        public PrestamoEntity Prestamos { get; set; }
 
         /// <summary>
         /// valor de la cuota sin cargos

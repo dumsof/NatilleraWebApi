@@ -13,7 +13,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuarioAsync(Natillera.Business.Models.Usuario)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuarioAsync(Natillera.Business.Models.UsuarioBusiness)">
             <summary>
             Guardar los datos del usuario.
             </summary>
@@ -22,7 +22,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.EditarUsuarioAsync(Natillera.Business.Models.Usuario)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.EditarUsuarioAsync(Natillera.Business.Models.UsuarioBusiness)">
             <summary>
             Editar los datos del usuario.
             </summary>

@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Prestamos : Entity
+    public class PrestamoEntity : Entity
     {
         [Key]
         public Guid PrestamoId { get; set; }
@@ -16,7 +16,7 @@
         public Guid SocioId { get; set; }
 
         [ForeignKey("SocioId")]
-        public SociosEntity Socios { get; set; }
+        public SocioEntity Socios { get; set; }
 
         /// <summary>
         /// dia en el cual se realiza la entrega de la plata.

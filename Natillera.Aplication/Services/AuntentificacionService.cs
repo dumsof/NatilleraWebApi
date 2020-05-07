@@ -7,6 +7,7 @@
     using Natillera.Business.Models;
     using Natillera.CrossClothing.Mensajes.Message;
     using Natillera.DataAccess.Mapper;
+    using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
     using System;
     using System.IdentityModel.Tokens.Jwt;
@@ -17,27 +18,41 @@
     public class AuntentificacionService : IAuntentificacionService
     {
         private readonly IUsuarioRepositorie usuarioRepositorie;
-
+        private readonly ISocioRepositorie socioRepositorie;
         private readonly IConfiguration configuration;
 
-        public AuntentificacionService(IUsuarioRepositorie usuarioRepositorie, IConfiguration configuration)
+        public AuntentificacionService(IUsuarioRepositorie usuarioRepositorie, ISocioRepositorie socioRepositorie, IConfiguration configuration)
         {
             this.usuarioRepositorie = usuarioRepositorie;
+            this.socioRepositorie = socioRepositorie;
             this.configuration = configuration;
         }
 
         public async Task<RespuestaLogueo> LogueoAsync(UsuarioLogin usuarioLogin)
         {
-            var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
-            if (respuesta != null)
+            Socio respustaUsuario = null;
+            bool existeUsuario = await this.usuarioRepositorie.UsuarioEsValidoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
+
+            if (existeUsuario)
             {
-                var usuario = UsuarioMapper.UsuarioEntityMap(respuesta);
-                var tuplaGenerarToken = this.CrearToken(usuario);
+                var usuarioId = await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
+                if (!string.IsNullOrWhiteSpace(usuarioId))
+                {
+                    respustaUsuario = await this.socioRepositorie.ObtenerSocioIdAsync(Guid.Parse(usuarioId));
+                }
+            }
+
+
+            //var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
+            if (respustaUsuario != null)
+            {
+                //var usuario = UsuarioMapper.UsuarioEntityMap(respuesta);
+                var tuplaGenerarToken = this.CrearToken(usuarioLogin);
 
                 return new RespuestaLogueo
                 {
                     EstadoTransaccion = true,
-                    Usuario = usuario,
+                    //Usuario = usuario,
                     Token = tuplaGenerarToken.Item1,
                     FechaExpirationToken = tuplaGenerarToken.Item2,
                     Mensaje = new Message(MessageCode.Message0000).Mensaje
@@ -51,7 +66,7 @@
         }
 
 
-        private Tuple<string, DateTime> CrearToken(UsuarioBusiness usuario)
+        private Tuple<string, DateTime> CrearToken(UsuarioLogin usuario)
         {
             var claims = new[]
             {

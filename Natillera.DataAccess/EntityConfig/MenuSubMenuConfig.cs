@@ -8,7 +8,7 @@ namespace Natillera.DataAccess.EntityConfig
     {
         public static void MenuSubMenuRelacionTabla(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MenuSubMenu>().Property(x => x.SubMenuId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<MenuSubMenuEntity>().Property(x => x.SubMenuId).HasDefaultValueSql("NEWID()");
 
           
         }

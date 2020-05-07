@@ -5,27 +5,27 @@
 
     public interface INatilleraDBContext
     {
-        DbSet<Natilleras> Natilleras { get; set; }
+        DbSet<NatilleraEntity> Natilleras { get; set; }
 
-        DbSet<TiposDocumentos> TiposDocumentos { get; set; }
+        DbSet<TipoDocumentoEntity> TiposDocumentos { get; set; }
 
-        DbSet<Prestamos> Prestamos { get; set; }
+        DbSet<PrestamoEntity> Prestamos { get; set; }
 
-        DbSet<ActividadesRecaudos> ActividadesRecaudos { get; set; }
+        DbSet<ActividadRecaudoEntity> ActividadesRecaudos { get; set; }
 
-        DbSet<SociosEntity> Socios { get; set; }
+        DbSet<SocioEntity> Socios { get; set; }
 
-        DbSet<NatilleraSocios> NatilleraSocios { get; set; }
+        DbSet<NatilleraSocioEntity> NatilleraSocios { get; set; }
 
-        DbSet<CuotasPrestamos> CuotasPrestamos { get; set; }
+        DbSet<CuotaPrestamoEntity> CuotasPrestamos { get; set; }
 
-        DbSet<CuotasSocios> CuotasSocios { get; set; }
+        DbSet<CuotaSocioEntity> CuotasSocios { get; set; }
 
-        DbSet<Menus> Menus { get; set; }
+        DbSet<MenuEntity> Menus { get; set; }
 
-        DbSet<MenuSubMenu> MenuSubMenu { get; set; }
+        DbSet<MenuSubMenuEntity> MenuSubMenu { get; set; }
 
-        DbSet<MenuPermisos> MenuPermisos { get; set; }
+        DbSet<MenuPermisoEntity> MenuPermisos { get; set; }
 
     }
 }

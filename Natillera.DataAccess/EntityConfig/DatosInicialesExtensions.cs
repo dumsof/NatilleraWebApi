@@ -9,14 +9,14 @@
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TiposDocumentos>().HasData(
-                new TiposDocumentos { TipoDocumentoId = Guid.Parse("CEB36362-6EBB-4649-AE51-48EE9F60892A"), Descripcion = "Cédula" },
-                new TiposDocumentos { TipoDocumentoId = Guid.Parse("BA4B88FB-6AC5-4678-8DE6-95925728DC67"), Descripcion = "Tarjeta de Identidad" },
-                new TiposDocumentos { TipoDocumentoId = Guid.Parse("1E424D0F-622A-4BA4-9D11-AEF931D89239"), Descripcion = "Pasaporte" }
+            modelBuilder.Entity<TipoDocumentoEntity>().HasData(
+                new TipoDocumentoEntity { TipoDocumentoId = Guid.Parse("CEB36362-6EBB-4649-AE51-48EE9F60892A"), Descripcion = "Cédula" },
+                new TipoDocumentoEntity { TipoDocumentoId = Guid.Parse("BA4B88FB-6AC5-4678-8DE6-95925728DC67"), Descripcion = "Tarjeta de Identidad" },
+                new TipoDocumentoEntity { TipoDocumentoId = Guid.Parse("1E424D0F-622A-4BA4-9D11-AEF931D89239"), Descripcion = "Pasaporte" }
             );
 
-            modelBuilder.Entity<SociosEntity>().HasData(
-                new SociosEntity
+            modelBuilder.Entity<SocioEntity>().HasData(
+                new SocioEntity
                 {
                     SocioId = Guid.Parse("f95ba36f-daa0-4b14-a142-51ec51cf7d91"),
                     Nombres = "Darwin",
@@ -35,18 +35,18 @@
 
         public static void DatosPorDefectoTablas(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ActividadesRecaudos>().Property(x => x.ActividadRecaudoId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<CuotasPrestamos>().Property(x => x.CuotaPrestamoId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<CuotasSocios>().Property(x => x.CuotaSocioId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<Natilleras>().Property(x => x.NatilleraId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<NatilleraSocios>().Property(x => x.NatilleraSocioId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<Prestamos>().Property(x => x.PrestamoId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<SociosEntity>().Property(x => x.SocioId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<TiposDocumentos>().Property(x => x.TipoDocumentoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<ActividadRecaudoEntity>().Property(x => x.ActividadRecaudoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<CuotaPrestamoEntity>().Property(x => x.CuotaPrestamoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<CuotaSocioEntity>().Property(x => x.CuotaSocioId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<NatilleraEntity>().Property(x => x.NatilleraId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<NatilleraSocioEntity>().Property(x => x.NatilleraSocioId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<PrestamoEntity>().Property(x => x.PrestamoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<SocioEntity>().Property(x => x.SocioId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<TipoDocumentoEntity>().Property(x => x.TipoDocumentoId).HasDefaultValueSql("NEWID()");
 
-            modelBuilder.Entity<Menus>().Property(x => x.MenuId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<MenuSubMenu>().Property(x => x.SubMenuId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<MenuPermisos>().Property(x => x.MenuPermisoId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<MenuEntity>().Property(x => x.MenuId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<MenuSubMenuEntity>().Property(x => x.SubMenuId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<MenuPermisoEntity>().Property(x => x.MenuPermisoId).HasDefaultValueSql("NEWID()");
         }
 
         public static void DatosPrincipalesLogueo(this ModelBuilder modelBuilder)

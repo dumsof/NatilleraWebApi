@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Menus
+    public class MenuEntity
     {
         [Key]
         public Guid MenuId { get; set; }       

@@ -5,18 +5,20 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IUsuarioRepositorie : IRepositoryBase<UsuariosEntity>
+    public interface IUsuarioRepositorie : IRepositoryBase<Usuario>
     {
-        Task<IEnumerable<UsuariosEntity>> ObtenerUsuariosAsync();
+        Task<IEnumerable<Usuario>> ObtenerUsuariosAsync();
 
-        Task<bool> EditarUsuarioAsync(UsuariosEntity usuario);
+        Task<bool> EditarUsuarioAsync(Usuario usuario);
 
-        Task<UsuariosEntity> GuardarUsuarioAsync(UsuariosEntity usuario, Guid socioId);
+        Task<Usuario> GuardarUsuarioAsync(Usuario usuario, Guid socioId);
 
-        Task<UsuariosEntity> LogueoAsync(UsuariosEntity usuario);
+        Task<bool> UsuarioEsValidoAsync(Usuario usuario);
 
-        Task<bool> ExisteUsuarioAsync(UsuariosEntity usuario);
+        Task<string> ExisteUsuarioAsync(Usuario usuario);
 
         Task<bool> DeleteUsuarioAsync(string usuarioId);
+
+        Task<Usuario> ObtenerUsuario(string email);
     }
 }

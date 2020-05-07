@@ -18,27 +18,27 @@
         {
         }
 
-        public DbSet<Natilleras> Natilleras { get; set; }
+        public DbSet<NatilleraEntity> Natilleras { get; set; }
 
-        public DbSet<TiposDocumentos> TiposDocumentos { get; set; }
+        public DbSet<TipoDocumentoEntity> TiposDocumentos { get; set; }
 
-        public DbSet<Prestamos> Prestamos { get; set; }
+        public DbSet<PrestamoEntity> Prestamos { get; set; }
 
-        public DbSet<ActividadesRecaudos> ActividadesRecaudos { get; set; }
+        public DbSet<ActividadRecaudoEntity> ActividadesRecaudos { get; set; }
 
-        public DbSet<SociosEntity> Socios { get; set; }
+        public DbSet<SocioEntity> Socios { get; set; }
 
-        public DbSet<NatilleraSocios> NatilleraSocios { get; set; }
+        public DbSet<NatilleraSocioEntity> NatilleraSocios { get; set; }
 
-        public DbSet<CuotasPrestamos> CuotasPrestamos { get; set; }
+        public DbSet<CuotaPrestamoEntity> CuotasPrestamos { get; set; }
 
-        public DbSet<CuotasSocios> CuotasSocios { get; set; }
+        public DbSet<CuotaSocioEntity> CuotasSocios { get; set; }
 
-        public DbSet<Menus> Menus { get; set; }
+        public DbSet<MenuEntity> Menus { get; set; }
 
-        public DbSet<MenuSubMenu> MenuSubMenu { get; set; }
+        public DbSet<MenuSubMenuEntity> MenuSubMenu { get; set; }
 
-        public DbSet<MenuPermisos> MenuPermisos { get; set; }
+        public DbSet<MenuPermisoEntity> MenuPermisos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,12 +60,12 @@
 
             ///controlar la concurrencia, se valida esta propiedad en el token.
             ///Tema pagina 2272 pdf core 2.2
-            modelBuilder.Entity<Natilleras>().Property(p => p.RowVersion).IsConcurrencyToken();
+            modelBuilder.Entity<NatilleraEntity>().Property(p => p.RowVersion).IsConcurrencyToken();
 
             //para esta columna por defecto se crea la fecha y hora en la cual se guarda la información
-            modelBuilder.Entity<Natilleras>().Property(p => p.RowCreated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<NatilleraEntity>().Property(p => p.RowCreated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Natilleras>().Property(p => p.RowUpdated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAddOrUpdate();
+            modelBuilder.Entity<NatilleraEntity>().Property(p => p.RowUpdated).HasDefaultValueSql("GetDate()").ValueGeneratedOnAddOrUpdate();
 
            
 

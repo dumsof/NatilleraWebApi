@@ -41,7 +41,7 @@
             services.AddScoped<IRepositorioContenedor, RepositorioContenedor>();
             services.AddTransient<INatilleraRepositorie, NatilleraRepositorio>();
             services.AddTransient<IUsuarioRepositorie, UsuarioRepositorio>();
-            services.AddTransient<ISociosRepositorie, SociosRepositorio>();
+            services.AddTransient<ISocioRepositorie, SocioRepositorio>();
             services.AddTransient<IRolesRepositorio, RolesRepositorio>();
 
             return services;

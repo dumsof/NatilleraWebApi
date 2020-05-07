@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     //clase para mapear los campos de la base de datos.
-    public class Natilleras : Entity
+    public class NatilleraEntity : Entity
     {
         [Key]
         public Guid NatilleraId { get; set; }

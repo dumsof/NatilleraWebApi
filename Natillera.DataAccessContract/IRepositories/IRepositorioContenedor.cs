@@ -4,7 +4,7 @@
     {
         INatilleraRepositorie Natillera { get; }
 
-        ISociosRepositorie Socios { get; }
+        ISocioRepositorie Socios { get; }
 
         //IUsuarioRepositorie Usuario { get; }
 

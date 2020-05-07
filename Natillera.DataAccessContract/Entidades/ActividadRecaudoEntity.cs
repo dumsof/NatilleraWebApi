@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class ActividadesRecaudos : Entity
+    public class ActividadRecaudoEntity : Entity
     {
         [Key]
         public Guid ActividadRecaudoId { get; set; }
@@ -12,14 +12,14 @@
         /// <summary>
         /// se selecciona la natillera para cargar los socios que pertenecen a la misma.
         /// </summary>
-        public virtual Natilleras Natilleras { get; set; }
+        public virtual NatilleraEntity Natilleras { get; set; }
 
         /// <summary>
         /// socio el cual es responsable de la actividad.
         /// relacion de muchos a uno con la tabla socios.
         /// solo se deben cargar los socios que han solicitado un prestamo por el formulario prestamo.
         /// </summary>
-        public virtual SociosEntity Socios { get; set; }
+        public virtual SocioEntity Socios { get; set; }
 
         /// <summary>
         /// nombre de la actividad

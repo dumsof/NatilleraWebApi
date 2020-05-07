@@ -1,6 +1,6 @@
 ﻿namespace Natillera.DataAccessContract.Entidades
 {
-    public class Roles
+    public class RolesEntity
     {
         public string Id { get; set; }
 

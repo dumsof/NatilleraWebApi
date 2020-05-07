@@ -7,16 +7,16 @@
 
     public static class RolesMapper
     {
-        public static Roles RolesEntityMap(RolesBusiness rol)
+        public static RolesEntity RolesEntityMap(RolesBusiness rol)
         {
-            return new Roles
+            return new RolesEntity
             {
                 Id = rol.Id,
                 NombreRol = rol.NombreRol
             };
         }
 
-        public static IEnumerable<RolesBusiness> RolesEntityMap(IEnumerable<Roles> roles)
+        public static IEnumerable<RolesBusiness> RolesEntityMap(IEnumerable<RolesEntity> roles)
         {
             return roles.Select(rol => new RolesBusiness
             {

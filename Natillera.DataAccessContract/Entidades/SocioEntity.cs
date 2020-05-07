@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class SociosEntity : Entity
+    public class SocioEntity : Entity
     {
         [Key]
         public Guid SocioId { get; set; }
@@ -34,15 +34,11 @@
         public string Direccion { get; set; }
 
         [StringLength(150)]
-        public string Email { get; set; }
-
-        //propiedades que se utilizan para las relaciones
-        /*Relacion uno a uno con el tipo de documento*/
-        //public virtual TiposDocumentos TiposDocumentos { get; set; }       
+        public string Email { get; set; }        
 
         public Guid TipoDocumentoId { get; set; }
 
         [ForeignKey("TipoDocumentoId")]
-        public TiposDocumentos TiposDocumentos { get; set; }
+        public TipoDocumentoEntity TiposDocumentos { get; set; }
     }
 }

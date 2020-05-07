@@ -12,7 +12,7 @@
 
         private INatilleraRepositorie natillera;
 
-        private ISociosRepositorie socios;
+        private ISocioRepositorie socios;
 
         private IUsuarioRepositorie usuario;
 
@@ -34,13 +34,13 @@
             }
         }
 
-        public ISociosRepositorie Socios
+        public ISocioRepositorie Socios
         {
             get
             {
                 if (this.socios == null)
                 {
-                    this.socios = new SociosRepositorio(this.context);
+                    this.socios = new SocioRepositorio(this.context);
                 }
 
                 return this.socios;

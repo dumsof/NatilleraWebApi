@@ -13,9 +13,9 @@
     {
         private readonly IUsuarioRepositorie usuarioRepositorie;
 
-        private readonly ISociosRepositorie socioRepositorie;
+        private readonly ISocioRepositorie socioRepositorie;
 
-        public UsuarioServices(IUsuarioRepositorie usuarioRepositorie, ISociosRepositorie socioRepositorie)
+        public UsuarioServices(IUsuarioRepositorie usuarioRepositorie, ISocioRepositorie socioRepositorie)
         {
             this.usuarioRepositorie = usuarioRepositorie;
             this.socioRepositorie = socioRepositorie;
@@ -46,7 +46,8 @@
         {
             int codigoMensaje = 0;
             bool estadoTransaccion = false;
-            if (await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario)))
+            string usuarioId = await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+            if (!string.IsNullOrWhiteSpace(usuarioId))
             {
                 codigoMensaje = MessageCode.Message0002;
             }
@@ -66,11 +67,11 @@
 
         public async Task<UsuarioBusiness> LogueoAsync(UsuarioLogin usuarioLogin)
         {
-            var respuesta = await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
-            if (respuesta != null)
-            {
-                return UsuarioMapper.UsuarioEntityMap(respuesta);
-            }
+            //var respuesta = null; //await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
+            //if (respuesta != null)
+            //{
+            //    return UsuarioMapper.UsuarioEntityMap(respuesta);
+            //}
             return null;
         }
 

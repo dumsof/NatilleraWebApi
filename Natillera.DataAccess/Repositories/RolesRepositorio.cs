@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class RolesRepositorio : RepositoryBase<Roles>, IRolesRepositorio
+    public class RolesRepositorio : RepositoryBase<RolesEntity>, IRolesRepositorio
     {
         /// <summary>
         /// Defines the _userManager
@@ -23,7 +23,7 @@
             this.repositorioContexto = repositorioContexto;
         }
 
-        public async Task<Roles> GuardarRolAsync(Roles roles)
+        public async Task<RolesEntity> GuardarRolAsync(RolesEntity roles)
         {
 
             var rol = new IdentityRole
@@ -46,12 +46,12 @@
             return registrosAspNetRoles != null;
         }
 
-        public async Task<IEnumerable<Roles>> ObtenerRolesAsync()
+        public async Task<IEnumerable<RolesEntity>> ObtenerRolesAsync()
         {
             var rol = _roleManager.Roles.ToList();
             return await Task.Run(() =>
             {
-                return rol.Select(s => new Roles
+                return rol.Select(s => new RolesEntity
                 {
                     Id = s.Id,
                     NombreRol = s.Name

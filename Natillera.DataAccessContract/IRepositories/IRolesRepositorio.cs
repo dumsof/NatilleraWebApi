@@ -6,9 +6,9 @@
 
     public interface IRolesRepositorio
     {
-        Task<Roles> GuardarRolAsync(Roles roles);
+        Task<RolesEntity> GuardarRolAsync(RolesEntity roles);
         Task<bool> ExisteRolAsync(string nombreRol);
-        Task<IEnumerable<Roles>> ObtenerRolesAsync();
+        Task<IEnumerable<RolesEntity>> ObtenerRolesAsync();
         Task<bool> DeleteRolAsync(string rolId);
         Task<bool> EditarRolAsync(string rolId);
     }

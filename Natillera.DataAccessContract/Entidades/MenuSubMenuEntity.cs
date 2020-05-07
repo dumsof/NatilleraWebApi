@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class MenuSubMenu
+    public class MenuSubMenuEntity
     {
         [Key]
         public Guid SubMenuId { get; set; }
@@ -18,6 +18,6 @@
         //muchos sub menu pueden pertenecer a un menu.
         public Guid MenuId { get; set; }
         [ForeignKey("MenuId")]
-        public Menus Menus { get; set; }
+        public MenuEntity Menus { get; set; }
     }
 }

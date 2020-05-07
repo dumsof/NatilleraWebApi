@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;    
 
-    public class MenuPermisos
+    public class MenuPermisoEntity
     {
         [Key]
         public Guid MenuPermisoId{ get; set; }
@@ -14,7 +14,7 @@
 
         public Guid? SubMenuId { get; set; }
         [ForeignKey("SubMenuId")]
-        public MenuSubMenu MenuSubMenu { get; set; }
+        public MenuSubMenuEntity MenuSubMenu { get; set; }
 
         public bool Crear { get; set; }
 

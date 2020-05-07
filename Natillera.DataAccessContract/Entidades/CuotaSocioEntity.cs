@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class CuotasSocios : Entity
+    public class CuotaSocioEntity : Entity
     {
         [Key]
         public Guid CuotaSocioId { get; set; }
@@ -15,7 +15,7 @@
         /// </summary>
         public Guid SocioId { get; set; }
         [ForeignKey("SocioId")]
-        public SociosEntity Socios { get; set; }
+        public SocioEntity Socios { get; set; }
 
         /// <summary>
         /// fecha a la cual pertenece el pago de la cuota.

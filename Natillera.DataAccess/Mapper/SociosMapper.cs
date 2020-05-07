@@ -6,9 +6,9 @@
 
     public static class SociosMapper
     {
-        public static SociosEntity SociosEntityMap(SociosBusiness socios)
+        public static SocioEntity SociosEntityMap(SociosBusiness socios)
         {
-            return new SociosEntity
+            return new SocioEntity
             {
                 SocioId = Guid.NewGuid(),
                 Celular = socios.Celular,
@@ -24,9 +24,9 @@
             };
         }
 
-        public static SociosEntity SociosEntityMap(UsuarioBusiness usuario)
+        public static SocioEntity SociosEntityMap(UsuarioBusiness usuario)
         {
-            return new SociosEntity
+            return new SocioEntity
             {
                 SocioId = Guid.NewGuid(),
                 Celular = usuario.Celular,

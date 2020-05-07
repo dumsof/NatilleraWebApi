@@ -8,7 +8,7 @@
     using System.Linq;
     using System;
 
-    public class UsuarioRepositorio : RepositoryBase<UsuariosEntity>, IUsuarioRepositorie
+    public class UsuarioRepositorio : RepositoryBase<Usuario>, IUsuarioRepositorie
     {
         /// <summary>
         /// Defines the _userManager
@@ -32,7 +32,7 @@
             this.repositorioContexto = repositorioContexto;
         }
 
-        public async Task<UsuariosEntity> GuardarUsuarioAsync(UsuariosEntity usuario, Guid socioId)
+        public async Task<Usuario> GuardarUsuarioAsync(Usuario usuario, Guid socioId)
         {
             var user = new ApplicationUser
             {
@@ -45,45 +45,30 @@
             return usuario;
         }
 
-        public async Task<UsuariosEntity> LogueoAsync(UsuariosEntity usuario)
+        public async Task<bool> UsuarioEsValidoAsync(Usuario usuario)
         {
             var result = await _signInManager.PasswordSignInAsync(usuario.Email, usuario.Password, true, false);
-            if (result.Succeeded)
-            {
-                var user = await _userManager.FindByNameAsync(usuario.Email);
 
-                return this.ObtenerUsuario(user);
-            }
-
-            return null;
+            return result.Succeeded;
         }
 
-        public async Task<bool> ExisteUsuarioAsync(UsuariosEntity usuario)
+        public async Task<string> ExisteUsuarioAsync(Usuario usuario)
         {
             var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
-            //verificar la contraseña.
-            //var passwordOK = await _userManager.CheckPasswordAsync(registrosAspNetUser, usuario.Password);
 
-
-            return registrosAspNetUser != null;
+            return registrosAspNetUser?.SocioId.ToString();
         }
 
-        public async Task<IEnumerable<UsuariosEntity>> ObtenerUsuariosAsync()
+        public async Task<IEnumerable<Usuario>> ObtenerUsuariosAsync()
         {
             var usuario = from u in _userManager.Users.ToList()
-                          join s in this.repositorioContexto.Socios on u.SocioId equals s.SocioId
-                          select new UsuariosEntity
+                          select new Usuario
                           {
                               Id = u.Id,
-                              Cedula = s.NumeroDocumento,
-                              Nombres = s.Nombres,
-                              PrimerApellido = s.PrimerApellidos,
-                              SegundoApellido = s.SegundoApellidos,
-                              Celular = s.Celular,
-                              Telefono = s.Telefono,
-                              Direccion = s.Direccion,
+                              SocioId = u.SocioId,
+                              NombreUsuario = u.UserName,
                               Email = u.Email,
-                              Password = u.PasswordHash
+                              Password = u.PasswordHash,
                           };
 
             return await Task.Run(() =>
@@ -100,7 +85,7 @@
             return result.Succeeded;
         }
 
-        public async Task<bool> EditarUsuarioAsync(UsuariosEntity usuario)
+        public async Task<bool> EditarUsuarioAsync(Usuario usuario)
         {
             var userTemp = await _userManager.FindByIdAsync(usuario.Id);
 
@@ -121,23 +106,20 @@
             return result.Succeeded;
         }
 
-        private UsuariosEntity ObtenerUsuario(ApplicationUser user)
+        public async Task<Usuario> ObtenerUsuario(string email)
         {
-            var socio = this.repositorioContexto.Socios.FirstOrDefault(c => c.Email.ToLower().Trim() == user.Email.ToLower().Trim());
-
-            return new UsuariosEntity
+            return await Task.Run(() =>
             {
-                Id = user.Id,
-                Cedula = socio.NumeroDocumento,
-                Nombres = socio.Nombres,
-                PrimerApellido = socio.PrimerApellidos,
-                SegundoApellido = socio.SegundoApellidos,
-                Celular = socio.Celular,
-                Telefono = socio.Telefono,
-                Direccion = socio.Direccion,
-                Email = user.Email,
-                Password = user.PasswordHash
-            };
+                var usuario = _userManager.Users.AsEnumerable().First(c => c.Email.ToLower().Trim() == email.ToLower().Trim());
+
+                return new Usuario
+                {
+                    Id = usuario.Id,
+                    NombreUsuario = usuario.UserName,
+                    Email = usuario.Email,
+                    Password = usuario.PasswordHash
+                };
+            });
         }
     }
 }
