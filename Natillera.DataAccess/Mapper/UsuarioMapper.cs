@@ -39,14 +39,14 @@
         {
             return new UsuarioBusiness
             {
-                Nombres = socio.Nombres,
-                PrimerApellido = socio.PrimerApellidos,
-                SegundoApellido = socio.SegundoApellidos,
-                Direccion = socio.Direccion,
-                Celular = socio.Celular,
-                Telefono = socio.Telefono,
+                Nombres = socio?.Nombres,
+                PrimerApellido = socio?.PrimerApellidos,
+                SegundoApellido = socio?.SegundoApellidos,
+                Direccion = socio?.Direccion,
+                Celular = socio?.Celular,
+                Telefono = socio?.Telefono,
                 FechaNacimiento = socio.FechaNacimiento,
-                NumeroDocumento = socio.NumeroDocumento,
+                NumeroDocumento = socio?.NumeroDocumento,
                 TipoDocumentoId = socio.TipoDocumentoId,
                 Id = usuario.Id,
                 NombreUsuario = usuario.NombreUsuario,
