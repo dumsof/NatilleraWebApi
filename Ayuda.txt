@@ -62,3 +62,8 @@ EXEC sp_addrolemember 'db_datareader', 'DumNati'
 EXEC sp_addrolemember 'db_datawriter', 'DumNati'
 EXEC sp_addrolemember 'db_ddladmin', 'DumNati'
 EXEC sp_addrolemember 'db_owner', 'DumNati'
+
+--establecer zona horaria para sql server https://docs.microsoft.com/es-es/azure/mariadb/howto-server-parameters
+SET time_zone = 'US/Pacific';
+--zona horaria se configura en azure app service
+WESITE_TIME_ZONE="SA Pacific Standard Time"
