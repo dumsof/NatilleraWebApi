@@ -52,18 +52,18 @@ namespace NatilleraWebApi
             });
 
             //DUM:Formato de fechas y numero.
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                string cultura = Configuration.GetValue<string>("Formato:Cultura");
-                string culturaIu = Configuration.GetValue<string>("Formato:CulturaIU");
-                //DUM: para que el navegador no cambie la cultura.
-                options.DefaultRequestCulture = new RequestCulture(culture: cultura, uiCulture: culturaIu);
-                //DUM: de forma predeterminada se establecera la cultura en el servidor. 
-                options.SupportedCultures = new List<CultureInfo> { new CultureInfo(cultura) };
-                //DUM: da formato a las pagina o salida
-                options.DefaultRequestCulture.Culture.DateTimeFormat.ShortDatePattern = Configuration.GetValue<string>("Formato:Fecha");
-                options.DefaultRequestCulture.Culture.DateTimeFormat.DateSeparator = Configuration.GetValue<string>("Formato:DateSeparator");
-            });
+            //services.Configure<RequestLocalizationOptions>(options =>
+            //{
+            //    string cultura = Configuration.GetValue<string>("Formato:Cultura");
+            //    string culturaIu = Configuration.GetValue<string>("Formato:CulturaIU");
+            //    //DUM: para que el navegador no cambie la cultura.
+            //    options.DefaultRequestCulture = new RequestCulture(culture: cultura, uiCulture: culturaIu);
+            //    //DUM: de forma predeterminada se establecera la cultura en el servidor. 
+            //    options.SupportedCultures = new List<CultureInfo> { new CultureInfo(cultura) };
+            //    //DUM: da formato a las pagina o salida
+            //    options.DefaultRequestCulture.Culture.DateTimeFormat.ShortDatePattern = Configuration.GetValue<string>("Formato:Fecha");
+            //    options.DefaultRequestCulture.Culture.DateTimeFormat.DateSeparator = Configuration.GetValue<string>("Formato:DateSeparator");
+            //});
 
             //Dum: se agrega la inyeccion para el logger           
             services.ConfigureLoggerService();
@@ -189,7 +189,7 @@ namespace NatilleraWebApi
             {
                 //Dum: solución error no found en IIS "../swagger/v1/swagger.json", 
                 //DUM: se debe publicar sin los puntos para azure "/swagger/v1/swagger.json"                
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mi Natillera API V1");
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Mi Natillera API V1");
             });
 
             if (env.IsDevelopment())
