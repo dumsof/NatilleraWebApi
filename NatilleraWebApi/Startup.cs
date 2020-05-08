@@ -189,7 +189,7 @@ namespace NatilleraWebApi
             {
                 //Dum: solución error no found en IIS "../swagger/v1/swagger.json", 
                 //DUM: se debe publicar sin los puntos para azure "/swagger/v1/swagger.json"                
-                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Mi Natillera API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mi Natillera API V1");
             });
 
             if (env.IsDevelopment())
