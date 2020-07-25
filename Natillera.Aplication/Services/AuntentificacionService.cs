@@ -85,5 +85,28 @@
 
             return new Tuple<string, DateTime>(new JwtSecurityTokenHandler().WriteToken(token), expiration);
         }
+
+        private Tuple<string, DateTime> CrearToken2(UsuarioLogin usuario)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(this.configuration["va_clave_super_secreta"]);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, Convert.ToString(usuario.NombreUsuario))
+
+                }),
+                Expires=DateTime.UtcNow.AddSeconds(7),
+                //SigningCredentials= new SigningCredentials(new SymmetricSecurityKey(key)),
+
+            };
+
+
+
+            return null;
+
+        }
     }
 }
