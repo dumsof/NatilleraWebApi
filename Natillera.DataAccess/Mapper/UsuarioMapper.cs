@@ -48,8 +48,7 @@
                 FechaNacimiento = socio.FechaNacimiento,
                 NumeroDocumento = socio?.NumeroDocumento,
                 TipoDocumentoId = socio.TipoDocumentoId,
-                Id = usuario.Id,
-                NombreUsuario = usuario.NombreUsuario,
+                Id = usuario.Id,             
                 Email = usuario.Email,
                 Password = usuario.Password,
                 TiposDocumentoDescripcion = socio.TiposDocumentoDescripcion

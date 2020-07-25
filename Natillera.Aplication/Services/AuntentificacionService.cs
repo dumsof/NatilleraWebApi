@@ -63,7 +63,7 @@
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.UniqueName, usuario.NombreUsuario),
-                new Claim("miValor", "lo que yo quiera"), //se puede pasar cualquier valor 
+                new Claim("usuario", usuario.NombreUsuario), //se puede pasar cualquier valor 
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) //valor unico por token, identificador para poder revocar el token si se desea.
             };
 

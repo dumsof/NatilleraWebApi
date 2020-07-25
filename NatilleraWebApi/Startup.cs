@@ -140,7 +140,7 @@ namespace NatilleraWebApi
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 configuracion.IncludeXmlComments(xmlPath);
 
-                //configurar ventana para pedir token en openapi
+                //configurar ventana para pedir token en OpenApi
                 configuracion.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",

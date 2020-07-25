@@ -23,6 +23,7 @@ Nota: si hay algun problema con la migracion o se tienen varias se puede selecci
 
 3. Borrar la base de datos
 	Drop-Database -Context LibraryDatoContext
+	Drop-Database -Context NatilleraDBContext
 
   Remove-Migration -Context LibraryDatoContext
 

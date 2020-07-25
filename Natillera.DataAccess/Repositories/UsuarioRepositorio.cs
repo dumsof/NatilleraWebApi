@@ -8,7 +8,7 @@
     using System.Linq;
     using System;
     using Microsoft.EntityFrameworkCore;
-
+   
     public class UsuarioRepositorio : RepositoryBase<Usuario>, IUsuarioRepositorie
     {
         /// <summary>
@@ -41,9 +41,16 @@
                 Email = usuario.Email,
                 SocioId = socioId
             };
-            await _userManager.CreateAsync(user, usuario.Password);
+           var result = await _userManager.CreateAsync(user, usuario.Password);
 
-            return usuario;
+            if (result.Succeeded)
+            {
+                return usuario;
+            }          
+            else
+            {
+                throw new Exception(result.Errors.FirstOrDefault().Description);
+            }
         }
 
         public async Task<bool> UsuarioEsValidoAsync(Usuario usuario)
@@ -55,7 +62,7 @@
 
         public async Task<bool> ExisteUsuarioAsync(Usuario usuario)
         {
-            var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.NombreUsuario);
+            var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
 
             return registrosAspNetUser != null;
         }
