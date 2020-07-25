@@ -89,7 +89,8 @@
         private Tuple<string, DateTime> CrearToken2(UsuarioLogin usuario)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(this.configuration["va_clave_super_secreta"]);
+            var key = Encoding.ASCII.GetBytes(this.configuration["va_clave_super_secreta"]);
+            var expiration = DateTime.UtcNow.AddSeconds(7);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -98,15 +99,14 @@
                     new Claim(ClaimTypes.Name, Convert.ToString(usuario.NombreUsuario))
 
                 }),
-                Expires=DateTime.UtcNow.AddSeconds(7),
-                //SigningCredentials= new SigningCredentials(new SymmetricSecurityKey(key)),
-
+                Expires = expiration,
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenCreado = tokenHandler.WriteToken(token);
 
-
-            return null;
-
+            return new Tuple<string, DateTime>(tokenCreado, expiration);
         }
     }
 }

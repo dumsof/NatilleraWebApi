@@ -91,8 +91,11 @@ namespace NatilleraWebApi
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            }).AddJwtBearer(opcion =>
-                opcion.TokenValidationParameters = new TokenValidationParameters
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
@@ -102,7 +105,8 @@ namespace NatilleraWebApi
                     ValidAudience = Configuration.GetValue<string>("Token:Audience"),
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["va_clave_super_secreta"])),
                     ClockSkew = TimeSpan.Zero
-                });
+                };
+            });
             //fin json web token           
 
             //se instala el swagger: Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2          
@@ -206,6 +210,7 @@ namespace NatilleraWebApi
             app.ConfigureCustomExceptionMiddleware();
             app.UseHttpsRedirection();
             app.UseRouting();
+            //DUM: debe estar habilitado para exigir el token 
             app.UseAuthentication();
             app.UseAuthorization();
 
