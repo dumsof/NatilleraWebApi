@@ -20,12 +20,16 @@
         private readonly IUsuarioRepositorie usuarioRepositorie;
         private readonly ISocioRepositorie socioRepositorie;
         private readonly IConfiguration configuration;
+        private readonly ITokensRepositorio tokensRepositorio;
+        private readonly ITokensService tokensService;
 
-        public AuntentificacionService(IUsuarioRepositorie usuarioRepositorie, ISocioRepositorie socioRepositorie, IConfiguration configuration)
+        public AuntentificacionService(IUsuarioRepositorie usuarioRepositorie, ISocioRepositorie socioRepositorie, IConfiguration configuration, ITokensRepositorio tokensRepositorio, ITokensService tokensService)
         {
             this.usuarioRepositorie = usuarioRepositorie;
             this.socioRepositorie = socioRepositorie;
             this.configuration = configuration;
+            this.tokensRepositorio = tokensRepositorio;
+            this.tokensService = tokensService;
         }
 
         public async Task<RespuestaLogueo> LogueoAsync(UsuarioLogin usuarioLogin)
@@ -39,13 +43,19 @@
                 {
                     socio = await this.socioRepositorie.ObtenerSocioIdAsync(usuario.SocioId);
                 }
-                var tuplaGenerarToken = this.CrearToken(usuarioLogin);
+                var token = this.tokensService.CrearToken(usuario?.Id, usuario?.Email);
+
+                var tokenRefresh = this.tokensService.GenerateTokenRefresh();
+
+                await this.tokensRepositorio.GuardarTokenAsync(new TokenEntity { UserId = usuario?.Id, Token = tokenRefresh.Token, FechaExpiraToken = tokenRefresh.FechaExpiracion });
+
                 return new RespuestaLogueo
                 {
                     EstadoTransaccion = true,
                     Usuario = UsuarioMapper.UsuarioEntityMap(usuario, socio),
-                    Token = tuplaGenerarToken.Item1,
-                    FechaExpirationToken = tuplaGenerarToken.Item2,
+                    Token = token.Token,
+                    TokenRefresh = tokenRefresh.Token,
+                    FechaExpirationToken = token.FechaExpiracion,
                     Mensaje = new Message(MessageCode.Message0000).Mensaje
                 };
             }
@@ -55,58 +65,6 @@
                 EstadoTransaccion = false,
                 Mensaje = new Message(MessageCode.Message0003).Mensaje
             };
-        }
-
-
-        private Tuple<string, DateTime> CrearToken(UsuarioLogin usuario)
-        {
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.UniqueName, usuario.NombreUsuario),
-                new Claim("usuario", usuario.NombreUsuario), //se puede pasar cualquier valor 
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) //valor unico por token, identificador para poder revocar el token si se desea.
-            };
-
-            //la clave secrete debe tener una longitud de mas de 128 bit.
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["va_clave_super_secreta"]));
-            var credencial = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            int horaVencimientoToken = this.configuration.GetValue<int>("Token:HorasVencimientoToken");
-
-            var expiration = DateTime.Now.AddHours(horaVencimientoToken);
-
-            JwtSecurityToken token = new JwtSecurityToken(
-                                                           issuer: this.configuration.GetValue<string>("Token:Issuer"),
-                                                           audience: this.configuration.GetValue<string>("Token:Audience"),
-                                                           claims: claims,
-                                                           expires: expiration,
-                                                           signingCredentials: credencial
-                                    );
-
-            return new Tuple<string, DateTime>(new JwtSecurityTokenHandler().WriteToken(token), expiration);
-        }
-
-        private Tuple<string, DateTime> CrearToken2(UsuarioLogin usuario)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(this.configuration["va_clave_super_secreta"]);
-            var expiration = DateTime.UtcNow.AddSeconds(7);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, Convert.ToString(usuario.NombreUsuario))
-
-                }),
-                Expires = expiration,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenCreado = tokenHandler.WriteToken(token);
-
-            return new Tuple<string, DateTime>(tokenCreado, expiration);
         }
     }
 }

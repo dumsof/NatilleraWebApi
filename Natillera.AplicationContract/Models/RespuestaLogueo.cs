@@ -9,6 +9,8 @@
 
         public string Token { get; set; }
 
+        public string TokenRefresh { get; set; }
+
         public DateTime FechaExpirationToken { get; set; }
 
     }

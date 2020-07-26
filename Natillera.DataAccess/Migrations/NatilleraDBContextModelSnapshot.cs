@@ -15,7 +15,7 @@ namespace Natillera.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -49,7 +49,7 @@ namespace Natillera.DataAccess.Migrations
                         new
                         {
                             Id = "38e606c8-7f9e-4158-a671-444992bd89f5",
-                            ConcurrencyStamp = "88493e5c-cd4e-4efe-b004-1a872ff6464c",
+                            ConcurrencyStamp = "7a4b368f-4ad9-4dc8-abec-72ea4cf36db0",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         });
@@ -244,7 +244,7 @@ namespace Natillera.DataAccess.Migrations
                             Id = "38e606c8-7f9e-4158-a671-444992bd89f5",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "52de73a0-39c6-42fa-a5c5-4da232483486",
-                            Email = "dun34@hotmil.com",
+                            Email = "dun34@hotmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DUN34@HOTMAIL.COM",
@@ -254,11 +254,11 @@ namespace Natillera.DataAccess.Migrations
                             SecurityStamp = "DVJF5PLZA76QHHTNVSJYRF5NVCQTSRTQ",
                             SocioId = new Guid("f95ba36f-daa0-4b14-a142-51ec51cf7d91"),
                             TwoFactorEnabled = false,
-                            UserName = "dun34@hotmil.com"
+                            UserName = "dun34@hotmail.com"
                         });
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.ActividadesRecaudos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.ActividadRecaudoEntity", b =>
                 {
                     b.Property<Guid>("ActividadRecaudoId")
                         .ValueGeneratedOnAdd()
@@ -306,7 +306,7 @@ namespace Natillera.DataAccess.Migrations
                     b.ToTable("ActividadesRecaudos");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotasPrestamos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotaPrestamoEntity", b =>
                 {
                     b.Property<Guid>("CuotaPrestamoId")
                         .ValueGeneratedOnAdd()
@@ -355,7 +355,7 @@ namespace Natillera.DataAccess.Migrations
                     b.ToTable("CuotasPrestamos");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotasSocios", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotaSocioEntity", b =>
                 {
                     b.Property<Guid>("CuotaSocioId")
                         .ValueGeneratedOnAdd()
@@ -395,7 +395,28 @@ namespace Natillera.DataAccess.Migrations
                     b.ToTable("CuotasSocios");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuPermisos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuEntity", b =>
+                {
+                    b.Property<Guid>("MenuId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<string>("DescripcionMenu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrdenamientoMenu")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RutaUrlMenu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MenuId");
+
+                    b.ToTable("Menus");
+                });
+
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuPermisoEntity", b =>
                 {
                     b.Property<Guid>("MenuPermisoId")
                         .ValueGeneratedOnAdd()
@@ -427,7 +448,7 @@ namespace Natillera.DataAccess.Migrations
                     b.ToTable("MenuPermisos");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuSubMenu", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuSubMenuEntity", b =>
                 {
                     b.Property<Guid>("SubMenuId")
                         .ValueGeneratedOnAdd()
@@ -453,61 +474,7 @@ namespace Natillera.DataAccess.Migrations
                     b.ToTable("MenuSubMenu");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Menus", b =>
-                {
-                    b.Property<Guid>("MenuId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<string>("DescripcionMenu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrdenamientoMenu")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RutaUrlMenu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MenuId");
-
-                    b.ToTable("Menus");
-                });
-
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.NatilleraSocios", b =>
-                {
-                    b.Property<Guid>("NatilleraSocioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<Guid>("NatilleraId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("RowCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RowUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<Guid>("SocioId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("NatilleraSocioId");
-
-                    b.HasIndex("NatilleraId");
-
-                    b.HasIndex("SocioId");
-
-                    b.ToTable("NatilleraSocios");
-                });
-
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Natilleras", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.NatilleraEntity", b =>
                 {
                     b.Property<Guid>("NatilleraId")
                         .ValueGeneratedOnAdd()
@@ -561,7 +528,40 @@ namespace Natillera.DataAccess.Migrations
                     b.ToTable("Natilleras");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Prestamos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.NatilleraSocioEntity", b =>
+                {
+                    b.Property<Guid>("NatilleraSocioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<Guid>("NatilleraId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("RowCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RowUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<Guid>("SocioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("NatilleraSocioId");
+
+                    b.HasIndex("NatilleraId");
+
+                    b.HasIndex("SocioId");
+
+                    b.ToTable("NatilleraSocios");
+                });
+
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.PrestamoEntity", b =>
                 {
                     b.Property<Guid>("PrestamoId")
                         .ValueGeneratedOnAdd()
@@ -605,7 +605,7 @@ namespace Natillera.DataAccess.Migrations
                     b.ToTable("Prestamos");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Socios", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.SocioEntity", b =>
                 {
                     b.Property<Guid>("SocioId")
                         .ValueGeneratedOnAdd()
@@ -679,14 +679,14 @@ namespace Natillera.DataAccess.Migrations
                             NumeroDocumento = "11803053",
                             PrimerApellidos = "Urrutia",
                             RowCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RowUpdated = new DateTime(2020, 3, 19, 14, 34, 47, 419, DateTimeKind.Local).AddTicks(6926),
+                            RowUpdated = new DateTime(2020, 7, 26, 5, 40, 28, 469, DateTimeKind.Local).AddTicks(2266),
                             SegundoApellidos = "mosquera",
                             Telefono = "2343434",
                             TipoDocumentoId = new Guid("ceb36362-6ebb-4649-ae51-48ee9f60892a")
                         });
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.TiposDocumentos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.TipoDocumentoEntity", b =>
                 {
                     b.Property<Guid>("TipoDocumentoId")
                         .ValueGeneratedOnAdd()
@@ -717,6 +717,27 @@ namespace Natillera.DataAccess.Migrations
                             TipoDocumentoId = new Guid("1e424d0f-622a-4ba4-9d11-aef931d89239"),
                             Descripcion = "Pasaporte"
                         });
+                });
+
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.TokenEntity", b =>
+                {
+                    b.Property<int>("TokenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaExpiraToken")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TokenId");
+
+                    b.ToTable("Tokens");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -772,83 +793,83 @@ namespace Natillera.DataAccess.Migrations
 
             modelBuilder.Entity("Natillera.DataAccess.ApplicationUser", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Socios", "Socios")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.SocioEntity", "Socios")
                         .WithMany()
                         .HasForeignKey("SociosSocioId");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.ActividadesRecaudos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.ActividadRecaudoEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Natilleras", "Natilleras")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.NatilleraEntity", "Natilleras")
                         .WithMany()
                         .HasForeignKey("NatillerasNatilleraId");
 
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Socios", "Socios")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.SocioEntity", "Socios")
                         .WithMany()
                         .HasForeignKey("SociosSocioId");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotasPrestamos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotaPrestamoEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Prestamos", "Prestamos")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.PrestamoEntity", "Prestamos")
                         .WithMany()
                         .HasForeignKey("PrestamoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotasSocios", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.CuotaSocioEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Socios", "Socios")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.SocioEntity", "Socios")
                         .WithMany()
                         .HasForeignKey("SocioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuPermisos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuPermisoEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.MenuSubMenu", "MenuSubMenu")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.MenuSubMenuEntity", "MenuSubMenu")
                         .WithMany()
                         .HasForeignKey("SubMenuId");
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuSubMenu", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.MenuSubMenuEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Menus", "Menus")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.MenuEntity", "Menus")
                         .WithMany()
                         .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.NatilleraSocios", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.NatilleraSocioEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Natilleras", "Natilleras")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.NatilleraEntity", "Natilleras")
                         .WithMany()
                         .HasForeignKey("NatilleraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Socios", "Socios")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.SocioEntity", "Socios")
                         .WithMany()
                         .HasForeignKey("SocioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Prestamos", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.PrestamoEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.Socios", "Socios")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.SocioEntity", "Socios")
                         .WithMany()
                         .HasForeignKey("SocioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.Socios", b =>
+            modelBuilder.Entity("Natillera.DataAccessContract.Entidades.SocioEntity", b =>
                 {
-                    b.HasOne("Natillera.DataAccessContract.Entidades.TiposDocumentos", "TiposDocumentos")
+                    b.HasOne("Natillera.DataAccessContract.Entidades.TipoDocumentoEntity", "TiposDocumentos")
                         .WithMany()
                         .HasForeignKey("TipoDocumentoId")
                         .OnDelete(DeleteBehavior.Cascade)

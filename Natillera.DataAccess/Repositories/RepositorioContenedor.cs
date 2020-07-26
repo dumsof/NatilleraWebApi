@@ -16,6 +16,8 @@
 
         private IUsuarioRepositorie usuario;
 
+        private ITokensRepositorio tokens;
+
         public RepositorioContenedor(NatilleraDBContext context)
         {
             this.context = context;
@@ -44,6 +46,20 @@
                 }
 
                 return this.socios;
+            }
+        }
+
+
+        public ITokensRepositorio Tokens
+        {
+            get
+            {
+                if (this.tokens == null)
+                {
+                    this.tokens = new TokensRepositorio(this.context);
+                }
+
+                return this.tokens;
             }
         }
 

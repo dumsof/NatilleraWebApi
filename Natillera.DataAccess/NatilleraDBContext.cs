@@ -40,6 +40,8 @@
 
         public DbSet<MenuPermisoEntity> MenuPermisos { get; set; }
 
+        public DbSet<TokenEntity> Tokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //generar los datos iniciales.

@@ -32,6 +32,7 @@
             services.AddTransient<IUsuarioServices, UsuarioServices>();
             services.AddTransient<ISociosService, SociosService>();
             services.AddTransient<IRolesServices, RolesServices>();
+            services.AddTransient<ITokensService, TokensService>();
 
             return services;
         }
@@ -43,6 +44,7 @@
             services.AddTransient<IUsuarioRepositorie, UsuarioRepositorio>();
             services.AddTransient<ISocioRepositorie, SocioRepositorio>();
             services.AddTransient<IRolesRepositorio, RolesRepositorio>();
+            services.AddTransient<ITokensRepositorio, TokensRepositorio>();
 
             return services;
         }
