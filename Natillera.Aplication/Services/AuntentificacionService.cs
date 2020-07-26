@@ -1,18 +1,14 @@
 ﻿namespace Natillera.Aplication.Services
 {
     using Microsoft.Extensions.Configuration;
-    using Microsoft.IdentityModel.Tokens;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
     using Natillera.Business.Models;
+    using Natillera.Business.Models.Autentificacion;
     using Natillera.CrossClothing.Mensajes.Message;
     using Natillera.DataAccess.Mapper;
     using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
-    using System;
-    using System.IdentityModel.Tokens.Jwt;
-    using System.Security.Claims;
-    using System.Text;
     using System.Threading.Tasks;
 
     public class AuntentificacionService : IAuntentificacionService
@@ -65,6 +61,14 @@
                 EstadoTransaccion = false,
                 Mensaje = new Message(MessageCode.Message0003).Mensaje
             };
+        }
+
+        public async Task<RespuestaLogueo> RefreshTokenAsync(RequestRefreshToken refreshToken)
+        {
+            //se debe generar un nuevo token de forma automatica
+            //https://www.youtube.com/watch?v=AWnO_b8XIeA
+            // minuto 16:42
+            return null;
         }
     }
 }

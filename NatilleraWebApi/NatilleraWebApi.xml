@@ -13,6 +13,16 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
+        <member name="M:NatilleraWebApi.Controllers.AutentificacionController.RefreshTokenAsync(Natillera.Business.Models.Autentificacion.RequestRefreshToken)">
+            <summary>
+            Genera de forma automatica un toquen cuando este vencido en la seción del usuario del front end.
+            debera enviar el token vencido y el token de refresco.
+            </summary>
+            <param name="refreshToken"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuarioAsync(Natillera.Business.Models.UsuarioBusiness)">
             <summary>
             Guardar los datos del usuario.
