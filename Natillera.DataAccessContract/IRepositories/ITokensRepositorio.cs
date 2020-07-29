@@ -5,7 +5,7 @@
 
     public interface ITokensRepositorio
     {
-        Task<TokenEntity> ObtenerTokenAsync();
+        Task<TokenEntity> ObtenerTokenAsync(string tokenRefresh);
 
         Task<bool> EditarTokenAsync(TokenEntity token);
 

@@ -1,8 +1,10 @@
 ﻿namespace Natillera.DataAccess.Repositories
 {
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
+    using System.Linq;
     using System.Threading.Tasks;
 
     //pagina donde se consulta para el uso de la tabla de token
@@ -48,9 +50,11 @@
             return result;
         }
 
-        public Task<TokenEntity> ObtenerTokenAsync()
+        public async Task<TokenEntity> ObtenerTokenAsync(string tokenRefresh)
         {
-            throw new System.NotImplementedException();
+          var token =  await this.repositorioContexto.Tokens.Where(c => c.Token == tokenRefresh).OrderByDescending(o => o.FechaExpiraToken).FirstOrDefaultAsync();
+
+            return token;
         }
     }
 }

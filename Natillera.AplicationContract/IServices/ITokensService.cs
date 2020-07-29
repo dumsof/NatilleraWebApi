@@ -8,6 +8,8 @@
 
         RespuestaToken CrearToken(string usuarioId, string nombreUsuario);
 
+        string GetUserFromAccessToken(string tokenAcceso);
+
         RespuestaToken CrearToken2ASCII(string usuarioId);
     }
 }

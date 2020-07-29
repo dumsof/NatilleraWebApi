@@ -9,6 +9,7 @@
     using Natillera.DataAccess.Mapper;
     using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
+    using System;
     using System.Threading.Tasks;
 
     public class AuntentificacionService : IAuntentificacionService
@@ -63,12 +64,47 @@
             };
         }
 
+        /// <summary>
+        /// metodo que permite crear un nuveo token al usuario despues de vencido
+        /// https://www.youtube.com/watch?v=AWnO_b8XIeA minuto 16:42
+        /// </summary>
+        /// <param name="refreshToken">parametro que contiene el token vencido y el token para refrescar</param>
+        /// <returns>retorna los datos del usuario con el nuevo token y el mismo token de refresco.</returns>
         public async Task<RespuestaLogueo> RefreshTokenAsync(RequestRefreshToken refreshToken)
         {
-            //se debe generar un nuevo token de forma automatica
-            //https://www.youtube.com/watch?v=AWnO_b8XIeA
-            // minuto 16:42
-            return null;
+            string nombreUsuario = this.tokensService.GetUserFromAccessToken(refreshToken.Token);
+            Usuario user = await this.usuarioRepositorie.ObtenerUsuarioAsync(nombreUsuario);
+            if (user != null && this.ValidateRefreshToken(user, refreshToken.TokenRefresh))
+            {
+                var socio = await this.socioRepositorie.ObtenerSocioIdAsync(user.SocioId);
+                var token = this.tokensService.CrearToken(user?.Id, user?.Email);
+                return new RespuestaLogueo
+                {
+                    EstadoTransaccion = true,
+                    Usuario = UsuarioMapper.UsuarioEntityMap(user, socio),
+                    Token = token.Token,
+                    TokenRefresh = refreshToken.TokenRefresh,
+                    FechaExpirationToken = token.FechaExpiracion,
+                    Mensaje = new Message(MessageCode.Message0000).Mensaje
+                };
+            }
+
+            return new RespuestaLogueo
+            {
+                EstadoTransaccion = false,
+                Mensaje = new Message(MessageCode.Message0003).Mensaje
+            };
+        }
+
+        private bool ValidateRefreshToken(Usuario user, string tokenRefresh)
+        {
+            var refreshTokenUsuario = this.tokensRepositorio.ObtenerTokenAsync(tokenRefresh).Result;
+            if (refreshTokenUsuario != null && refreshTokenUsuario.UserId == user.Id && refreshTokenUsuario.FechaExpiraToken > DateTime.UtcNow)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

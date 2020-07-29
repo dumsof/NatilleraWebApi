@@ -44,7 +44,8 @@
            var result = await _userManager.CreateAsync(user, usuario.Password);
 
             if (result.Succeeded)
-            {
+            {             
+
                 return usuario;
             }          
             else
@@ -63,6 +64,8 @@
         public async Task<bool> ExisteUsuarioAsync(Usuario usuario)
         {
             var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
+
+         
 
             return registrosAspNetUser != null;
         }

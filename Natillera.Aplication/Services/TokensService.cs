@@ -5,6 +5,7 @@
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models.RefreshToken;
     using System;
+    using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Security.Cryptography;
@@ -64,6 +65,36 @@
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 FechaExpiracion = expiration
             };
+        }
+
+        public string GetUserFromAccessToken(string tokenAcceso)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(this.configuration["va_clave_super_secreta"]);
+            var vokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuers = new List<string> { this.configuration.GetValue<string>("Token:Issuer") },
+                ValidAudience = this.configuration.GetValue<string>("Token:Audience"),
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ClockSkew = TimeSpan.Zero
+            };
+
+            SecurityToken securityToken;
+            //DUM: contiene los datos del token despues de desencriptarlos, información de claim
+            var principal = tokenHandler.ValidateToken(tokenAcceso, vokenValidationParameters, out securityToken);
+            JwtSecurityToken jwtSecurityToken = (JwtSecurityToken)securityToken;
+
+            string usuario = string.Empty;
+            if (jwtSecurityToken != null && jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+            {
+                usuario = principal.FindFirst(ClaimTypes.Name)?.Value;
+            }
+
+            return usuario;
         }
 
         public RespuestaToken CrearToken2ASCII(string usuarioId)
