@@ -1,21 +1,44 @@
 ﻿namespace Natillera.Aplication.IoC
 {
     using LoggerService;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Natillera.Aplication.Services;
     using Natillera.AplicationContract.IServices;
+    using Natillera.DataAccess;
     using Natillera.DataAccess.Repositories;
-    using Natillera.DataAccessContract.IRepositories;
+    using Natillera.DataAccessContract.IRepositories; 
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.AspNetCore.Identity;
 
     /// <summary>
     /// clase que permite inyectar el servicio de registrar log
     /// </summary>
     public static class ServiceExtensions
     {
+        
+
+
+        
+
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
             //singleton, creara un servicio cada vez que se necesite y luego cada solicitud posterior estara llamada la misma instancia.
             services.AddSingleton<ILoggerManager, LoggerManager>();
+        }
+
+        public static void ConfigureAddIdentityService(this IServiceCollection services)
+        {
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<NatilleraDBContext>()
+            .AddDefaultTokenProviders();
+        }
+
+
+        public static void ConfigureAddDbContextService(this IServiceCollection services, IConfiguration configuration)
+        {
+            //singleton, creara un servicio cada vez que se necesite y luego cada solicitud posterior estara llamada la misma instancia.
+            services.AddDbContext<NatilleraDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("DataBaseConexion")));
         }
 
         public static IServiceCollection AddResgistro(this IServiceCollection services)

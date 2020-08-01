@@ -30,7 +30,6 @@
   <ItemGroup>
     <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
     <ProjectReference Include="..\Natillera.Aplication\Natillera.Aplication.csproj" />
-    <ProjectReference Include="..\Natillera.DataAccess\Natillera.DataAccess.csproj" />
   </ItemGroup>
 
 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

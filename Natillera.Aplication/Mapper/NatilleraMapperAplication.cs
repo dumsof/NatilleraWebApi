@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Natillera.Aplication.Mapper
+﻿namespace Natillera.Aplication.Mapper
 {
-    class NatilleraMapperAplication
+    public class NatilleraMapperAplication
     {
     }
 }

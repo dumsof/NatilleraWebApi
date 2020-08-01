@@ -1,18 +1,9 @@
 namespace NatilleraWebApi
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Reflection;
-    using System.Text;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Localization;
-    using Microsoft.AspNetCore.Localization.Routing;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -21,9 +12,14 @@ namespace NatilleraWebApi
     using Microsoft.OpenApi.Any;
     using Microsoft.OpenApi.Models;
     using Natillera.Aplication.IoC;
-    using Natillera.DataAccess;
     using NatilleraWebApi.Extensions;
     using NLog;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Reflection;
+    using System.Text;
 
     public class Startup
     {
@@ -68,20 +64,17 @@ namespace NatilleraWebApi
             //Dum: se agrega la inyeccion para el logger           
             services.ConfigureLoggerService();
 
-            services.AddDbContext<NatilleraDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBaseConexion")));
+            //DUM: permite configurar el dbContext con la conexion a la base de datos
+            services.ConfigureAddDbContextService(this.Configuration);
+
 
             services.AddControllers();
 
-            //Dum: manejo del token.
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<NatilleraDBContext>()
-            .AddDefaultTokenProviders();
-
-            //Dum: se inyecta el contenedor del repositorio
-            //services.ConfiguracionRepositoryContenedor();
+            //Dum: manejo del token.           
+            services.ConfigureAddIdentityService();           
 
             //Dum: se injectan los servicios de las capas de repositorio y servicios.
-            ServiceExtensions.AddResgistro(services);
+            services.AddResgistro();
 
             //json web token configuracion
             //se realiza la validacion para saber si el token enviado es correcto y 
