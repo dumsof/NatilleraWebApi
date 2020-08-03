@@ -56,12 +56,12 @@
         private static IServiceCollection AddResgistroServices(this IServiceCollection services)
         {
             services.AddTransient<IAuntentificacionService, AuntentificacionService>();
-            services.AddTransient<INatilleraServices, NatilleraServices>();
-            services.AddTransient<IUsuarioServices, UsuarioServices>();
+            services.AddTransient<INatilleraService, NatilleraService>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<ISociosService, SociosService>();
-            services.AddTransient<IRolesServices, RolesServices>();
+            services.AddTransient<IRolesService, RolesService>();
             services.AddTransient<ITokensService, TokensService>();
-            services.AddTransient<INatilleraBusiness, NatilleraBusiness>();
+            services.AddTransient<ITipoDocumentoService, TipoDocumentoService>();
 
             return services;
         }
@@ -72,6 +72,7 @@
             services.AddScoped<IRolBusiness, RolBusiness>();
             services.AddScoped<ISocioBusiness, SocioBusiness>();
             services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
+            services.AddScoped<ITipoDocumentoBusiness, TipoDocumentoBusiness>();
 
             return services;
         }
@@ -84,6 +85,7 @@
             services.AddTransient<ISocioRepositorie, SocioRepositorio>();
             services.AddTransient<IRolesRepositorio, RolesRepositorio>();
             services.AddTransient<ITokensRepositorio, TokensRepositorio>();
+            services.AddTransient<ITipoDocumentoRepositorio, TipoDocumentoRepositorio>();
 
             return services;
         }

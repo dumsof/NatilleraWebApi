@@ -15,11 +15,11 @@
     [Authorize]
     public class CuentaUsuarioController : ControllerBase
     {
-        private readonly IUsuarioServices usuarioServices;
+        private readonly IUsuarioService usuarioServices;
 
         private readonly IConfiguration configuration;
 
-        public CuentaUsuarioController(IUsuarioServices usuarioServices, IConfiguration configuration)
+        public CuentaUsuarioController(IUsuarioService usuarioServices, IConfiguration configuration)
         {
             this.usuarioServices = usuarioServices;
             this.configuration = configuration;

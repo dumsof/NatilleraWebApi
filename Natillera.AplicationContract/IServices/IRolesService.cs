@@ -4,7 +4,7 @@
     using Natillera.AplicationContract.Models.Roles;   
     using System.Threading.Tasks;
 
-    public interface IRolesServices
+    public interface IRolesService
     {
         Task<Respuesta> DeleteRolAsync(string rolesId);
 

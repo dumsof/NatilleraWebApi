@@ -10,12 +10,12 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class RolesServices : IRolesServices
+    public class RolesService : IRolesService
     {
         private readonly IRolBusiness rolBusiness;
         private readonly IMapper mapper;
 
-        public RolesServices(IRolBusiness rolBusiness, IMapper mapper)
+        public RolesService(IRolBusiness rolBusiness, IMapper mapper)
         {
             this.rolBusiness = rolBusiness;
             this.mapper = mapper;

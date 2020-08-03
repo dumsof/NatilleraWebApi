@@ -4,7 +4,7 @@
     using Natillera.AplicationContract.Models.Natillera;
     using System;
 
-    public interface INatilleraServices
+    public interface INatilleraService
     {
         Respuesta GuardarNatillera(NatilleraAplication natillera);
 

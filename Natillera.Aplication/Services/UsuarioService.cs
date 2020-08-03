@@ -10,13 +10,13 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class UsuarioServices : IUsuarioServices
+    public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioBusiness usuarioBusiness;
 
         private readonly IMapper mapper;
 
-        public UsuarioServices(IUsuarioBusiness usuarioBusiness, IMapper mapper)
+        public UsuarioService(IUsuarioBusiness usuarioBusiness, IMapper mapper)
         {
             this.usuarioBusiness = usuarioBusiness;
             this.mapper = mapper;

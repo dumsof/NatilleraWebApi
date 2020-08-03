@@ -14,9 +14,9 @@
     public class RolesController : ControllerBase
     {
 
-        private readonly IRolesServices rolesService;
+        private readonly IRolesService rolesService;
 
-        public RolesController(IRolesServices rolesService)
+        public RolesController(IRolesService rolesService)
         {
             this.rolesService = rolesService;
         }

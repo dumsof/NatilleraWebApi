@@ -10,11 +10,11 @@
     using System.Linq;
     using m = BusinessContract.EntidadesBusiness.Natillera;
 
-    public class NatilleraServices : INatilleraServices
+    public class NatilleraService : INatilleraService
     {
         private readonly INatilleraBusiness bussiness;
         private readonly IMapper mapper;
-        public NatilleraServices(INatilleraBusiness bussiness, IMapper mapper)
+        public NatilleraService(INatilleraBusiness bussiness, IMapper mapper)
         {
             this.bussiness = bussiness;
             this.mapper = mapper;

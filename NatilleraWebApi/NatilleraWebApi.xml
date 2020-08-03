@@ -137,6 +137,14 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
+        <member name="M:NatilleraWebApi.Controllers.TipoDocumentoController.ObtenerTiposDocumentoAsync">
+            <summary>
+            Obtener todos tipos de documentos que puede seleccionar el usuario.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.WeatherForecastController.GetTemperatura">
             <summary>
             Obtener Temperatura.

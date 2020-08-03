@@ -13,8 +13,8 @@
     [Authorize]
     public class NatilleraController : ControllerBase
     {
-        private readonly INatilleraServices natilleraService;
-        public NatilleraController(INatilleraServices natilleraService)
+        private readonly INatilleraService natilleraService;
+        public NatilleraController(INatilleraService natilleraService)
         {
             this.natilleraService = natilleraService;
         }

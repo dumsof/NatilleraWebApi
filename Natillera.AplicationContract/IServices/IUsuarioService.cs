@@ -4,7 +4,7 @@
     using Natillera.AplicationContract.Models.Usuario;   
     using System.Threading.Tasks;
 
-    public interface IUsuarioServices
+    public interface IUsuarioService
     {
         Task<Respuesta> GuardarUsuarioAsync(UsuarioAplication usuario);
 
