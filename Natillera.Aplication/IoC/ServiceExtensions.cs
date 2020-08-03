@@ -7,24 +7,28 @@
     using Natillera.AplicationContract.IServices;
     using Natillera.DataAccess;
     using Natillera.DataAccess.Repositories;
-    using Natillera.DataAccessContract.IRepositories; 
+    using Natillera.DataAccessContract.IRepositories;
     using Microsoft.Extensions.Configuration;
     using Microsoft.AspNetCore.Identity;
+    using AutoMapper;
+    using Natillera.BusinessContract.IBusiness;
+    using Natillera.Business.Business;
+    using Natillera.Business.Mapper;
 
     /// <summary>
     /// clase que permite inyectar el servicio de registrar log
     /// </summary>
     public static class ServiceExtensions
     {
-        
-
-
-        
-
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
             //singleton, creara un servicio cada vez que se necesite y luego cada solicitud posterior estara llamada la misma instancia.
             services.AddSingleton<ILoggerManager, LoggerManager>();
+
+            //DUM: configuración automapper
+            services.AddAutoMapper(c => c.AddProfile<BusinessDataAccessMapper>(), typeof(ServiceExtensions));
+            services.AddAutoMapper(typeof(ServiceExtensions));
+            //services.AddControllersWithViews();
         }
 
         public static void ConfigureAddIdentityService(this IServiceCollection services)
@@ -44,6 +48,7 @@
         public static IServiceCollection AddResgistro(this IServiceCollection services)
         {
             AddResgistroServices(services);
+            AddResgistroBusiness(services);
             AddResgistroRepositorio(services);
             return services;
         }
@@ -56,6 +61,17 @@
             services.AddTransient<ISociosService, SociosService>();
             services.AddTransient<IRolesServices, RolesServices>();
             services.AddTransient<ITokensService, TokensService>();
+            services.AddTransient<INatilleraBusiness, NatilleraBusiness>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddResgistroBusiness(this IServiceCollection services)
+        {
+            services.AddScoped<INatilleraBusiness, NatilleraBusiness>();
+            services.AddScoped<IRolBusiness, RolBusiness>();
+            services.AddScoped<ISocioBusiness, SocioBusiness>();
+            services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
 
             return services;
         }

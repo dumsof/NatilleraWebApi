@@ -191,7 +191,7 @@ namespace NatilleraWebApi
 
             if (env.IsDevelopment())
             {
-                //mostrar error mas detallado en el api.
+                //DUM: mostrar error mas detallado en el api.
                 IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }

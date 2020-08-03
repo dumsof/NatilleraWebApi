@@ -1,27 +1,29 @@
 ﻿namespace Natillera.Aplication.Services
 {
+    using AutoMapper;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
-    using Natillera.Business.Models;
+    using Natillera.AplicationContract.Models.Natillera;   
+    using Natillera.BusinessContract.IBusiness;
     using Natillera.CrossClothing.Mensajes.Message;
-    using Natillera.DataAccess.Mapper;
-    using Natillera.DataAccessContract.IRepositories;
+    using System;
     using System.Linq;
+    using m = BusinessContract.EntidadesBusiness.Natillera;
 
     public class NatilleraServices : INatilleraServices
     {
-        private readonly IRepositorioContenedor repositorio;
-        public NatilleraServices(IRepositorioContenedor repositorio)
+        private readonly INatilleraBusiness bussiness;
+        private readonly IMapper mapper;
+        public NatilleraServices(INatilleraBusiness bussiness, IMapper mapper)
         {
-            this.repositorio = repositorio;
+            this.bussiness = bussiness;
+            this.mapper = mapper;
         }
 
-        public Respuesta GuardarNatillera(Natillera natillera)
+        public Respuesta GuardarNatillera(NatilleraAplication natillera)
         {
-            
-            this.repositorio.Natillera.Create(NatilleraMapper.NatilleraEntityMap(natillera));
-            this.repositorio.Save();
-            this.repositorio.Dispose();
+
+            this.bussiness.GuardarNatillera(this.mapper.Map<m.NatilleraENegocio>(natillera));
 
             return new Respuesta
             {
@@ -32,9 +34,10 @@
 
         public RespuestaObtenerNatillera ObtenerNatilleras()
         {
-            var datosNatilleras = this.repositorio.Natillera.FindAll();
+            var datosNatilleras = this.bussiness.ObtenerNatilleras();
+
             var targetList = datosNatilleras
-                              .Select(x => new Natillera()
+                              .Select(x => new NatilleraAplication()
                               {
                                   NatilleraId = x.NatilleraId,
                                   Nombre = x.Nombre,
@@ -48,7 +51,7 @@
                                   ValorMoraPagar = x.ValorMoraPagar
                               })
                               .ToList();
-            this.repositorio.Dispose();
+
 
             return new RespuestaObtenerNatillera
             {
@@ -58,11 +61,11 @@
             };
         }
 
-        public Respuesta BorrarNatillera(int natilleraId)
+        public Respuesta BorrarNatillera(Guid natilleraId)
         {
             return new Respuesta
             {
-                EstadoTransaccion = true,
+                EstadoTransaccion = this.bussiness.BorrarNatillera(natilleraId),
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }

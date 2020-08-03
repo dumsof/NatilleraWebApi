@@ -9,8 +9,10 @@
     {
         Task<Guid> GuardarSocioAsync(SocioEntity socio);
 
-        public Task<IEnumerable<SocioEntity>> ObtenerSociosAsync();
+        public Task<IEnumerable<Socio>> ObtenerSociosAsync();
 
         Task<Socio> ObtenerSocioIdAsync(Guid socioId);
+
+        Task<bool> DeleteSocioIdAsync(SocioEntity socio);
     }
 }

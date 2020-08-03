@@ -3,8 +3,8 @@
     using Microsoft.AspNetCore.Mvc;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
-    using Natillera.Business.Models;
-    using Natillera.Business.Models.Autentificacion;
+    using Natillera.AplicationContract.Models.Autentificacion;
+    using Natillera.AplicationContract.Models.Usuario;
     using NatilleraWebApi.Filter.ActionFilter;
     using System.Net;
     using System.Threading.Tasks;
@@ -32,7 +32,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> LogueoAsync([FromBody] UsuarioLogin userInfo)
+        public async Task<IActionResult> LogueoAsync([FromBody] RequestUsuarioLogin userInfo)
         {
             var resultUserLogueado = await this.auntentificacionService.LogueoAsync(userInfo);
 

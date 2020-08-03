@@ -1,28 +1,30 @@
 ﻿namespace Natillera.Aplication.Services
 {
+    using AutoMapper;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
-    using Natillera.Business.Models;
+    using Natillera.AplicationContract.Models.Socios;
+    using Natillera.BusinessContract.EntidadesBusiness.Socios;
+    using Natillera.BusinessContract.IBusiness;
     using Natillera.CrossClothing.Mensajes.Message;
-    using Natillera.DataAccess.Mapper;
-    using Natillera.DataAccessContract.IRepositories;
-    using System.Linq;
-
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class SociosService : ISociosService
     {
-        private readonly IRepositorioContenedor repositorio;
-        public SociosService(IRepositorioContenedor repositorio)
+        private readonly ISocioBusiness business;
+        private readonly IMapper mapper;
+        public SociosService(ISocioBusiness business, IMapper mapper)
         {
-            this.repositorio = repositorio;
+            this.business = business;
+            this.mapper = mapper;
         }
 
-        public Respuesta GuardarSocio(SociosBusiness sociosBusiness)
+        public async Task<Respuesta> GuardarSocioAsync(SocioAplication socio)
         {
 
-            this.repositorio.Socios.Create(SociosMapper.SociosEntityMap(sociosBusiness));
-            this.repositorio.Save();
-            this.repositorio.Dispose();
+            var result = await this.business.GuardarSocioAsync(this.mapper.Map<SocioENegocio>(socio));
 
             return new Respuesta
             {
@@ -31,42 +33,24 @@
             };
         }
 
-        public RespuestaObtenerSocios ObtenerSocios()
+        public async Task<RespuestaObtenerSocios> ObtenerSociosAsync()
         {
-            var datosSocios = this.repositorio.Socios.FindAll();
-
-            var targetList = datosSocios
-                              .Select(x => new SociosBusiness()
-                              {
-                                  SocioId = x.SocioId,
-                                  Nombres = x.Nombres,
-                                  PrimerApellidos = x.PrimerApellidos,
-                                  SegundoApellidos = x.SegundoApellidos,
-                                  Celular = x.Celular,
-                                  Direccion = x.Direccion,
-                                  Email = x.Email,
-                                  FechaNacimiento = x.FechaNacimiento,
-                                  NumeroDocumento = x.NumeroDocumento,
-                                  Telefono = x.Telefono,
-                                  TipoDocumentoId = x.TipoDocumentoId
-                              })
-                              .ToList();
-
-            this.repositorio.Dispose();
+            var datosSocios = await this.business.ObtenerSociosAsync();
 
             return new RespuestaObtenerSocios
             {
-                EstadoTransaccion = targetList != null,
-                Socios = targetList,
+                EstadoTransaccion = datosSocios != null,
+                Socios = this.mapper.Map<List<SocioAplication>>(datosSocios),
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
 
-        public Respuesta DeleteSocio(int socioId)
+        public async Task<Respuesta> DeleteSocioAsync(Guid socioId)
         {
+            var result = await this.business.DeleteSocioAsync(socioId);
             return new Respuesta
             {
-                EstadoTransaccion = true,
+                EstadoTransaccion = result,
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }

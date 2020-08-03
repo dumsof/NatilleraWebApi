@@ -45,15 +45,12 @@
         }
 
         //DUM: metodos asincronos : https://blog.zhaytam.com/2019/03/14/generic-repository-pattern-csharp/
+        //https://www.c-sharpcorner.com/article/net-entity-framework-core-generic-async-operations-with-unit-of-work-generic-re/
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             await this.RepositoryContext.Set<TEntity>().AddAsync(entity);
             return entity;
         }
-
-
-
-
 
         public Task DeleteAsync(TEntity entity)
         {
@@ -67,9 +64,9 @@
         }
 
 
-        public Task<IEnumerable<TEntity>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await this.RepositoryContext.Set<TEntity>().ToListAsync();
         }
 
 
@@ -79,23 +76,16 @@
         {
             this.RepositoryContext.Entry(entity).State = EntityState.Modified;
             return this.RepositoryContext.SaveChangesAsync();
-        }  
-
-       
-
-        public bool Exist(int id)
-        {
-            throw new NotImplementedException();
         }
 
-        public Task<IQueryable<TEntity>> FindAllAsync()
+        public async Task<TEntity> Find(Expression<Func<TEntity, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await this.RepositoryContext.Set<TEntity>().SingleOrDefaultAsync(expression);
         }
 
-        public Task<IQueryable<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> expression)
+        public async Task<IEnumerable<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await this.RepositoryContext.Set<TEntity>().Where(expression).ToListAsync();
         }
 
         Task IRepositoryBase<TEntity>.UpdateAsync(TEntity entity)
@@ -121,6 +111,6 @@
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
+        }       
     }
 }

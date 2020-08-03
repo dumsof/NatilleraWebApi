@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Natillera.BusinessContract\Natillera.BusinessContract.csproj" />
     <ProjectReference Include="..\Natillera.DataAccessContract\Natillera.DataAccessContract.csproj" />
   </ItemGroup>
 

@@ -18,27 +18,23 @@
 
         void Delete(TEntity entity);
 
-        bool Exist(int id);
-
         IQueryable<TEntity> FindAll();
 
         IQueryable<TEntity> FindByCondition(Expression<Func<TEntity, bool>> expression);
 
-        Task<bool> ExistAsync(int id);
+        Task<TEntity> Find(Expression<Func<TEntity, bool>> expression);
 
-        Task<IEnumerable<TEntity>> GetAllAsync();      
+        Task<IEnumerable<TEntity>> GetAllAsync();
 
         Task<TEntity> GetByIdAsync(int id);
 
-        Task DeleteAsync(TEntity entity);      
+        Task DeleteAsync(TEntity entity);
 
-        Task  UpdateAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
 
         Task<TEntity> AddAsync(TEntity entity);
 
-        Task<IQueryable<TEntity>> FindAllAsync();
-
-        Task<IQueryable<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> expression);
+        Task<IEnumerable<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> expression);
 
         void Save();
     }

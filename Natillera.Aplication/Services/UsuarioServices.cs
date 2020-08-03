@@ -1,29 +1,30 @@
 ﻿namespace Natillera.Aplication.Services
 {
+    using AutoMapper;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
-    using Natillera.Business.Models;
+    using Natillera.AplicationContract.Models.Usuario;
+    using Natillera.BusinessContract.EntidadesBusiness.Usuario;
+    using Natillera.BusinessContract.IBusiness;
     using Natillera.CrossClothing.Mensajes.Message;
-    using Natillera.DataAccess.Mapper;
-    using Natillera.DataAccessContract.IRepositories;
-
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public class UsuarioServices : IUsuarioServices
     {
-        private readonly IUsuarioRepositorie usuarioRepositorie;
+        private readonly IUsuarioBusiness usuarioBusiness;
 
-        private readonly ISocioRepositorie socioRepositorie;
+        private readonly IMapper mapper;
 
-        public UsuarioServices(IUsuarioRepositorie usuarioRepositorie, ISocioRepositorie socioRepositorie)
+        public UsuarioServices(IUsuarioBusiness usuarioBusiness, IMapper mapper)
         {
-            this.usuarioRepositorie = usuarioRepositorie;
-            this.socioRepositorie = socioRepositorie;
+            this.usuarioBusiness = usuarioBusiness;
+            this.mapper = mapper;
         }
 
         public async Task<Respuesta> DeleteUsuarioAsync(string usuarioId)
         {
-            bool estadoTransaccion = await this.usuarioRepositorie.DeleteUsuarioAsync(usuarioId);
+            bool estadoTransaccion = await this.usuarioBusiness.DeleteUsuarioAsync(usuarioId);
             return new Respuesta
             {
                 EstadoTransaccion = estadoTransaccion,
@@ -31,9 +32,9 @@
             };
         }
 
-        public async Task<Respuesta> EditarUsuarioAsync(UsuarioBusiness usuario)
+        public async Task<Respuesta> EditarUsuarioAsync(UsuarioAplication usuario)
         {
-            bool estadoTransaccion = await this.usuarioRepositorie.EditarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
+            bool estadoTransaccion = await this.usuarioBusiness.EditarUsuarioAsync(this.mapper.Map<UsuarioENegocio>(usuario));
 
             return new Respuesta
             {
@@ -42,19 +43,17 @@
             };
         }
 
-        public async Task<Respuesta> GuardarUsuarioAsync(UsuarioBusiness usuario)
+        public async Task<Respuesta> GuardarUsuarioAsync(UsuarioAplication usuario)
         {
             int codigoMensaje = 0;
             bool estadoTransaccion = false;
-            bool existeUsuario = await this.usuarioRepositorie.ExisteUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario));
-            if (existeUsuario)
+            var usuarioGuardado = await this.usuarioBusiness.GuardarUsuarioAsync(this.mapper.Map<UsuarioENegocio>(usuario));
+            if (usuarioGuardado?.Id == null)
             {
                 codigoMensaje = MessageCode.Message0002;
             }
             else
             {
-                var idSocio = await this.socioRepositorie.GuardarSocioAsync(SociosMapper.SociosEntityMap(usuario));
-                await this.usuarioRepositorie.GuardarUsuarioAsync(UsuarioMapper.UsuarioEntityMap(usuario), idSocio);
                 codigoMensaje = MessageCode.Message0000;
                 estadoTransaccion = true;
             }
@@ -65,23 +64,13 @@
             };
         }
 
-        public async Task<UsuarioBusiness> LogueoAsync(UsuarioLogin usuarioLogin)
-        {
-            //var respuesta = null; //await this.usuarioRepositorie.LogueoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
-            //if (respuesta != null)
-            //{
-            //    return UsuarioMapper.UsuarioEntityMap(respuesta);
-            //}
-            return null;
-        }
-
         public async Task<RespuestaObtenerUsuario> ObtenerUsuariosAsync()
         {
-            var respuesta = await this.usuarioRepositorie.ObtenerUsuariosAsync();
+            var respuesta = await this.usuarioBusiness.ObtenerUsuariosAsync();
 
             return new RespuestaObtenerUsuario
             {
-                Usuarios = UsuarioMapper.UsuarioEntityMap(respuesta),
+                Usuarios = this.mapper.Map<List<UserAplication>>(respuesta),
                 EstadoTransaccion = true,
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };

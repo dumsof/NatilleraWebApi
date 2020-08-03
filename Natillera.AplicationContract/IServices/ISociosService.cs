@@ -1,14 +1,16 @@
 ﻿namespace Natillera.AplicationContract.IServices
 {
     using Natillera.AplicationContract.Models;
-    using Natillera.Business.Models;
+    using Natillera.AplicationContract.Models.Socios;
+    using System;
+    using System.Threading.Tasks;
 
     public interface ISociosService
     {
-        Respuesta GuardarSocio(SociosBusiness sociosBusiness);
+        Task<Respuesta> GuardarSocioAsync(SocioAplication socio);
 
-        RespuestaObtenerSocios ObtenerSocios();
+        Task<RespuestaObtenerSocios> ObtenerSociosAsync();
 
-        Respuesta DeleteSocio(int socioId);
+        Task<Respuesta> DeleteSocioAsync(Guid socioId);
     }
 }

@@ -8,7 +8,7 @@
     using System.Linq;
     using System;
     using Microsoft.EntityFrameworkCore;
-   
+
     public class UsuarioRepositorio : RepositoryBase<Usuario>, IUsuarioRepositorie
     {
         /// <summary>
@@ -41,13 +41,13 @@
                 Email = usuario.Email,
                 SocioId = socioId
             };
-           var result = await _userManager.CreateAsync(user, usuario.Password);
+            var result = await _userManager.CreateAsync(user, usuario.Password);
 
             if (result.Succeeded)
-            {             
+            {
 
                 return usuario;
-            }          
+            }
             else
             {
                 throw new Exception(result.Errors.FirstOrDefault().Description);
@@ -65,7 +65,7 @@
         {
             var registrosAspNetUser = await _userManager.FindByNameAsync(usuario.Email);
 
-         
+
 
             return registrosAspNetUser != null;
         }
@@ -83,7 +83,7 @@
                                  }).ToListAsync();
 
             return usuario;
-        }
+        }        
 
         public async Task<bool> DeleteUsuarioAsync(string usuarioId)
         {

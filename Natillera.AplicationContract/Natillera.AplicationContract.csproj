@@ -14,8 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Natillera.BusinessContract\Natillera.BusinessContract.csproj" />
     <ProjectReference Include="..\Natillera.Business\Natillera.Business.csproj" />
     <ProjectReference Include="..\Natillera.CrossClothing\Natillera.CrossClothing.csproj" />
+    <ProjectReference Include="..\Natillera.DataAccessContract\Natillera.DataAccessContract.csproj" />
+    <ProjectReference Include="..\Natillera.DataAccess\Natillera.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

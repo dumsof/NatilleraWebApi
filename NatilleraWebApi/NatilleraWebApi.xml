@@ -4,7 +4,7 @@
         <name>NatilleraWebApi</name>
     </assembly>
     <members>
-        <member name="M:NatilleraWebApi.Controllers.AutentificacionController.LogueoAsync(Natillera.Business.Models.UsuarioLogin)">
+        <member name="M:NatilleraWebApi.Controllers.AutentificacionController.LogueoAsync(Natillera.AplicationContract.Models.Usuario.RequestUsuarioLogin)">
             <summary>
             Valida si el usuario existe y la contraseña diligenciada es correcta.
             </summary>
@@ -13,7 +13,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.AutentificacionController.RefreshTokenAsync(Natillera.Business.Models.Autentificacion.RequestRefreshToken)">
+        <member name="M:NatilleraWebApi.Controllers.AutentificacionController.RefreshTokenAsync(Natillera.AplicationContract.Models.Autentificacion.RequestRefreshToken)">
             <summary>
             Genera de forma automatica un toquen cuando este vencido en la seción del usuario del front end.
             debera enviar el token vencido y el token de refresco.
@@ -23,7 +23,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuarioAsync(Natillera.Business.Models.UsuarioBusiness)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.CrearUsuarioAsync(Natillera.AplicationContract.Models.Usuario.UsuarioAplication)">
             <summary>
             Guardar los datos del usuario.
             </summary>
@@ -32,7 +32,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.EditarUsuarioAsync(Natillera.Business.Models.UsuarioBusiness)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.EditarUsuarioAsync(Natillera.AplicationContract.Models.Usuario.UsuarioAplication)">
             <summary>
             Editar los datos del usuario.
             </summary>
@@ -49,7 +49,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.DeleteUsuarioAsync(Natillera.Business.Models.SolicitudDeleteUsuario)">
+        <member name="M:NatilleraWebApi.Controllers.CuentaUsuarioController.DeleteUsuarioAsync(Natillera.AplicationContract.Models.Usuario.SolicitudDeleteUsuarioAplication)">
             <summary>
             Borrar usuario por id.
             </summary>        
@@ -57,7 +57,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.NatilleraController.GuardarNatillera(Natillera.Business.Models.Natillera)">
+        <member name="M:NatilleraWebApi.Controllers.NatilleraController.GuardarNatillera(Natillera.AplicationContract.Models.Natillera.NatilleraAplication)">
             <summary>
             Guardar los datos de una natillera que ingresa el usuario.
             </summary>
@@ -76,7 +76,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.RolesController.CrearRolAsync(Natillera.Business.Models.Roles.RolesBusiness)">
+        <member name="M:NatilleraWebApi.Controllers.RolesController.CrearRolAsync(Natillera.AplicationContract.Models.Roles.RolEAplication)">
             <summary>
             Crear los roles que puede tener un usuario.
             </summary>
@@ -85,7 +85,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.RolesController.EditarRolAsync(Natillera.Business.Models.Roles.RolesBusiness)">
+        <member name="M:NatilleraWebApi.Controllers.RolesController.EditarRolAsync(Natillera.AplicationContract.Models.Roles.RolEAplication)">
             <summary>
             Editar los datos del rol.
             </summary>
@@ -102,7 +102,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.RolesController.DeleteRolAsync(Natillera.Business.Models.Roles.SolicitudDeleteRol)">
+        <member name="M:NatilleraWebApi.Controllers.RolesController.DeleteRolAsync(Natillera.AplicationContract.Models.Roles.SolicitudDeleteRolAplication)">
             <summary>
             Borrar rol por id.
             </summary>        
@@ -110,7 +110,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.SociosController.GuardarSocio(Natillera.Business.Models.SociosBusiness)">
+        <member name="M:NatilleraWebApi.Controllers.SociosController.GuardarSocioAsync(Natillera.AplicationContract.Models.Socios.SocioAplication)">
             <summary>
             Guardar los datos de una natillera que ingresa el usuario.
             </summary>
@@ -120,7 +120,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.SociosController.ObtenerSocios">
+        <member name="M:NatilleraWebApi.Controllers.SociosController.ObtenerSociosAsync">
             <summary>
             Obtener todos los datos de las natilleras.
             </summary>       
@@ -129,7 +129,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.SociosController.DeleteSocio(Natillera.Business.Models.SolicitudDeleteSocio)">
+        <member name="M:NatilleraWebApi.Controllers.SociosController.DeleteSocioAsync(Natillera.AplicationContract.Models.Socios.RequestDeleteSocioAplication)">
             <summary>
             Borrar usuario por id.
             </summary>        

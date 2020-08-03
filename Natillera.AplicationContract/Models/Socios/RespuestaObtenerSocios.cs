@@ -1,10 +1,9 @@
-﻿namespace Natillera.AplicationContract.Models
+﻿namespace Natillera.AplicationContract.Models.Socios
 {
-    using Natillera.Business.Models;
     using System.Collections.Generic;
 
     public class RespuestaObtenerSocios : Respuesta
     {
-        public ICollection<SociosBusiness> Socios { get; set; }
+        public ICollection<SocioAplication> Socios { get; set; }
     }
 }

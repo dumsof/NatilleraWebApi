@@ -1,10 +1,13 @@
 ﻿namespace Natillera.Aplication.Services
 {
+    using AutoMapper;
     using Microsoft.Extensions.Configuration;
     using Natillera.AplicationContract.IServices;
-    using Natillera.AplicationContract.Models;
-    using Natillera.Business.Models;
-    using Natillera.Business.Models.Autentificacion;
+    using Natillera.AplicationContract.Models.Autentificacion;
+    using Natillera.AplicationContract.Models.Socios;
+    using Natillera.AplicationContract.Models.Usuario;
+    using Natillera.BusinessContract.EntidadesBusiness.Usuario;
+    using Natillera.BusinessContract.IBusiness;
     using Natillera.CrossClothing.Mensajes.Message;
     using Natillera.DataAccess.Mapper;
     using Natillera.DataAccessContract.Entidades;
@@ -14,31 +17,38 @@
 
     public class AuntentificacionService : IAuntentificacionService
     {
-        private readonly IUsuarioRepositorie usuarioRepositorie;
-        private readonly ISocioRepositorie socioRepositorie;
+        private readonly IUsuarioBusiness usuarioBusiness;
+        private readonly ISocioBusiness socioBusiness;
         private readonly IConfiguration configuration;
         private readonly ITokensRepositorio tokensRepositorio;
         private readonly ITokensService tokensService;
+        private readonly IMapper mapper;
 
-        public AuntentificacionService(IUsuarioRepositorie usuarioRepositorie, ISocioRepositorie socioRepositorie, IConfiguration configuration, ITokensRepositorio tokensRepositorio, ITokensService tokensService)
+        public AuntentificacionService(IUsuarioBusiness usuarioBusiness, ISocioBusiness socioBusiness, IConfiguration configuration, ITokensRepositorio tokensRepositorio, ITokensService tokensService, IMapper mapper)
         {
-            this.usuarioRepositorie = usuarioRepositorie;
-            this.socioRepositorie = socioRepositorie;
+            this.usuarioBusiness = usuarioBusiness;
+            this.socioBusiness = socioBusiness;
             this.configuration = configuration;
             this.tokensRepositorio = tokensRepositorio;
             this.tokensService = tokensService;
+            this.mapper = mapper;
         }
 
-        public async Task<RespuestaLogueo> LogueoAsync(UsuarioLogin usuarioLogin)
+        public async Task<RespuestaLogueo> LogueoAsync(RequestUsuarioLogin usuarioLogin)
         {
-            bool existeUsuario = await this.usuarioRepositorie.UsuarioEsValidoAsync(UsuarioMapper.UsuarioEntityMap(usuarioLogin));
+
+            bool existeUsuario = await this.usuarioBusiness.UsuarioEsValidoAsync(new UsuarioENegocio { Email = usuarioLogin.Email, Password = usuarioLogin.Password });
             if (existeUsuario)
             {
-                Socio socio = null;
-                var usuario = await this.usuarioRepositorie.ObtenerUsuarioAsync(usuarioLogin.NombreUsuario);
+                SocioAplication socio = null;
+                UsuarioAplication usuariApli = null;
+                var usuario = await this.usuarioBusiness.ObtenerUsuarioPorNombreAsync(usuarioLogin.Email);
                 if (usuario != null)
                 {
-                    socio = await this.socioRepositorie.ObtenerSocioIdAsync(usuario.SocioId);
+                    usuariApli = this.mapper.Map<UsuarioAplication>(usuario);
+                    var resultSocio = await this.socioBusiness.ObtenerSocioIdAsync(usuario.SocioId);
+                    socio = this.mapper.Map<SocioAplication>(resultSocio);
+
                 }
                 var token = this.tokensService.CrearToken(usuario?.Id, usuario?.Email);
 
@@ -49,7 +59,7 @@
                 return new RespuestaLogueo
                 {
                     EstadoTransaccion = true,
-                    Usuario = UsuarioMapper.UsuarioEntityMap(usuario, socio),
+                    Usuario = UsuarioMapper.UsuarioEntityMap(usuariApli, socio),
                     Token = token.Token,
                     TokenRefresh = tokenRefresh.Token,
                     FechaExpirationToken = token.FechaExpiracion,
@@ -73,10 +83,12 @@
         public async Task<RespuestaLogueo> RefreshTokenAsync(RequestRefreshToken refreshToken)
         {
             string nombreUsuario = this.tokensService.GetUserFromAccessToken(refreshToken.Token);
-            Usuario user = await this.usuarioRepositorie.ObtenerUsuarioAsync(nombreUsuario);
+            var resultUsuario = await this.usuarioBusiness.ObtenerUsuarioPorNombreAsync(nombreUsuario);
+            var user = this.mapper.Map<UsuarioAplication>(resultUsuario);
             if (user != null && this.ValidateRefreshToken(user, refreshToken.TokenRefresh))
             {
-                var socio = await this.socioRepositorie.ObtenerSocioIdAsync(user.SocioId);
+                var result = await this.socioBusiness.ObtenerSocioIdAsync(user.SocioId);
+                var socio = this.mapper.Map<SocioAplication>(result);
                 var token = this.tokensService.CrearToken(user?.Id, user?.Email);
                 return new RespuestaLogueo
                 {
@@ -96,7 +108,7 @@
             };
         }
 
-        private bool ValidateRefreshToken(Usuario user, string tokenRefresh)
+        private bool ValidateRefreshToken(UsuarioAplication user, string tokenRefresh)
         {
             var refreshTokenUsuario = this.tokensRepositorio.ObtenerTokenAsync(tokenRefresh).Result;
             if (refreshTokenUsuario != null && refreshTokenUsuario.UserId == user.Id && refreshTokenUsuario.FechaExpiraToken > DateTime.UtcNow)

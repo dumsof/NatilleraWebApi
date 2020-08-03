@@ -1,12 +1,12 @@
 ﻿namespace NatilleraWebApi.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Natillera.AplicationContract.Models;
-    using NatilleraWebApi.Filter.ActionFilter;
-    using Natillera.Business.Models;
-    using System.Net;
-    using Natillera.AplicationContract.IServices;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Natillera.AplicationContract.IServices;
+    using Natillera.AplicationContract.Models;
+    using Natillera.AplicationContract.Models.Natillera;
+    using NatilleraWebApi.Filter.ActionFilter;
+    using System.Net;
 
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -30,10 +30,10 @@
         [HttpPost]
         [ActionName("GuardarNatillera")]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(NatilleraAplication), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(NatilleraAplication), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public IActionResult GuardarNatillera([FromBody] Natillera natillera)
+        public IActionResult GuardarNatillera([FromBody] NatilleraAplication natillera)
         {
 
             Respuesta respuesta = this.natilleraService.GuardarNatillera(natillera);
@@ -51,8 +51,8 @@
         [HttpPost]
         [ActionName("ObtenerNatilleras")]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(NatilleraAplication), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(NatilleraAplication), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
         public IActionResult ObtenerNatillera()
         {

@@ -1,26 +1,29 @@
 ﻿namespace Natillera.Aplication.Services
 {
+    using AutoMapper;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
     using Natillera.AplicationContract.Models.Roles;
-    using Natillera.Business.Models.Roles;
+    using Natillera.BusinessContract.EntidadesBusiness.Roles;
+    using Natillera.BusinessContract.IBusiness;
     using Natillera.CrossClothing.Mensajes.Message;
-    using Natillera.DataAccess.Mapper;
-    using Natillera.DataAccessContract.IRepositories;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public class RolesServices : IRolesServices
     {
-        private readonly IRolesRepositorio rolesRepositorie;
+        private readonly IRolBusiness rolBusiness;
+        private readonly IMapper mapper;
 
-        public RolesServices(IRolesRepositorio rolesRepositorie)
+        public RolesServices(IRolBusiness rolBusiness, IMapper mapper)
         {
-            this.rolesRepositorie = rolesRepositorie;
+            this.rolBusiness = rolBusiness;
+            this.mapper = mapper;
         }
 
         public async Task<Respuesta> DeleteRolAsync(string rolesId)
         {
-            bool estadoTransaccion = await this.rolesRepositorie.DeleteRolAsync(rolesId);
+            bool estadoTransaccion = await this.rolBusiness.DeleteRolAsync(rolesId);
             return new Respuesta
             {
                 EstadoTransaccion = estadoTransaccion,
@@ -28,9 +31,9 @@
             };
         }
 
-        public async Task<Respuesta> EditarRolAsync(RolesBusiness rol)
+        public async Task<Respuesta> EditarRolAsync(RolEAplication rol)
         {
-            bool estadoTransaccion = await this.rolesRepositorie.EditarRolAsync(null);
+            bool estadoTransaccion = await this.rolBusiness.EditarRolAsync(null);
 
             return new Respuesta
             {
@@ -39,17 +42,17 @@
             };
         }
 
-        public async Task<Respuesta> GuardarRolAsync(RolesBusiness rol)
+        public async Task<Respuesta> GuardarRolAsync(RolEAplication rol)
         {
             int codigoMensaje = 0;
             bool estadoTransaccion = false;
-            if (await this.rolesRepositorie.ExisteRolAsync(rol.Id))
+            if (await this.rolBusiness.ExisteRolAsync(rol.Id))
             {
                 codigoMensaje = MessageCode.Message0002;
             }
             else
             {
-                await this.rolesRepositorie.GuardarRolAsync(RolesMapper.RolesEntityMap(rol));
+                await this.rolBusiness.GuardarRolAsync(this.mapper.Map<RolENegocio>(rol));
                 codigoMensaje = MessageCode.Message0000;
                 estadoTransaccion = true;
             }
@@ -62,11 +65,11 @@
 
         public async Task<RespuestaObtenerRoles> ObtenerRolesAsync()
         {
-            var respuesta = await this.rolesRepositorie.ObtenerRolesAsync();
+            var respuesta = await this.rolBusiness.ObtenerRolesAsync();
 
             return new RespuestaObtenerRoles
             {
-                Roles = RolesMapper.RolesEntityMap(respuesta),
+                Roles = this.mapper.Map<List<RolEAplication>>(respuesta),
                 EstadoTransaccion = true,
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };

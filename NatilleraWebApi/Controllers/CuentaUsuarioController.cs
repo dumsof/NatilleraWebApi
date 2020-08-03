@@ -5,7 +5,7 @@
     using Microsoft.Extensions.Configuration;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
-    using Natillera.Business.Models;
+    using Natillera.AplicationContract.Models.Usuario;
     using NatilleraWebApi.Filter.ActionFilter;
     using System.Net;
     using System.Threading.Tasks;
@@ -37,7 +37,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> CrearUsuarioAsync([FromBody] UsuarioBusiness usuario)
+        public async Task<IActionResult> CrearUsuarioAsync([FromBody] UsuarioAplication usuario)
         {
             Respuesta respuesta = await this.usuarioServices.GuardarUsuarioAsync(usuario);
             return new OkObjectResult(respuesta);
@@ -55,7 +55,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> EditarUsuarioAsync([FromBody] UsuarioBusiness usuario)
+        public async Task<IActionResult> EditarUsuarioAsync([FromBody] UsuarioAplication usuario)
         {
             Respuesta respuesta = await this.usuarioServices.EditarUsuarioAsync(usuario);
             return new OkObjectResult(respuesta);
@@ -90,7 +90,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> DeleteUsuarioAsync([FromBody] SolicitudDeleteUsuario solicitudDelete)
+        public async Task<IActionResult> DeleteUsuarioAsync([FromBody] SolicitudDeleteUsuarioAplication solicitudDelete)
         {
             Respuesta respuesta = await this.usuarioServices.DeleteUsuarioAsync(solicitudDelete.UsuarioId);
             return new OkObjectResult(respuesta);

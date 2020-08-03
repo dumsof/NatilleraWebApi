@@ -3,11 +3,11 @@
     using Microsoft.AspNetCore.Mvc;
     using Natillera.AplicationContract.Models;
     using NatilleraWebApi.Filter.ActionFilter;
-    using Natillera.Business.Models;
     using System.Net;
     using Natillera.AplicationContract.IServices;
     using Microsoft.AspNetCore.Authorization;
-
+    using Natillera.AplicationContract.Models.Socios;
+    using System.Threading.Tasks;
 
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -29,14 +29,13 @@
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
         [HttpPost]
-        [ActionName("GuardarSocio")]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public IActionResult GuardarSocio([FromBody] SociosBusiness socios)
+        public async Task<IActionResult> GuardarSocioAsync([FromBody] SocioAplication socios)
         {
-            Respuesta respuesta = this.sociosService.GuardarSocio(socios);
+            Respuesta respuesta = await this.sociosService.GuardarSocioAsync(socios);
 
             return new OkObjectResult(respuesta);
         }
@@ -49,13 +48,12 @@
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
         [HttpPost]
-        [ActionName("ObtenerSocios")]
-        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Natillera), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult ObtenerSocios()
+        [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ObtenerSociosAsync()
         {
-            RespuestaObtenerSocios respuesta = this.sociosService.ObtenerSocios();
+            RespuestaObtenerSocios respuesta = await this.sociosService.ObtenerSociosAsync();
 
             return new OkObjectResult(respuesta);
         }
@@ -67,15 +65,15 @@
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
         [HttpPost]
-        [ActionName("DeleteSocio")]
+        //[ActionName("DeleteSocioAsync")]
         [Authorize]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public IActionResult DeleteSocio([FromBody] SolicitudDeleteSocio solicitudDelete)
+        public async Task<IActionResult> DeleteSocioAsync([FromBody] RequestDeleteSocioAplication solicitudDelete)
         {
-            Respuesta respuesta = this.sociosService.DeleteSocio(solicitudDelete.SocioId);
+            Respuesta respuesta = await this.sociosService.DeleteSocioAsync(solicitudDelete.SocioId);
             return new OkObjectResult(respuesta);
         }
     }

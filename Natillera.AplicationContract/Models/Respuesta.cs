@@ -1,6 +1,6 @@
 ﻿namespace Natillera.AplicationContract.Models
 {
-    using Natillera.CrossClothing.Mensajes.Message;
+    using global::Natillera.CrossClothing.Mensajes.Message;   
 
     public class Respuesta
     {

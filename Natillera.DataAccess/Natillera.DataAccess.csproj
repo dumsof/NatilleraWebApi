@@ -62,7 +62,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Natillera.Business\Natillera.Business.csproj" />
     <ProjectReference Include="..\Natillera.DataAccessContract\Natillera.DataAccessContract.csproj" />
   </ItemGroup>
 

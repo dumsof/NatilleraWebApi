@@ -4,8 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models;
-    using Natillera.AplicationContract.Models.Roles;
-    using Natillera.Business.Models.Roles;
+    using Natillera.AplicationContract.Models.Roles;   
     using NatilleraWebApi.Filter.ActionFilter;
     using System.Net;
     using System.Threading.Tasks;
@@ -34,7 +33,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> CrearRolAsync([FromBody] RolesBusiness rol)
+        public async Task<IActionResult> CrearRolAsync([FromBody] RolEAplication rol)
         {
             Respuesta respuesta = await this.rolesService.GuardarRolAsync(rol);
             return new OkObjectResult(respuesta);
@@ -52,7 +51,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
-        public async Task<IActionResult> EditarRolAsync([FromBody] RolesBusiness rol)
+        public async Task<IActionResult> EditarRolAsync([FromBody] RolEAplication rol)
         {
             Respuesta respuesta = await this.rolesService.EditarRolAsync(rol);
             return new OkObjectResult(respuesta);
@@ -86,7 +85,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> DeleteRolAsync([FromBody] SolicitudDeleteRol solicitudDelete)
+        public async Task<IActionResult> DeleteRolAsync([FromBody] SolicitudDeleteRolAplication solicitudDelete)
         {
             Respuesta respuesta = await this.rolesService.DeleteRolAsync(solicitudDelete.Id);
             return new OkObjectResult(respuesta);

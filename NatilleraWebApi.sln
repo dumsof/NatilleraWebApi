@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Natillera.AplicationContrac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Natillera.Business", "Natillera.Business\Natillera.Business.csproj", "{C004CE3D-8F48-49E5-936D-0F5B794D2250}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Natillera.BusinessContract", "Natillera.BusinessContract\Natillera.BusinessContract.csproj", "{61C831A6-44E8-4B60-AE3F-5B296701C7D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{C004CE3D-8F48-49E5-936D-0F5B794D2250}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C004CE3D-8F48-49E5-936D-0F5B794D2250}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C004CE3D-8F48-49E5-936D-0F5B794D2250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C831A6-44E8-4B60-AE3F-5B296701C7D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C831A6-44E8-4B60-AE3F-5B296701C7D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C831A6-44E8-4B60-AE3F-5B296701C7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C831A6-44E8-4B60-AE3F-5B296701C7D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{38AAF06C-C951-49E3-8DD5-32212B65CE34} = {562E9E35-09CB-4827-AC45-A18084A745FD}
 		{86D05343-B32F-4CDC-8B44-C9B1DDE55894} = {562E9E35-09CB-4827-AC45-A18084A745FD}
 		{C004CE3D-8F48-49E5-936D-0F5B794D2250} = {9A269533-60F8-4CD5-869B-1889BCEC2409}
+		{61C831A6-44E8-4B60-AE3F-5B296701C7D1} = {9A269533-60F8-4CD5-869B-1889BCEC2409}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AAEBB8A-7732-4589-9048-51A7213CCE5A}
