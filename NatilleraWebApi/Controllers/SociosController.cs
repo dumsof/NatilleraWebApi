@@ -47,7 +47,7 @@
         /// <response code="401">No existen permisos para utilizar el servicio.</response>
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.InternalServerError)]
