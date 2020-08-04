@@ -29,6 +29,7 @@
         {
             var socios = await (from s in this.repositorioContexto.Socios
                                 join t in this.repositorioContexto.TiposDocumentos on s.TipoDocumentoId equals t.TipoDocumentoId
+                                orderby s.RowCreated descending
                                 select new Socio
                                 {
                                     SocioId = s.SocioId,
@@ -42,7 +43,7 @@
                                     PrimerApellidos = s.PrimerApellidos,
                                     SegundoApellidos = s.SegundoApellidos,
                                     Telefono = s.Telefono,
-                                    TiposDocumentoDescripcion = t.Descripcion,                                   
+                                    TiposDocumentoDescripcion = t.Descripcion,
 
                                 }).ToListAsync();
             return socios;
@@ -53,6 +54,7 @@
             var socio = await (from s in this.repositorioContexto.Socios
                                join t in this.repositorioContexto.TiposDocumentos on s.TipoDocumentoId equals t.TipoDocumentoId
                                where s.SocioId == socioId
+                               orderby s.RowCreated descending
                                select new Socio
                                {
                                    SocioId = s.SocioId,
