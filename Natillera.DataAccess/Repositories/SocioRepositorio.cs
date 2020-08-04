@@ -29,7 +29,7 @@
         {
             var socios = await (from s in this.repositorioContexto.Socios
                                 join t in this.repositorioContexto.TiposDocumentos on s.TipoDocumentoId equals t.TipoDocumentoId
-                                orderby s.RowCreated descending
+                                orderby s.RowUpdated descending
                                 select new Socio
                                 {
                                     SocioId = s.SocioId,
@@ -54,7 +54,7 @@
             var socio = await (from s in this.repositorioContexto.Socios
                                join t in this.repositorioContexto.TiposDocumentos on s.TipoDocumentoId equals t.TipoDocumentoId
                                where s.SocioId == socioId
-                               orderby s.RowCreated descending
+                               orderby s.RowUpdated descending
                                select new Socio
                                {
                                    SocioId = s.SocioId,
@@ -72,6 +72,14 @@
                                }).FirstOrDefaultAsync();
 
             return socio;
+        }
+
+        public async Task<bool> DeleteSocioIdAsync(Guid socioId)
+        {
+            var socio = await this.Find(c => c.SocioId == socioId);
+            await this.DeleteAsync(socio);
+
+            return true;
         }
 
         public async Task<bool> DeleteSocioIdAsync(SocioEntity socio)

@@ -13,6 +13,8 @@
 
         Task<Socio> ObtenerSocioIdAsync(Guid socioId);
 
+        Task<bool> DeleteSocioIdAsync(Guid socioId);
+
         Task<bool> DeleteSocioIdAsync(SocioEntity socio);
     }
 }

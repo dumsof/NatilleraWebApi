@@ -39,8 +39,8 @@
             {
                 SocioId = socio.SocioId,
                 Nombres = socio?.Nombres,
-                PrimerApellido = socio?.PrimerApellidos,
-                SegundoApellido = socio?.SegundoApellidos,
+                PrimerApellidos = socio?.PrimerApellidos,
+                SegundoApellidos = socio?.SegundoApellidos,
                 Direccion = socio?.Direccion,
                 Celular = socio?.Celular,
                 Telefono = socio?.Telefono,

@@ -31,6 +31,7 @@
         public async Task<bool> DeleteTokenAsync(string usuarioId)
         {
             var result = await _userManager.RemoveAuthenticationTokenAsync(new ApplicationUser { Id = usuarioId }, "AppNatillera", "tokenName");
+            _userManager.Dispose();
 
             return result.Succeeded;
         }
@@ -52,8 +53,8 @@
 
         public async Task<TokenEntity> ObtenerTokenAsync(string tokenRefresh)
         {
-          var token =  await this.repositorioContexto.Tokens.Where(c => c.Token == tokenRefresh).OrderByDescending(o => o.FechaExpiraToken).FirstOrDefaultAsync();
-
+            var token = await this.repositorioContexto.Tokens.Where(c => c.Token == tokenRefresh).OrderByDescending(o => o.FechaExpiraToken).FirstOrDefaultAsync();
+            this.repositorioContexto.Dispose();
             return token;
         }
     }

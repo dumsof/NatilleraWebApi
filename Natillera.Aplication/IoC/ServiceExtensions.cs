@@ -25,7 +25,7 @@
             //singleton, creara un servicio cada vez que se necesite y luego cada solicitud posterior estara llamada la misma instancia.
             services.AddSingleton<ILoggerManager, LoggerManager>();
 
-            //DUM: configuración automapper
+            //DUM: configuración automapper, clase que tiene las posibles conversiones de tipos de clase entre capas
             services.AddAutoMapper(c => c.AddProfile<BusinessDataAccessMapper>(), typeof(ServiceExtensions));
             services.AddAutoMapper(typeof(ServiceExtensions));
             //services.AddControllersWithViews();
@@ -68,11 +68,11 @@
 
         private static IServiceCollection AddResgistroBusiness(this IServiceCollection services)
         {
-            services.AddScoped<INatilleraBusiness, NatilleraBusiness>();
-            services.AddScoped<IRolBusiness, RolBusiness>();
-            services.AddScoped<ISocioBusiness, SocioBusiness>();
-            services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
-            services.AddScoped<ITipoDocumentoBusiness, TipoDocumentoBusiness>();
+            services.AddTransient<INatilleraBusiness, NatilleraBusiness>();
+            services.AddTransient<IRolBusiness, RolBusiness>();
+            services.AddTransient<ISocioBusiness, SocioBusiness>();
+            services.AddTransient<IUsuarioBusiness, UsuarioBusiness>();
+            services.AddTransient<ITipoDocumentoBusiness, TipoDocumentoBusiness>();
 
             return services;
         }

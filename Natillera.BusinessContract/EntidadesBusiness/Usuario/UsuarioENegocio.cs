@@ -12,9 +12,9 @@
 
         public string Nombres { get; set; }
 
-        public string PrimerApellido { get; set; }
+        public string PrimerApellidos { get; set; }
 
-        public string SegundoApellido { get; set; }
+        public string SegundoApellidos { get; set; }
 
         public DateTime FechaNacimiento { get; set; }
 

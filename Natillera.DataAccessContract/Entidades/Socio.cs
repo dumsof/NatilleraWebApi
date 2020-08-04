@@ -6,6 +6,8 @@
     {
         public Guid SocioId { get; set; }
 
+        public string UsuarioId { get; set; }
+
         public string NumeroDocumento { get; set; }
 
         public DateTime FechaNacimiento { get; set; }

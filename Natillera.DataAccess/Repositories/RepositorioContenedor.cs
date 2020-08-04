@@ -12,9 +12,7 @@
 
         private INatilleraRepositorie natillera;
 
-        private ISocioRepositorie socios;
-
-        private IUsuarioRepositorie usuario;
+        private ISocioRepositorie socios;       
 
         private ITokensRepositorio tokens;
 
@@ -62,20 +60,7 @@
                 return this.tokens;
             }
         }
-
-        //public IUsuarioRepositorie Usuario
-        //{
-        //    get
-        //    {
-        //        if (this.usuario == null)
-        //        {
-        //            this.usuario = new UsuarioRepositorio(this.context);
-        //        }
-
-        //        return this.usuario;
-        //    }
-        //}
-
+      
         public void Save()
         {
             this.context.SaveChanges();

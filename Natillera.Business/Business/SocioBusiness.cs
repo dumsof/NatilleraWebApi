@@ -24,7 +24,6 @@
             var socioDelete = await this.repositorio.Find(c => c.SocioId == socioId);
             if (socioDelete != null)
             {
-
                 await this.repositorio.DeleteAsync(socioDelete);
                 return true;
             }

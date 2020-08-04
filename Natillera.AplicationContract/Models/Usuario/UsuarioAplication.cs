@@ -21,11 +21,11 @@ namespace Natillera.AplicationContract.Models.Usuario
 
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         [StringLength(100, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
-        public string PrimerApellido { get; set; }
+        public string PrimerApellidos { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
         [StringLength(100, ErrorMessage = "El campo {0} debe contener maximo {1} caracteres.")]
-        public string SegundoApellido { get; set; }
+        public string SegundoApellidos { get; set; }
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "El campo {0} es requerido, por favor verifique.")]
