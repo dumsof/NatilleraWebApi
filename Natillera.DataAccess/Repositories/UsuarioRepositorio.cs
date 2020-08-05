@@ -83,7 +83,7 @@
                                  }).ToListAsync();
 
             return usuario;
-        }        
+        }
 
         public async Task<bool> DeleteUsuarioAsync(string usuarioId)
         {
@@ -126,6 +126,22 @@
                 Email = usuario.Email,
                 Password = usuario.PasswordHash
             };
+        }
+
+        public async Task<Usuario> ObtenerUsuariosIdUsuarioOIdSocioAsync(string usuarioIdidSocio)
+        {
+            var usuario = await (from u in _userManager.Users
+                                 where u.Id == usuarioIdidSocio || u.SocioId == Guid.Parse(usuarioIdidSocio)
+                                 select new Usuario
+                                 {
+                                     Id = u.Id,
+                                     SocioId = u.SocioId,
+                                     NombreUsuario = u.UserName,
+                                     Email = u.Email,
+                                     Password = u.PasswordHash,
+                                 }).SingleOrDefaultAsync();
+
+            return usuario;
         }
     }
 }

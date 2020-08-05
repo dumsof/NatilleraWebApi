@@ -25,13 +25,15 @@
 
         public async Task<bool> DeleteUsuarioAsync(string usuarioId)
         {
-            bool estadoTransaccion = await this.usuarioRepositorio.DeleteUsuarioAsync(usuarioId);
-
-            if (estadoTransaccion)
+            bool estadoTransaccion = false;
+            var usuario = await this.usuarioRepositorio.ObtenerUsuariosIdUsuarioOIdSocioAsync(usuarioId);
+            if (usuario != null)
             {
-                var usuario = await this.usuarioRepositorio.Find(c => c.Id == usuarioId);
-
-                estadoTransaccion = await this.socioRepositorio.DeleteSocioIdAsync(usuario.SocioId);
+                estadoTransaccion = await this.usuarioRepositorio.DeleteUsuarioAsync(usuario.Id);
+                if (estadoTransaccion)
+                {
+                    estadoTransaccion = await this.socioRepositorio.DeleteSocioIdAsync(usuario.SocioId);
+                }
             }
 
             return estadoTransaccion;

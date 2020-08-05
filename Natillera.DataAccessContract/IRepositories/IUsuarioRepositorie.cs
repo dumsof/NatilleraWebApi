@@ -20,5 +20,7 @@
         Task<bool> DeleteUsuarioAsync(string usuarioId);
 
         Task<Usuario> ObtenerUsuarioAsync(string nombreUsuario);
+
+        Task<Usuario> ObtenerUsuariosIdUsuarioOIdSocioAsync(string usuarioIdidSocio);
     }
 }
