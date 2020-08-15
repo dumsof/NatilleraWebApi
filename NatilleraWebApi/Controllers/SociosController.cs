@@ -8,10 +8,11 @@
     using Microsoft.AspNetCore.Authorization;
     using Natillera.AplicationContract.Models.Socios;
     using System.Threading.Tasks;
+    using NatilleraWebApi.Filter.Cache;
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class SociosController : ControllerBase
     {
         private readonly ISociosService sociosService;
@@ -51,6 +52,7 @@
         [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(RespuestaObtenerSocios), (int)HttpStatusCode.InternalServerError)]
+        [Cached(600)]
         public async Task<IActionResult> ObtenerSociosAsync()
         {
             RespuestaObtenerSocios respuesta = await this.sociosService.ObtenerSociosAsync();

@@ -11,6 +11,7 @@ namespace NatilleraWebApi
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Any;
     using Microsoft.OpenApi.Models;
+    using Natillera.Aplication.Installer;
     using Natillera.Aplication.IoC;
     using NatilleraWebApi.Extensions;
     using NLog;
@@ -73,8 +74,11 @@ namespace NatilleraWebApi
             //Dum: manejo del token.           
             services.ConfigureAddIdentityService();           
 
-            //Dum: se injectan los servicios de las capas de repositorio y servicios.
+            //Dum: se inyecta los servicios de las capas de repositorio y servicios.
             services.AddResgistro();
+
+            //Dum: se inyecta el servicio de redis cache, manejar cache en la aplicación.
+            services.InstallServices(this.Configuration);
 
             //json web token configuracion
             //se realiza la validacion para saber si el token enviado es correcto y 

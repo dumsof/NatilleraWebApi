@@ -4,6 +4,6 @@
     {
         public bool Enabled { get; set; }
 
-        public string  ConexionString { get; set; }
+        public string ConnectionString { get; set; }
     }
 }

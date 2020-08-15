@@ -6,11 +6,14 @@
     using Natillera.AplicationContract.IServices;
     using Natillera.AplicationContract.Models.RedisCache;
 
-    public class CacheInstaller
+    public static class CacheInstaller
     {
-
-
-        public void InstallServices(IServiceCollection services, IConfiguration configuration)
+        /// <summary>
+        /// Metodo que permite obtener los datos de la configuración para redis cache, crea la inyección para el servicio de redis cache.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        public static void InstallServices(this IServiceCollection services, IConfiguration configuration)
         {
             //Leer la configuracion que contiene el archivo de configuracion de json y mapear los datos en la clase.
             var redisCacheSetting = new RedisCacheSettings();
@@ -21,8 +24,8 @@
             {
                 return;
             }
-
-            services.AddStackExchangeRedisCache(options => options.Configuration = redisCacheSetting.ConexionString);
+            //Dum: configura la cadena de conexión de redis cache.
+            services.AddStackExchangeRedisCache(options => options.Configuration = redisCacheSetting.ConnectionString);
             services.AddSingleton<IResponseCacheService, ResponseCacheService>();
 
         }

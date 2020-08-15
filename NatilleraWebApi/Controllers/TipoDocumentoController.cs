@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Natillera.AplicationContract.IServices;
 using Natillera.AplicationContract.Models.TipoDocumento;
+using NatilleraWebApi.Filter.Cache;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace NatilleraWebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class TipoDocumentoController : ControllerBase
     {
 
@@ -31,6 +32,7 @@ namespace NatilleraWebApi.Controllers
         [ProducesResponseType(typeof(RespuestaTiposDocumento), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaTiposDocumento), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(RespuestaTiposDocumento), (int)HttpStatusCode.InternalServerError)]
+        [Cached(600)]
         public async Task<IActionResult> ObtenerTiposDocumentoAsync()
         {
             RespuestaTiposDocumento respuesta = await this.service.ObtenerTiposDocumentoAsync();

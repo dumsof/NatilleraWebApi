@@ -35,24 +35,25 @@
 
             //DUM: se realiza una inyeción manual y no por constructor.
             var cacheService = context.HttpContext.RequestServices.GetRequiredService<IResponseCacheService>();
-
+            //DUM: se obtiene la url para generar la key de cache donde se guardar la información del servicio actual.
             var cacheKey = GenerateCacheKeyFromRequest(context.HttpContext.Request);
             var cachedResponse = await cacheService.GetCacheResponseAsync(cacheKey);
+
+            //DUM: si no hay guardado nada en cache el sistema lo crea sino lo obtiene y lo devuelve.
             if (!string.IsNullOrEmpty(cachedResponse))
             {
-                var contentResult = new ContentResult
+                context.Result = new ContentResult
                 {
                     Content = cachedResponse,
                     ContentType = "application/json",
                     StatusCode = StatusCodes.Status200OK
                 };
-                context.Result = contentResult;
 
                 return;
             }
 
             var executedContext = await next();
-            if(executedContext.Result is OkObjectResult okObjectResult)
+            if (executedContext.Result is OkObjectResult okObjectResult)
             {
                 await cacheService.CacheResponseAsync(cacheKey, okObjectResult.Value, TimeSpan.FromSeconds(this.timeToLiveSeconds));
             }
