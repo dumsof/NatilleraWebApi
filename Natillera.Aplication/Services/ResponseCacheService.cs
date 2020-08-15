@@ -36,5 +36,10 @@
 
             return string.IsNullOrEmpty(cachedResponse) ? null : cachedResponse;
         }
+
+        public async Task RemoveCacheResponseAsync(string cacheKey)
+        {
+            await this.distributedCache.RemoveAsync(cacheKey);
+        }
     }
 }

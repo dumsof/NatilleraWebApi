@@ -6,11 +6,13 @@
     using Natillera.AplicationContract.Models;
     using Natillera.AplicationContract.Models.Roles;   
     using NatilleraWebApi.Filter.ActionFilter;
+    using NatilleraWebApi.Filter.Cache;
     using System.Net;
     using System.Threading.Tasks;
 
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class RolesController : ControllerBase
     {
 
@@ -67,6 +69,7 @@
         [ProducesResponseType(typeof(RespuestaObtenerRoles), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaObtenerRoles), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(RespuestaObtenerRoles), (int)HttpStatusCode.InternalServerError)]
+        [Cached(600)]
         public async Task<IActionResult> ObtenerRolesAsync()
         {
             RespuestaObtenerRoles respuesta = await this.rolesService.ObtenerRolesAsync();

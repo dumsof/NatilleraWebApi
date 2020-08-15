@@ -15,12 +15,12 @@
     public class CachedAttribute : Attribute, IAsyncActionFilter
     {
         private readonly int timeToLiveSeconds;
+        private readonly string keyCache;
 
-
-        public CachedAttribute(int timeToLiveSeconds)
+        public CachedAttribute(int timeToLiveSeconds, string keyCache = "")
         {
             this.timeToLiveSeconds = timeToLiveSeconds;
-
+            this.keyCache = keyCache;
         }
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -35,6 +35,14 @@
 
             //DUM: se realiza una inyeción manual y no por constructor.
             var cacheService = context.HttpContext.RequestServices.GetRequiredService<IResponseCacheService>();
+
+            if (!string.IsNullOrEmpty(this.keyCache))
+            {
+                await cacheService.RemoveCacheResponseAsync(this.keyCache);
+                await next();
+                return;
+            }
+
             //DUM: se obtiene la url para generar la key de cache donde se guardar la información del servicio actual.
             var cacheKey = GenerateCacheKeyFromRequest(context.HttpContext.Request);
             var cachedResponse = await cacheService.GetCacheResponseAsync(cacheKey);

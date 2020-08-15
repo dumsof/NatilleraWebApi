@@ -12,7 +12,7 @@
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class SociosController : ControllerBase
     {
         private readonly ISociosService sociosService;
@@ -34,6 +34,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
+        [Cached(600, "/api/Socios/ObtenerSocios")]
         public async Task<IActionResult> GuardarSocioAsync([FromBody] SocioAplication socios)
         {
             Respuesta respuesta = await this.sociosService.GuardarSocioAsync(socios);
@@ -66,13 +67,13 @@
         /// <response code="200">Operación realizada con éxito.</response>z
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
-        [HttpPost]
-        //[ActionName("DeleteSocioAsync")]
+        [HttpPost]       
         [Authorize]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
+        [Cached(600, "/api/Socios/ObtenerSocios")]
         public async Task<IActionResult> DeleteSocioAsync([FromBody] RequestDeleteSocioAplication solicitudDelete)
         {
             Respuesta respuesta = await this.sociosService.DeleteSocioAsync(solicitudDelete.SocioId);

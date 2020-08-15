@@ -10,7 +10,7 @@ namespace NatilleraWebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class TipoDocumentoController : ControllerBase
     {
 
@@ -31,8 +31,7 @@ namespace NatilleraWebApi.Controllers
         [HttpGet]       
         [ProducesResponseType(typeof(RespuestaTiposDocumento), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaTiposDocumento), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(RespuestaTiposDocumento), (int)HttpStatusCode.InternalServerError)]
-        [Cached(600)]
+        [ProducesResponseType(typeof(RespuestaTiposDocumento), (int)HttpStatusCode.InternalServerError)]        
         public async Task<IActionResult> ObtenerTiposDocumentoAsync()
         {
             RespuestaTiposDocumento respuesta = await this.service.ObtenerTiposDocumentoAsync();

@@ -7,6 +7,7 @@
     using Natillera.AplicationContract.Models;
     using Natillera.AplicationContract.Models.Usuario;
     using NatilleraWebApi.Filter.ActionFilter;
+    using NatilleraWebApi.Filter.Cache;
     using System.Net;
     using System.Threading.Tasks;
 
@@ -37,6 +38,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
+        [Cached(600, "/api/CuentaUsuario/ObtenerUsuarios")] //permite borrar el cache;
         public async Task<IActionResult> CrearUsuarioAsync([FromBody] UsuarioAplication usuario)
         {
             Respuesta respuesta = await this.usuarioServices.GuardarUsuarioAsync(usuario);
@@ -55,6 +57,7 @@
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
         [ValidateModel]
+        [Cached(600, "/api/CuentaUsuario/ObtenerUsuarios")]
         public async Task<IActionResult> EditarUsuarioAsync([FromBody] UsuarioAplication usuario)
         {
             Respuesta respuesta = await this.usuarioServices.EditarUsuarioAsync(usuario);
@@ -68,10 +71,10 @@
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
         [HttpGet]
-        [Authorize]
         [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(RespuestaObtenerUsuario), (int)HttpStatusCode.InternalServerError)]
+        [Cached(600)]
         public async Task<IActionResult> ObtenerUsuariosAsync()
         {
             RespuestaObtenerUsuario respuesta = await this.usuarioServices.ObtenerUsuariosAsync();
@@ -85,10 +88,11 @@
         /// <response code="200">Operación realizada con éxito.</response>z
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
-        [HttpPost]       
+        [HttpPost]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
+        [Cached(600, "/api/CuentaUsuario/ObtenerUsuarios")]
         public async Task<IActionResult> DeleteUsuarioAsync([FromBody] SolicitudDeleteUsuarioAplication solicitudDelete)
         {
             Respuesta respuesta = await this.usuarioServices.DeleteUsuarioAsync(solicitudDelete.UsuarioId);
