@@ -172,6 +172,9 @@ namespace NatilleraWebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Dum: se realiza el llamado del middleware del manejo de exception global.
+            app.ConfigureCustomExceptionMiddleware();
+
             //DUM: Formato de fechas y numero.
             app.UseRequestLocalization();
 
@@ -199,8 +202,7 @@ namespace NatilleraWebApi
             //Dum : se agrega permiso de cors para la peticion de una url especifica.
             app.UseCors(EnableCors);
 
-            //Dum: se realiza el llamado del middleware del manejo de exception global.
-            app.ConfigureCustomExceptionMiddleware();
+            
             app.UseHttpsRedirection();
             app.UseRouting();
             //DUM: debe estar habilitado para exigir el token 
