@@ -3,9 +3,12 @@ namespace NatilleraWebApi
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Http.Features;
     using Microsoft.AspNetCore.Localization;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Hosting;
     using Microsoft.IdentityModel.Logging;
     using Microsoft.IdentityModel.Tokens;
@@ -68,11 +71,18 @@ namespace NatilleraWebApi
             //DUM: permite configurar el dbContext con la conexion a la base de datos
             services.ConfigureAddDbContextService(this.Configuration);
 
+            //DUM: configuración de la carga de archivo, permitir archivos grandes.
+            services.Configure<FormOptions>(f =>
+            {
+                f.ValueLengthLimit = int.MaxValue;
+                f.MultipartBodyLengthLimit = int.MaxValue;
+                f.MemoryBufferThreshold = int.MaxValue;
+            });
 
             services.AddControllers();
 
             //Dum: manejo del token.           
-            services.ConfigureAddIdentityService();           
+            services.ConfigureAddIdentityService();
 
             //Dum: se inyecta los servicios de las capas de repositorio y servicios.
             services.AddResgistro();
@@ -182,8 +192,6 @@ namespace NatilleraWebApi
             //DUM: Formato de fechas y numero.
             app.UseRequestLocalization();
 
-            app.UseStaticFiles();
-
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -206,7 +214,15 @@ namespace NatilleraWebApi
             //Dum : se agrega permiso de cors para la peticion de una url especifica.
             app.UseCors(EnableCors);
 
-            
+            //DUM: habilitar el almacenamiento de archivos en el sitio.
+            app.UseStaticFiles();
+            //DUM: definir la carpeta para el systema donde se guardaran los archivos. 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resourses")
+            });
+
             app.UseHttpsRedirection();
             app.UseRouting();
             //DUM: debe estar habilitado para exigir el token 

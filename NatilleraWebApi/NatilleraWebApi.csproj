@@ -32,6 +32,11 @@
     <ProjectReference Include="..\Natillera.Aplication\Natillera.Aplication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Imagenes\" />
+    <Folder Include="Resources\Archivos\" />
+  </ItemGroup>
+
 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
   <DocumentationFile>NatilleraWebApi.xml</DocumentationFile>
 </PropertyGroup>

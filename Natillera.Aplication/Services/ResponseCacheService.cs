@@ -40,6 +40,7 @@
         public async Task RemoveCacheResponseAsync(string cacheKey)
         {
             await this.distributedCache.RemoveAsync(cacheKey);
+            await this.distributedCache.RefreshAsync(cacheKey);
         }
     }
 }
