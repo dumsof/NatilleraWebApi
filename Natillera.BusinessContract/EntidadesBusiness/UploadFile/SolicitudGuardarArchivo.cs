@@ -2,8 +2,8 @@
 {
     using Microsoft.AspNetCore.Http;
 
-    public class SolicitudUploadFile
+    public class SolicitudGuardarArchivo
     {
-        public IFormFile File { get; set; }
+        public IFormFile Archivo { get; set; }
     }
 }

@@ -62,6 +62,7 @@
             services.AddTransient<IRolesService, RolesService>();
             services.AddTransient<ITokensService, TokensService>();
             services.AddTransient<ITipoDocumentoService, TipoDocumentoService>();
+            services.AddTransient<IUploadFileService, AdministracionArchivoService>();
 
             return services;
         }
@@ -73,6 +74,7 @@
             services.AddTransient<ISocioBusiness, SocioBusiness>();
             services.AddTransient<IUsuarioBusiness, UsuarioBusiness>();
             services.AddTransient<ITipoDocumentoBusiness, TipoDocumentoBusiness>();
+            services.AddTransient<IUploadFileBusiness, UploadFileBusiness>();
 
             return services;
         }

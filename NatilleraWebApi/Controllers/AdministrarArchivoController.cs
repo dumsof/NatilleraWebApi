@@ -9,6 +9,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Natillera.AplicationContract.IServices;
+    using Natillera.AplicationContract.Models.UnloadFile;
     using Natillera.BusinessContract.EntidadesBusiness.UploadFile;
 
     [Route("api/[controller]/[action]")]
@@ -30,13 +31,14 @@
         /// <response code="200">Operación realizada con éxito.</response>z
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
-        [HttpGet]
+        [HttpPost]
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> GuardarArchivoImagen([FromForm] SolicitudUploadFile solicitudUpload)
+        public async Task<IActionResult> GuardarArchivoImagen([FromForm] SolicitudGuardarArchivoImagen solicitudUploadFile)
         {
-            var respuesta = await this.service.UnloadFileImage(solicitudUpload);
+
+            var respuesta = await this.service.GuardarArchivoImagen(solicitudUploadFile);
             return new OkObjectResult(respuesta);
         }
 

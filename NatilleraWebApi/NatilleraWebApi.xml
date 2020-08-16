@@ -4,6 +4,14 @@
         <name>NatilleraWebApi</name>
     </assembly>
     <members>
+        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.GuardarArchivoImagen(Natillera.AplicationContract.Models.UnloadFile.SolicitudGuardarArchivoImagen)">
+            <summary>
+            Obtener todos tipos de documentos que puede seleccionar el usuario.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.AutentificacionController.LogueoAsync(Natillera.AplicationContract.Models.Usuario.RequestUsuarioLogin)">
             <summary>
             Valida si el usuario existe y la contraseña diligenciada es correcta.

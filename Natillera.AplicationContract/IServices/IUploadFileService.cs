@@ -1,12 +1,12 @@
 ﻿namespace Natillera.AplicationContract.IServices
 {
-    using Natillera.BusinessContract.EntidadesBusiness.UploadFile;
+    using Natillera.AplicationContract.Models.UnloadFile;   
     using System.Threading.Tasks;
 
     public interface IUploadFileService
     {
-        Task<string> UnloadFile();
+        Task<string> UnloadFile();      
 
-        Task<string> UnloadFileImage(SolicitudUploadFile solicitudUploadFile);
+        Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagen(SolicitudGuardarArchivoImagen solicitudArchivo);
     }
 }
