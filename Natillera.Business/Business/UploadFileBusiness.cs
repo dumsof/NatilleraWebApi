@@ -5,17 +5,25 @@
     using System;
     using System.Threading.Tasks;
     using System.IO;
+    using Microsoft.Extensions.Configuration;
 
     public class UploadFileBusiness : IUploadFileBusiness
     {
+        private readonly IConfiguration configuration;
+
+        public UploadFileBusiness(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
         public async Task<string> UnloadFile(SolicitudGuardarArchivo guardarArchivo)
         {
             string rutaArchivoGuardado = string.Empty;
 
             if (guardarArchivo.Archivo.Length > 0)
             {
-                var rutaCompleta = this.GetPathToSave();
+                var rutaCompleta = this.GetPathToSave(guardarArchivo.Archivo.ContentType);
                 var nombreArchivo = guardarArchivo.Archivo.FileName;
+
                 nombreArchivo = string.Format("{0:yyyMMddHHmmss}-{1}", DateTime.Now, nombreArchivo);
 
                 if (!Directory.Exists(rutaCompleta))
@@ -35,11 +43,19 @@
             return rutaArchivoGuardado;
         }
 
-        private string GetPathToSave()
+        private string GetPathToSave(string contentType)
         {
-            var nombreCarpeta = Path.Combine("Resources", "Imagenes");
+            bool tipoImagen = this.EsImagen(contentType);
+            var nombreCarpeta = Path.Combine("Resources", tipoImagen ? "Imagenes" : "Archivos");
 
             return Path.Combine(Directory.GetCurrentDirectory(), nombreCarpeta);
+        }
+
+        public bool EsImagen(string contentType)
+        {
+            string tiposImagen = this.configuration.GetValue<string>("FormatoTipoArchivo:FormatoImagen");
+
+            return tiposImagen.Contains(contentType);
         }
     }
 }

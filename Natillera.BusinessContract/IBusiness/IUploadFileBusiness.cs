@@ -7,5 +7,7 @@
     public interface IUploadFileBusiness
     {
         Task<string> UnloadFile(SolicitudGuardarArchivo guardarArchivo);
+
+        bool EsImagen(string contentType);
     }
 }

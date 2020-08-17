@@ -40,4 +40,8 @@
 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
   <DocumentationFile>NatilleraWebApi.xml</DocumentationFile>
 </PropertyGroup>
+  <!--DUM: para cuando se publica en iis se ejecute fuera del proceso-->
+  <PropertyGroup>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
 </Project>

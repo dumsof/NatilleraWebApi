@@ -1,11 +1,13 @@
 namespace NatilleraWebApi
 {
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Features;
     using Microsoft.AspNetCore.Localization;
+    using Microsoft.AspNetCore.Server.IIS;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
@@ -42,6 +44,9 @@ namespace NatilleraWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+          //Dum: puder utilizar iis
+            services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
+
             //DUM: Habilitar CORS esto permite que otras aplicaciones puedan consumir y realizar todos los verbos get, post de la aplicación
             services.AddCors(options =>
             {
@@ -217,11 +222,11 @@ namespace NatilleraWebApi
             //DUM: habilitar el almacenamiento de archivos en el sitio.
             app.UseStaticFiles();
             //DUM: definir la carpeta para el systema donde se guardaran los archivos. 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-                RequestPath = new PathString("/Resourses")
-            });
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+            //    RequestPath = new PathString("/Resourses")
+            //});
 
             app.UseHttpsRedirection();
             app.UseRouting();

@@ -32,13 +32,30 @@
         /// <response code="404">No existen datos para la consulta realizada.</response>
         /// <response code="500">Error inesperado.</response>
         [HttpPost]
-        [ProducesResponseType(typeof(object), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(object), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(object), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> GuardarArchivoImagen([FromForm] SolicitudGuardarArchivoImagen solicitudUploadFile)
+        [ProducesResponseType(typeof(RespuestaGuardarArchivoImagen), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivoImagen), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivoImagen), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> GuardarArchivoImagen([FromForm] RequestGuardarArchivo guardarImagen)
         {
 
-            var respuesta = await this.service.GuardarArchivoImagen(solicitudUploadFile);
+            var respuesta = await this.service.GuardarArchivoImagen(guardarImagen);
+            return new OkObjectResult(respuesta);
+        }
+
+        /// <summary>
+        /// Permite almacenar todo tipo de archivo valido para el sistema, comprimidos, documentos, imagenes.
+        /// </summary>        
+        /// <response code="200">Operación realizada con éxito.</response>z
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpPost]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> GuardarArchivo([FromForm] RequestGuardarArchivo guardarArchivo)
+        {
+
+            var respuesta = await this.service.GuardarArchivo(guardarArchivo);
             return new OkObjectResult(respuesta);
         }
 

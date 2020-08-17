@@ -4,9 +4,17 @@
         <name>NatilleraWebApi</name>
     </assembly>
     <members>
-        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.GuardarArchivoImagen(Natillera.AplicationContract.Models.UnloadFile.SolicitudGuardarArchivoImagen)">
+        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.GuardarArchivoImagen(Natillera.AplicationContract.Models.UnloadFile.RequestGuardarArchivo)">
             <summary>
             Obtener todos tipos de documentos que puede seleccionar el usuario.
+            </summary>        
+            <response code="200">Operación realizada con éxito.</response>z
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
+        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.GuardarArchivo(Natillera.AplicationContract.Models.UnloadFile.RequestGuardarArchivo)">
+            <summary>
+            Permite almacenar todo tipo de archivo valido para el sistema, comprimidos, documentos, imagenes.
             </summary>        
             <response code="200">Operación realizada con éxito.</response>z
             <response code="404">No existen datos para la consulta realizada.</response>

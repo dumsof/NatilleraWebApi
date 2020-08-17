@@ -5,7 +5,6 @@
     using Natillera.BusinessContract.EntidadesBusiness.UploadFile;
     using Natillera.BusinessContract.IBusiness;
     using Natillera.CrossClothing.Mensajes.Message;
-    using System;
     using System.IO;
     using System.Threading.Tasks;
 
@@ -18,14 +17,38 @@
             this.fileBusiness = fileBusiness;
         }
 
-        public async Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagen(SolicitudGuardarArchivoImagen solicitudArchivo)
+        public async Task<RespuestaGuardarArchivoImagen> GuardarArchivo(RequestGuardarArchivo solicitudArchivo)
         {
+
             var rutaFile = await this.fileBusiness.UnloadFile(new SolicitudGuardarArchivo { Archivo = solicitudArchivo.Archivo });
 
             return new RespuestaGuardarArchivoImagen
             {
                 EstadoTransaccion = true,
-                RutaGuadoImagen = rutaFile,
+                RutaImagenGuardada = rutaFile,
+                Mensaje = new Message(MessageCode.Message0000).Mensaje
+            };
+        }
+
+        public async Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagen(RequestGuardarArchivo solicitudArchivo)
+        {
+
+            if (!this.fileBusiness.EsImagen(solicitudArchivo.Archivo.ContentType))
+            {
+                return new RespuestaGuardarArchivoImagen
+                {
+                    EstadoTransaccion = false,
+                    RutaImagenGuardada = string.Empty,
+                    Mensaje = new Message(MessageCode.Message0004).Mensaje
+                };
+            }
+
+            var rutaFile = await this.fileBusiness.UnloadFile(new SolicitudGuardarArchivo { Archivo = solicitudArchivo.Archivo });
+
+            return new RespuestaGuardarArchivoImagen
+            {
+                EstadoTransaccion = true,
+                RutaImagenGuardada = rutaFile,
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }

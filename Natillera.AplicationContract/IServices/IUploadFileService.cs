@@ -7,6 +7,8 @@
     {
         Task<string> UnloadFile();      
 
-        Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagen(SolicitudGuardarArchivoImagen solicitudArchivo);
+        Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagen(RequestGuardarArchivo solicitudArchivo);
+
+        Task<RespuestaGuardarArchivoImagen> GuardarArchivo(RequestGuardarArchivo solicitudArchivo);
     }
 }

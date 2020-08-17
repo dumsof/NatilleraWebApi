@@ -2,6 +2,6 @@
 {
     public class RespuestaGuardarArchivoImagen : Respuesta
     {
-        public string RutaGuadoImagen { get; set; }
+        public string RutaImagenGuardada { get; set; }
     }
 }
