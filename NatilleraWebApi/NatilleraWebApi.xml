@@ -20,7 +20,7 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
-        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.DownloadFile(System.String)">
+        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.DownloadFileAsync(System.String)">
             <summary>
             Permite almacenar todo tipo de archivo valido para el sistema, comprimidos, documentos, imagenes.
             </summary>        

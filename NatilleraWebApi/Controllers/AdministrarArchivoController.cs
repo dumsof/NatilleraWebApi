@@ -69,12 +69,12 @@
         [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> DownloadFile(string nombreArchivo)
+        public async Task<IActionResult> DownloadFileAsync(string nombreArchivo)
         {
-            byte[] archivoDatos=new byte[0];
+            var (fileType, archiveData, archiveName) = await this.service.DownloadFileAsync(nombreArchivo);
 
-            
-            return File(archivoDatos, "application/pdf", "nombreArchivoDescarga.pdf");
+
+            return File(archiveData, fileType, archiveName);
         }
 
     }

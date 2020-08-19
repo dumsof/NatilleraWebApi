@@ -96,6 +96,9 @@
 
         }
 
-
+        public Task<(string fileType, byte[] archiveData, string archiveName)> DownloadFileAsync(string nombreArchivo)
+        {
+            return this.fileBusiness.DownloadFileAsync(nombreArchivo);
+        }
     }
 }

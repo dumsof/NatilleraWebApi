@@ -11,5 +11,7 @@
         bool EsImagen(string contentType);
 
         bool EsArchivoPermitido(string contentType);
+
+        Task<(string fileType, byte[] archiveData, string archiveName)> DownloadFileAsync(string nombreArchivo);
     }
 }

@@ -10,5 +10,7 @@
         Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagenAsync(RequestGuardarImagen solicitudImagen);
 
         Task<RespuestaGuardarArchivoImagen> GuardarArchivoAsync(RequestGuardarArchivo solicitudArchivo);
+
+        Task<(string fileType, byte[] archiveData, string archiveName)> DownloadFileAsync(string nombreArchivo);
     }
 }
