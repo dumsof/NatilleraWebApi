@@ -59,5 +59,23 @@
             return new OkObjectResult(respuesta);
         }
 
+        /// <summary>
+        /// Permite almacenar todo tipo de archivo valido para el sistema, comprimidos, documentos, imagenes.
+        /// </summary>        
+        /// <response code="200">Operación realizada con éxito.</response>z
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpGet]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> DownloadFile(string nombreArchivo)
+        {
+            byte[] archivoDatos=new byte[0];
+
+            
+            return File(archivoDatos, "application/pdf", "nombreArchivoDescarga.pdf");
+        }
+
     }
 }

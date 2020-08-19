@@ -6,6 +6,8 @@
     using System.Threading.Tasks;
     using System.IO;
     using Microsoft.Extensions.Configuration;
+    using System.IO.Compression;
+    using System.Linq;
 
     public class UploadFileBusiness : IUploadFileBusiness
     {
@@ -66,6 +68,35 @@
 
             return null;
                
+        }
+
+
+        //https://medium.com/@tocalai/upload-download-file-s-in-asp-net-core-1fa89166aab0
+        //DUM: ruta para descargar archivo zip
+        public (string fileType, byte[] archiveData, string archiveName) FetechFiles(string subDirectory)
+        {
+            var zipName = $"archive-{DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss")}.zip";
+
+            var files = Directory.GetFiles(Path.Combine("D:\\webroot\\", subDirectory)).ToList();
+
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    files.ForEach(file =>
+                    {
+                        var theFile = archive.CreateEntry(file);
+                        using (var streamWriter = new StreamWriter(theFile.Open()))
+                        {
+                            streamWriter.Write(File.ReadAllText(file));
+                        }
+
+                    });
+                }
+
+                return ("application/zip", memoryStream.ToArray(), zipName);
+            }
+
         }
 
         private string GetPathToSave(string contentType)
