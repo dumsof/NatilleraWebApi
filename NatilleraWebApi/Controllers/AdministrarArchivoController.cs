@@ -35,10 +35,10 @@
         [ProducesResponseType(typeof(RespuestaGuardarArchivoImagen), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(RespuestaGuardarArchivoImagen), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(RespuestaGuardarArchivoImagen), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> GuardarArchivoImagen([FromForm] RequestGuardarArchivo guardarImagen)
+        public async Task<IActionResult> GuardarArchivoImagen([FromForm] RequestGuardarImagen guardarImagen)
         {
 
-            var respuesta = await this.service.GuardarArchivoImagen(guardarImagen);
+            var respuesta = await this.service.GuardarArchivoImagenAsync(guardarImagen);
             return new OkObjectResult(respuesta);
         }
 
@@ -55,7 +55,7 @@
         public async Task<IActionResult> GuardarArchivo([FromForm] RequestGuardarArchivo guardarArchivo)
         {
 
-            var respuesta = await this.service.GuardarArchivo(guardarArchivo);
+            var respuesta = await this.service.GuardarArchivoAsync(guardarArchivo);
             return new OkObjectResult(respuesta);
         }
 

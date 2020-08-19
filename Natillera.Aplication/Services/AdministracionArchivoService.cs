@@ -17,10 +17,18 @@
             this.fileBusiness = fileBusiness;
         }
 
-        public async Task<RespuestaGuardarArchivoImagen> GuardarArchivo(RequestGuardarArchivo solicitudArchivo)
+        public async Task<RespuestaGuardarArchivoImagen> GuardarArchivoAsync(RequestGuardarArchivo solicitudArchivo)
         {
-
-            var rutaFile = await this.fileBusiness.UnloadFile(new SolicitudGuardarArchivo { Archivo = solicitudArchivo.Archivo });
+            if (!this.fileBusiness.EsArchivoPermitido(solicitudArchivo.Archivo.ContentType))
+            {
+                return new RespuestaGuardarArchivoImagen
+                {
+                    EstadoTransaccion = false,
+                    RutaImagenGuardada = string.Empty,
+                    Mensaje = new Message(MessageCode.Message0005).Mensaje
+                };
+            }
+            var rutaFile = await this.fileBusiness.UnloadFileAsync(new SolicitudGuardarArchivo { Archivo = solicitudArchivo.Archivo });
 
             return new RespuestaGuardarArchivoImagen
             {
@@ -30,10 +38,10 @@
             };
         }
 
-        public async Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagen(RequestGuardarArchivo solicitudArchivo)
+        public async Task<RespuestaGuardarArchivoImagen> GuardarArchivoImagenAsync(RequestGuardarImagen solicitudImagen)
         {
 
-            if (!this.fileBusiness.EsImagen(solicitudArchivo.Archivo.ContentType))
+            if (!this.fileBusiness.EsImagen(solicitudImagen.Imagen.ContentType))
             {
                 return new RespuestaGuardarArchivoImagen
                 {
@@ -43,7 +51,7 @@
                 };
             }
 
-            var rutaFile = await this.fileBusiness.UnloadFile(new SolicitudGuardarArchivo { Archivo = solicitudArchivo.Archivo });
+            var rutaFile = await this.fileBusiness.UnloadFileAsync(new SolicitudGuardarArchivo { Archivo = solicitudImagen.Imagen });
 
             return new RespuestaGuardarArchivoImagen
             {

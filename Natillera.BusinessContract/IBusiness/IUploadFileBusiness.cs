@@ -6,8 +6,10 @@
 
     public interface IUploadFileBusiness
     {
-        Task<string> UnloadFile(SolicitudGuardarArchivo guardarArchivo);
+        Task<string> UnloadFileAsync(SolicitudGuardarArchivo guardarArchivo);
 
         bool EsImagen(string contentType);
+
+        bool EsArchivoPermitido(string contentType);
     }
 }

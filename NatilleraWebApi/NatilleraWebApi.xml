@@ -4,7 +4,7 @@
         <name>NatilleraWebApi</name>
     </assembly>
     <members>
-        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.GuardarArchivoImagen(Natillera.AplicationContract.Models.UnloadFile.RequestGuardarArchivo)">
+        <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.GuardarArchivoImagen(Natillera.AplicationContract.Models.UnloadFile.RequestGuardarImagen)">
             <summary>
             Obtener todos tipos de documentos que puede seleccionar el usuario.
             </summary>        

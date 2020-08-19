@@ -15,7 +15,7 @@
         {
             this.configuration = configuration;
         }
-        public async Task<string> UnloadFile(SolicitudGuardarArchivo guardarArchivo)
+        public async Task<string> UnloadFileAsync(SolicitudGuardarArchivo guardarArchivo)
         {
             string rutaArchivoGuardado = string.Empty;
 
@@ -43,6 +43,31 @@
             return rutaArchivoGuardado;
         }
 
+        public async Task<object> DownloadFileAsync(string nombreArchivo)
+        {
+            string rutaArchivoGuardado = string.Empty;
+
+            var rutaCompleta = this.GetPathToSave("application/pdf");
+            rutaCompleta = $"{rutaCompleta}\\{ nombreArchivo}";
+
+
+
+            var memory = new MemoryStream();
+            using (var stream=new FileStream(rutaCompleta, FileMode.Create))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            var ext = Path.GetExtension(rutaCompleta);
+
+           //return new FileStreamResult(memory, "application/pdf", nombreArchivo);
+
+           // System.IO.File(memory, "application/pdf", nombreArchivo);
+
+            return null;
+               
+        }
+
         private string GetPathToSave(string contentType)
         {
             bool tipoImagen = this.EsImagen(contentType);
@@ -56,6 +81,13 @@
             string tiposImagen = this.configuration.GetValue<string>("FormatoTipoArchivo:FormatoImagen");
 
             return tiposImagen.Contains(contentType);
+        }
+
+        public bool EsArchivoPermitido(string contentType)
+        {
+            string tipoArchivo = this.configuration.GetValue<string>("FormatoTipoArchivo:FormatoArchivo");
+
+            return tipoArchivo.Contains(contentType);
         }
     }
 }

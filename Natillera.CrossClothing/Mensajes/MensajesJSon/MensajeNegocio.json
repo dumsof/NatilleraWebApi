@@ -113,8 +113,15 @@
       "Text": "Debe seleccionar una imagen con un formato valido, jpeg, jpg, png, git",
       "Title": "Validación Carga de Imagen"
       //"Validation": "Validación de clave correcta del usuario"
+    },
+    {
+      "Type": "1",
+      "Code": "5",
+      "Text": "Debe seleccionar un archivo con un formato valido, .pdf, word, excel, zip",
+      "Title": "Validación Carga de Archivo"
+      //"Validation": "Validación de clave correcta del usuario"
     }
-   
+
   ]
 }
 
