@@ -60,7 +60,7 @@
         }
 
         /// <summary>
-        /// Permite almacenar todo tipo de archivo valido para el sistema, comprimidos, documentos, imagenes.
+        /// Permite descargar archivos segun el nombre del archivo enviado.
         /// </summary>        
         /// <response code="200">Operación realizada con éxito.</response>z
         /// <response code="404">No existen datos para la consulta realizada.</response>
@@ -73,6 +73,22 @@
         {
             var (fileType, archiveData, archiveName) = await this.service.DownloadFileAsync(nombreArchivo);
 
+            return File(archiveData, fileType, archiveName);
+        }
+
+        /// <summary>
+        /// Permite descargar cualquier tipo de archivo en formato zip.
+        /// </summary>        
+        /// <response code="200">Operación realizada con éxito.</response>z
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpGet]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(RespuestaGuardarArchivo), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> DownloadFileZipAsync(string nombreArchivo)
+        {
+            var (fileType, archiveData, archiveName) = await this.service.DownloadFileZipAsync(nombreArchivo);
 
             return File(archiveData, fileType, archiveName);
         }

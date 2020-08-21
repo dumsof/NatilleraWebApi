@@ -13,5 +13,7 @@
         bool EsArchivoPermitido(string contentType);
 
         Task<(string fileType, byte[] archiveData, string archiveName)> DownloadFileAsync(string nombreArchivo);
+
+        Task<(string fileType, byte[] archiveData, string archiveName)> DownloadFileZipAsync(string nombreArchivo);
     }
 }

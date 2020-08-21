@@ -1,14 +1,14 @@
 ﻿namespace Natillera.Business.Business
 {
+    using Microsoft.Extensions.Configuration;
     using Natillera.BusinessContract.EntidadesBusiness.UploadFile;
     using Natillera.BusinessContract.IBusiness;
     using System;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
     using System.IO;
-    using Microsoft.Extensions.Configuration;
     using System.IO.Compression;
     using System.Linq;
-    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class UploadFileBusiness : IUploadFileBusiness
     {
@@ -62,6 +62,30 @@
             memory.Position = 0;
 
             return (tipoArchivo, memory.ToArray(), nombreArchivo);
+        }
+
+
+        public async Task<(string fileType, byte[] archiveData, string archiveName)> DownloadFileZipAsync(string nombreArchivo)
+        {
+            var zipName = $"Archivo-{DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss")}.zip";
+            string tipoArchivo = GetMimeType(nombreArchivo);
+            var rutaCompleta = this.GetPathToSave(tipoArchivo);
+
+            rutaCompleta = $"{rutaCompleta}\\{ nombreArchivo}";
+
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    var theFile = archive.CreateEntry(rutaCompleta);
+                    using (var streamWriter = new StreamWriter(theFile.Open()))
+                    {
+                        streamWriter.Write(await File.ReadAllTextAsync(rutaCompleta));
+                    }
+                }
+
+                return ("application/zip", memoryStream.ToArray(), zipName);
+            }
         }
 
 
