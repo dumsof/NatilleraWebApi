@@ -1,7 +1,7 @@
 user aplication:dun34@hotmil.com
 psw aplication:Dar123.
 --capa en la cual se agregan todas las funcionalidades que son 
-transversales a la aplicaci�n.
+transversales a la aplicación.
 
 ----se deben ejecutar en al consola de paquete nuget, se debe seleccionar el proyecto donde esta el contexto
 1. comando que crea la estructura de la base de datos basada en el modelo
@@ -69,3 +69,4 @@ EXEC sp_addrolemember 'db_owner', 'DumNati'
 SET time_zone = 'US/Pacific';
 --zona horaria se configura en azure app service
 WESITE_TIME_ZONE="SA Pacific Standard Time"
+--se realiza una prueba de contribución desde darwinum dun34@hotmail.com
