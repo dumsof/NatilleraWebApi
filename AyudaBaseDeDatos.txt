@@ -1,0 +1,14 @@
+--CREAR USUARIO SOLO PARA LA BASE DE DATOS NATI CON PERMISOS
+--------------------------------------------------------------------------------
+use [db-dev-natillera]
+go
+--borra si exise el usuario en la base de datos
+DROP USER IF EXISTS DumNati;
+--se crea el usuario de login, acceso base de datos
+CREATE LOGIN DumNati WITH PASSWORD = 'Dar11803.';
+--se asocia el usuario de logue solo a esa base de datos.
+CREATE USER DumNati FOR LOGIN DumNati
+--se asignan los permisos
+EXEC sp_addrolemember 'db_datareader', 'DumNati'
+EXEC sp_addrolemember 'db_datawriter', 'DumNati'
+--------------------------------------------------------------------------------

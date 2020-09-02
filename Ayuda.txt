@@ -70,3 +70,16 @@ SET time_zone = 'US/Pacific';
 --zona horaria se configura en azure app service
 WESITE_TIME_ZONE="SA Pacific Standard Time"
 --se realiza una prueba de contribución desde darwinum dun34@hotmail.com
+
+
+--CREAR USUARIO PARA LA BASE DE DATOS
+use [db-dev-natillera]
+go
+DROP USER IF EXISTS DumNati;
+
+CREATE LOGIN DumNati WITH PASSWORD = 'Dar11803.';
+CREATE USER DumNati FOR LOGIN DumNati
+
+EXEC sp_addrolemember 'db_datareader', 'DumNati'
+EXEC sp_addrolemember 'db_datawriter', 'DumNati'
+

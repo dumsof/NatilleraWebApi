@@ -22,7 +22,7 @@
         </member>
         <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.DownloadFileAsync(System.String)">
             <summary>
-            Permite almacenar todo tipo de archivo valido para el sistema, comprimidos, documentos, imagenes.
+            Permite descargar archivos segun el nombre del archivo enviado.
             </summary>        
             <response code="200">Operación realizada con éxito.</response>z
             <response code="404">No existen datos para la consulta realizada.</response>
@@ -30,7 +30,7 @@
         </member>
         <member name="M:NatilleraWebApi.Controllers.AdministrarArchivoController.DownloadFileZipAsync(System.String)">
             <summary>
-            Permite almacenar todo tipo de archivo valido para el sistema, comprimidos, documentos, imagenes.
+            Permite descargar cualquier tipo de archivo en formato zip.
             </summary>        
             <response code="200">Operación realizada con éxito.</response>z
             <response code="404">No existen datos para la consulta realizada.</response>
