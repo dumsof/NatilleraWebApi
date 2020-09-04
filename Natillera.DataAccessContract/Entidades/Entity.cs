@@ -10,7 +10,7 @@
         /// controlar la concurrencia.
         /// </summary>
         [DataType(DataType.DateTime)]
-        public DateTime RowCreated { get; set; }
+        public DateTime RowCreated { get; set; } = DateTime.Now;
 
         /// <summary>
         /// cuando el registro se actualiza se genera la fecha y hora.

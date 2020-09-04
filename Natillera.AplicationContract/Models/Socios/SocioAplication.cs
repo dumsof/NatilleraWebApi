@@ -1,9 +1,9 @@
 ﻿namespace Natillera.AplicationContract.Models.Socios
-{   
+{
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class SocioAplication
+    public class SocioAplication : AuditoriaAplication
     {
         public Guid SocioId { get; set; }
 
@@ -47,7 +47,7 @@
         [EmailAddress(ErrorMessage = "En el campo {0} debe diligenciar un email válido, por favor verifique.")]
         public string Email { get; set; }
 
-        public string TiposDocumentoDescripcion { get; set; }      
+        public string TiposDocumentoDescripcion { get; set; }
 
         //propiedades que se utilizan para las relaciones
         /*Relacion uno a uno con el tipo de documento*/

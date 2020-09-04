@@ -152,6 +152,16 @@
             <response code="404">No existen datos para la consulta realizada.</response>
             <response code="500">Error inesperado.</response>
         </member>
+        <member name="M:NatilleraWebApi.Controllers.SociosController.ActualizarSocioAsync(Natillera.AplicationContract.Models.Socios.SocioAplication)">
+            <summary>
+            Actualiza los datos del socio por el socio id y versión del registro.
+            </summary>
+            <param name="socios"></param>
+            <response code="200">Operación realizada con éxito.</response>
+            <response code="401">No existen permisos para utilizar el servicio.</response>
+            <response code="404">No existen datos para la consulta realizada.</response>
+            <response code="500">Error inesperado.</response>
+        </member>
         <member name="M:NatilleraWebApi.Controllers.SociosController.ObtenerSociosAsync">
             <summary>
             Obtener todos los datos de las natilleras.

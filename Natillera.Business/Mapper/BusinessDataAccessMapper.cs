@@ -15,6 +15,7 @@ namespace Natillera.Business.Mapper
             CreateMap<Usuario, UsuarioENegocio>();
             CreateMap<Socio, SocioENegocio>();
             CreateMap<SocioENegocio, Socio>();
+            CreateMap<SocioENegocio, SocioEntity>();
             CreateMap<UsuarioENegocio, SocioEntity>();
             CreateMap<UserENegocio, Usuario>();
             CreateMap<Usuario, UserENegocio>();

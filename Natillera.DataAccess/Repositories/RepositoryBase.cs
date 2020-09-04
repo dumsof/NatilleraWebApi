@@ -63,19 +63,17 @@
             throw new NotImplementedException();
         }
 
-
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await this.RepositoryContext.Set<TEntity>().ToListAsync();
         }
 
-
         public async Task<TEntity> GetByIdAsync(int id) => await this.RepositoryContext.Set<TEntity>().FindAsync(id);
 
-        public Task UpdateAsync(TEntity entity)
-        {
+        public async Task UpdateAsync(TEntity entity)
+        {            
             this.RepositoryContext.Entry(entity).State = EntityState.Modified;
-            return this.RepositoryContext.SaveChangesAsync();
+            await this.RepositoryContext.SaveChangesAsync();
         }
 
         public async Task<TEntity> Find(Expression<Func<TEntity, bool>> expression)
@@ -111,6 +109,6 @@
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }       
+        }
     }
 }

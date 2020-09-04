@@ -34,8 +34,8 @@
         public static void ConfigureAddIdentityService(this IServiceCollection services)
         {
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<NatilleraDBContext>()
-            .AddDefaultTokenProviders();
+                    .AddEntityFrameworkStores<NatilleraDBContext>()
+                    .AddDefaultTokenProviders();
         }
 
 

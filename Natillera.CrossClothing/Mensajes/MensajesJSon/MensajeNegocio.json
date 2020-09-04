@@ -104,22 +104,25 @@
       "Type": "1",
       "Code": "3",
       "Text": "El usuario o la contraseña son incorrectos, por favor verifique.",
-      "Title": "Validación de usuario"
-      //"Validation": "Validación de clave correcta del usuario"
+      "Title": "Validación de usuario"      
     },
     {
       "Type": "1",
       "Code": "4",
       "Text": "Debe seleccionar una imagen con un formato valido, jpeg, jpg, png, git",
-      "Title": "Validación Carga de Imagen"
-      //"Validation": "Validación de clave correcta del usuario"
+      "Title": "Validación Carga de Imagen"      
     },
     {
       "Type": "1",
       "Code": "5",
       "Text": "Debe seleccionar un archivo con un formato valido, .pdf, word, excel, zip",
-      "Title": "Validación Carga de Archivo"
-      //"Validation": "Validación de clave correcta del usuario"
+      "Title": "Validación Carga de Archivo"      
+    },
+    {
+      "Type": "1",
+      "Code": "6",
+      "Text": "La información fue cambiada por otro usuario, debe obtener nuevamente la información para modificarla.",
+      "Title": "Información Modificada Otro Usuario"      
     }
 
   ]

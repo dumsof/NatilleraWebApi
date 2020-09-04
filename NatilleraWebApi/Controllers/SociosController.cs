@@ -43,6 +43,26 @@
         }
 
         /// <summary>
+        /// Actualiza los datos del socio por el socio id y versión del registro.
+        /// </summary>
+        /// <param name="socios"></param>
+        /// <response code="200">Operación realizada con éxito.</response>
+        /// <response code="401">No existen permisos para utilizar el servicio.</response>
+        /// <response code="404">No existen datos para la consulta realizada.</response>
+        /// <response code="500">Error inesperado.</response>
+        [HttpPost]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Respuesta), (int)HttpStatusCode.InternalServerError)]
+        [ValidateModel]        
+        public async Task<IActionResult> ActualizarSocioAsync([FromBody] SocioAplication socios)
+        {
+            Respuesta respuesta = await this.sociosService.ActualizarSocioAsync(socios);
+
+            return new OkObjectResult(respuesta);
+        }
+
+        /// <summary>
         /// Obtener todos los datos de las natilleras.
         /// </summary>       
         /// <response code="200">Operación realizada con éxito.</response>

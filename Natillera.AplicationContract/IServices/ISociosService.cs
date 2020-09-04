@@ -9,6 +9,8 @@
     {
         Task<Respuesta> GuardarSocioAsync(SocioAplication socio);
 
+        Task<Respuesta> ActualizarSocioAsync(SocioAplication socio);
+
         Task<RespuestaObtenerSocios> ObtenerSociosAsync();
 
         Task<Respuesta> DeleteSocioAsync(Guid socioId);

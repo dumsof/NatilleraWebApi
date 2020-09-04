@@ -90,7 +90,13 @@
         /// La confirmación del correo no es válida.
         ///"Validation": "Campos obligatorio del pre-registro"
         /// </summary>
-        public static int Message0005 { get { return 5; } }
-        
+        public static int Message0005 { get => 5; }
+
+        /// <summary>
+        /// La información fue cambiada por otro usuario, debe obtener nuevamente la información para modificarla.    
+        /// "Título": "Información Modificada Otro Usuario"
+        /// </summary>
+        public static int Message0006 { get => 6; }
+
     }
 }

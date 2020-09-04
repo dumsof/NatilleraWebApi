@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Socio
+    public class Socio : Entity
     {
         public Guid SocioId { get; set; }
 
@@ -26,7 +26,7 @@
 
         public string Email { get; set; }
 
-        public string Password { get; set; }
+        public string Password { get; set; }        
 
         public Guid TipoDocumentoId { get; set; }
 

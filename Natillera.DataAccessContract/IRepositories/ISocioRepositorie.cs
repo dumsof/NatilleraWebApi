@@ -7,7 +7,11 @@
 
     public interface ISocioRepositorie : IRepositoryBase<SocioEntity>
     {
-        Task<Guid> GuardarSocioAsync(SocioEntity socio);
+        Task<Guid> GuardarSocioAsync(SocioEntity socio);      
+
+        Task ActualizarSocioAsync(SocioEntity socio);
+
+        Task<bool> NoFueModificadoOtroUsuarioConcurrente(SocioEntity socio);
 
         public Task<IEnumerable<Socio>> ObtenerSociosAsync();
 

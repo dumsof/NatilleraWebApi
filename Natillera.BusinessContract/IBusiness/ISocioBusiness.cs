@@ -9,6 +9,10 @@
     {
         Task<Guid> GuardarSocioAsync(SocioENegocio sociosBusiness);
 
+        Task ActualizarSocioAsync(SocioENegocio sociosBusiness);
+
+        Task<bool> NoFueModificadoOtroUsuarioConcurrente(SocioENegocio sociosBusiness);
+
         Task<IEnumerable<SocioENegocio>> ObtenerSociosAsync();
 
         Task<SocioENegocio> ObtenerSocioIdAsync(Guid socioId);

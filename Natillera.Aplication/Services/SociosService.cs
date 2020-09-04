@@ -54,5 +54,20 @@
                 Mensaje = new Message(MessageCode.Message0000).Mensaje
             };
         }
+
+        public async Task<Respuesta> ActualizarSocioAsync(SocioAplication socio)
+        {
+            var concurrecia = await this.business.NoFueModificadoOtroUsuarioConcurrente(this.mapper.Map<SocioENegocio>(socio));
+            if (concurrecia)
+            {
+                await this.business.ActualizarSocioAsync(this.mapper.Map<SocioENegocio>(socio));
+            }
+
+            return new Respuesta
+            {
+                EstadoTransaccion = concurrecia,
+                Mensaje = new Message(concurrecia ? MessageCode.Message0000 : MessageCode.Message0006).Mensaje
+            };
+        }
     }
 }

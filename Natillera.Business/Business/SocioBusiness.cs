@@ -13,6 +13,7 @@
     {
         private readonly ISocioRepositorie repositorio;
         private readonly IMapper mapper;
+
         public SocioBusiness(ISocioRepositorie repositorio, IMapper mapper)
         {
             this.repositorio = repositorio;
@@ -33,9 +34,23 @@
 
         public async Task<Guid> GuardarSocioAsync(SocioENegocio sociosBusiness)
         {
-            var result = await this.repositorio.GuardarSocioAsync(this.mapper.Map<SocioEntity>(sociosBusiness));
+            return await this.repositorio.GuardarSocioAsync(this.mapper.Map<SocioEntity>(sociosBusiness));
+        }
 
-            return result;
+        public async Task ActualizarSocioAsync(SocioENegocio sociosBusiness)
+        {
+            var socioEntity = await this.repositorio.Find(c => c.SocioId == sociosBusiness.SocioId);
+            socioEntity.Nombres = sociosBusiness.Nombres;
+            socioEntity.PrimerApellidos = sociosBusiness.PrimerApellidos;
+            socioEntity.SegundoApellidos = sociosBusiness.SegundoApellidos;
+            socioEntity.TipoDocumentoId = sociosBusiness.TipoDocumentoId;
+            socioEntity.Telefono = sociosBusiness.Telefono;
+            socioEntity.Celular = sociosBusiness.Celular;
+            socioEntity.Direccion = sociosBusiness.Direccion;
+            socioEntity.NumeroDocumento = sociosBusiness.NumeroDocumento;
+            socioEntity.RowUpdated = DateTime.Now;
+
+            await this.repositorio.ActualizarSocioAsync(socioEntity);
         }
 
         public async Task<SocioENegocio> ObtenerSocioIdAsync(Guid socioId)
@@ -49,9 +64,12 @@
         {
             var result = await this.repositorio.ObtenerSociosAsync();
 
-            var socio = this.mapper.Map<IEnumerable<SocioENegocio>>(result);
+            return this.mapper.Map<IEnumerable<SocioENegocio>>(result);
+        }
 
-            return socio;
+        public async Task<bool> NoFueModificadoOtroUsuarioConcurrente(SocioENegocio sociosBusiness)
+        {
+            return await this.repositorio.NoFueModificadoOtroUsuarioConcurrente(this.mapper.Map<SocioEntity>(sociosBusiness));
         }
     }
 }

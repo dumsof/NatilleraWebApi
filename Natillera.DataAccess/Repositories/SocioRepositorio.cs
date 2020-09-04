@@ -17,12 +17,24 @@
             this.repositorioContexto = repositorioContexto;
         }
 
+        public async Task<bool> NoFueModificadoOtroUsuarioConcurrente(SocioEntity socio)
+        {
+            var socioActualizar = await this.repositorioContexto.Socios.FirstOrDefaultAsync(c => c.SocioId == socio.SocioId && c.RowVersion == socio.RowVersion);
+
+            return socioActualizar != null;
+        }
+
         public async Task<Guid> GuardarSocioAsync(SocioEntity socio)
         {
             socio.SocioId = Guid.NewGuid();
             var resultado = await this.AddAsync(socio);
             this.Save();
             return resultado.SocioId;
+        }
+
+        public async Task ActualizarSocioAsync(SocioEntity socio)
+        {
+            await this.UpdateAsync(socio);            
         }
 
         public async Task<IEnumerable<Socio>> ObtenerSociosAsync()
@@ -44,7 +56,8 @@
                                     SegundoApellidos = s.SegundoApellidos,
                                     Telefono = s.Telefono,
                                     TiposDocumentoDescripcion = t.Descripcion,
-
+                                    RowCreated = s.RowCreated,
+                                    RowVersion = s.RowVersion
                                 }).ToListAsync();
             return socios;
         }
@@ -68,7 +81,9 @@
                                    Telefono = s.Telefono,
                                    Direccion = s.Direccion,
                                    TipoDocumentoId = s.TipoDocumentoId,
-                                   TiposDocumentoDescripcion = t.Descripcion
+                                   TiposDocumentoDescripcion = t.Descripcion,
+                                   RowCreated = s.RowCreated,
+                                   RowVersion = s.RowVersion
                                }).FirstOrDefaultAsync();
 
             return socio;
