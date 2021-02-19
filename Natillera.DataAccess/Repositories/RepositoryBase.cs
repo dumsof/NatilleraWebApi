@@ -71,7 +71,7 @@
         public async Task<TEntity> GetByIdAsync(int id) => await this.RepositoryContext.Set<TEntity>().FindAsync(id);
 
         public async Task UpdateAsync(TEntity entity)
-        {            
+        {
             this.RepositoryContext.Entry(entity).State = EntityState.Modified;
             await this.RepositoryContext.SaveChangesAsync();
         }

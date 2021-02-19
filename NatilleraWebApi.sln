@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5 CrossCutting", "1.5 Cro
 	ProjectSection(SolutionItems) = preProject
 		Ayuda.txt = Ayuda.txt
 		AyudaBaseDeDatos.txt = AyudaBaseDeDatos.txt
+		AyudaDocker.txt = AyudaDocker.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 Aplication", "1.2 Aplication", "{562E9E35-09CB-4827-AC45-A18084A745FD}"

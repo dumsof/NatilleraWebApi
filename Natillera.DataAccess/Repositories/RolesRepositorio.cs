@@ -3,8 +3,8 @@
     using Microsoft.AspNetCore.Identity;
     using Natillera.DataAccessContract.Entidades;
     using Natillera.DataAccessContract.IRepositories;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class RolesRepositorio : RepositoryBase<RolesEntity>, IRolesRepositorio
@@ -13,19 +13,18 @@
         /// Defines the _userManager
         /// </summary>
         private readonly RoleManager<IdentityRole> _roleManager;
-        
+
         private readonly NatilleraDBContext repositorioContexto;
 
-        public RolesRepositorio(RoleManager<IdentityRole> roleManager,           
+        public RolesRepositorio(RoleManager<IdentityRole> roleManager,
              NatilleraDBContext repositorioContexto) : base(repositorioContexto)
         {
-            _roleManager = roleManager;          
+            _roleManager = roleManager;
             this.repositorioContexto = repositorioContexto;
         }
 
         public async Task<RolesEntity> GuardarRolAsync(RolesEntity roles)
         {
-
             var rol = new IdentityRole
             {
                 Name = roles.NombreRol
