@@ -1,0 +1,14 @@
+﻿version: '3'
+services:
+  ms-sql-server: 
+   image: mcr.microsoft.com/mssql/server:2017-latest-obuntu
+   environment: 
+    ACCEPT_EULA: "y"
+    SA_PASSWORD: "Dar11802Dum."
+    MSSQL_PID: Express
+   ports:
+    - "1433:1433"
+  natillera-web-api:  
+    build: .
+    ports:
+     - "8080:80"

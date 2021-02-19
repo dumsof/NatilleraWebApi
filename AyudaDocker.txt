@@ -1,3 +1,8 @@
 
+--se ejecuta el docker-compose.yml
+ docker-componse up
+
+--el anterior archivo se agrega con el fin de conectar los contenedores de base de dato y aplicación.
+
 
 
