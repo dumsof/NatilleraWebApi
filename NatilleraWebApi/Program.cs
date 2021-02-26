@@ -17,8 +17,8 @@ namespace NatilleraWebApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>()
-                      .UseUrls("https://localhost:44335");
+                    webBuilder.UseStartup<Startup>();
+                      //.UseUrls("https://localhost:44335");
                 });
     }
 #pragma warning restore CS1591
